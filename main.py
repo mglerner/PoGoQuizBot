@@ -113,7 +113,7 @@ async def check_channel_and_redirect_user(ctx):
     if not check_channel(ctx):
         if not discord.utils.get(ctx.guild.channels,name=get_private_channel_name(ctx)):
             await create_channel(ctx)
-        txt = f'{ctx.author}, your quiz in {get_private_channel(ctx).mention}!\n(asking for future quizzes there will help reduce clutter in {ctx.channel.mention}).'
+        txt = f'{ctx.author}, your quiz is in {get_private_channel(ctx).mention}!\n(asking for future quizzes there will help reduce clutter in {ctx.channel.mention}).'
         await ctx.respond(txt)
         return
 
