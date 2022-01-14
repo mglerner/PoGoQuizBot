@@ -11,7 +11,7 @@ from discord.ext import tasks
 ##
 
 # TODO
-# * when you ask for a quiz in the wrong channel, start the quiz in the right channel!
+# * rewrite using buttons. https://www.youtube.com/watch?v=kNUuYEWGOxA and apparently some exampels on discord.
 #
 """
 https://discordpy.readthedocs.io/en/latest/api.html#discord.Guild.create_text_channel
