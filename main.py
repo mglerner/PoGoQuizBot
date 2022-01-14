@@ -4,6 +4,7 @@ from datetime import datetime
 # We're using py-cord https://docs.pycord.dev/en/master/index.html
 import discord
 from discord.ext import tasks
+from discord.ui import Button, View
 
 ## SECURITY WARNING: if this file becomes public, we need a way to
 ## make this secret. Probably import the *RIGHT* discord in repl.it
@@ -11,8 +12,12 @@ from discord.ext import tasks
 ##
 
 # TODO
-# * rewrite using buttons. https://www.youtube.com/watch?v=kNUuYEWGOxA and apparently some exampels on discord.
 #
+
+# USEFUL LINKS
+# * freecodecamp encouragebot
+# * buttons: https://www.youtube.com/watch?v=kNUuYEWGOxA and apparently some exampels on discord.
+
 """
 https://discordpy.readthedocs.io/en/latest/api.html#discord.Guild.create_text_channel
 probably want to create a secret channel!
@@ -117,7 +122,7 @@ gives you a quiz about one specific pokemon's move counts. In this case, bastiod
 /qm
 gives you a quiz about the top 100 pokemon from a given league, using PvPoke's overall rankings. You can tell it which league (great, ultra, master). You can also tell it how many questions to ask you.
 
-I personally can't count past ten, and I didn't see any good emojis for 11+, so you just select {count_emojis['more']} for anything that takes more than 10 moves.""",)
+I personally can't count past ten, and I didn't see any good emojis for 11+, so you just select "more" for anything that takes more than 10 moves.""",)
     await ctx.respond(embed=embed)
 
 
@@ -187,6 +192,7 @@ async def check_channel_and_redirect_user(ctx):
         return
     return
 
+
 async def ask_type_questions(attackers, defenders, channel, question_mode, guesser):
     """Ask the questions.
 
@@ -208,28 +214,33 @@ async def ask_type_questions(attackers, defenders, channel, question_mode, guess
         record_channel_activity(channel)
         right_answer = effectiveness[attacker][defender]
         right_answer_emoji = effectiveness_to_emoji[effectiveness_to_words[right_answer]]
-        if question_mode == 'attacker':
-            mymsg = await msg.reply(f'damage is ??? when {attacker} is attacking against {defender}')
-        else:
-            mymsg = await msg.reply(f'damage is ??? when {defender} is defending against {attacker}')
+
+        view = View(timeout=QUIZ_TIMEOUT)
+        answer_or_timeout = 'timeout'
         for i in ('double resisted','not very effective','neutral','super effective'):
-            await mymsg.add_reaction(emoji=effectiveness_to_emoji[i])
-
-        def check(reaction,user):
-            """If you give a check function, it ignores all
-            reactions that fail the check. So they can react a bunch
-            of wrong things and you'll wait for the right one.
-            """
-            result = (user == guesser) and (str(reaction.emoji) == right_answer_emoji)
-            return result
-
-        try:
-            reaction, user = await bot.wait_for('reaction_add', timeout=QUIZ_TIMEOUT, check=check)
-        except asyncio.TimeoutError:
-            await mymsg.channel.send('You timed out')
-            break
+            emoji = effectiveness_to_emoji[i]
+            if emoji == right_answer_emoji:
+                async def button_callback(interaction):
+                    #await interaction.message.reply('You got it!')
+                    answer_or_timeout = 'answer'
+                    await interaction.message.add_reaction(emoji='👍')
+                    view.stop()
+            else:
+                async def button_callback(interaction):
+                    #await interaction.message.reply('No sir!')
+                    pass
+            button = Button(emoji=emoji)
+            button.callback = button_callback
+            view.add_item(button)
+        
+        if question_mode == 'attacker':
+            mymsg = await msg.reply(f'damage is ??? when {attacker} is attacking against {defender}',view=view)
         else:
-            await mymsg.add_reaction(emoji='👍')
+            mymsg = await msg.reply(f'damage is ??? when {defender} is defending against {attacker}',view=view)
+        await view.wait()
+        if answer_or_timeout == 'timeout':
+            break
+    return
             
 @bot.slash_command(guild_ids=GUILD_IDS,description="Attacker: normal, rock, random ...")
 async def qa(ctx, attacker: str, num_questions:int=18,):
@@ -251,10 +262,10 @@ async def qa(ctx, attacker: str, num_questions:int=18,):
 
     # Ask N questions.
     try:
-        await ask_type_questions(attackers, defenders, channel, question_mode='attacker', guesser=ctx.user)
+         await ask_type_questions(attackers, defenders, channel, question_mode='attacker', guesser=ctx.user)
     except asyncio.TimeoutError:
         await channel.send('You timed out') # Where to send this? Could use ctx to send to original channel.
-    await channel.send('The quiz is over!')
+    await channel.send(f'The quiz is over! {right_answers}/{total_answers}')
 
 @bot.slash_command(guild_ids=GUILD_IDS,description="Defender: normal, rock, random ...")
 async def qd(ctx, defender: str, num_questions:int=18,):
@@ -299,7 +310,11 @@ count_emojis = {
 #    15:"⓯",
     'more':"🔼",
     }
+
 async def ask_moves_questions(num_questions, mons, channel, guesser):
+    # I can't decide if this looks better wtih emoji or text labels.
+    # Since I can use text labels, I could definitely go all the way
+    # up to 20 or whatever for low-energy moves.
     msg = await channel.send("Here is your quiz")
     for question_number in range(num_questions):
         record_channel_activity(channel)
@@ -313,29 +328,37 @@ async def ask_moves_questions(num_questions, mons, channel, guesser):
             charged_move = random.choice(mon['moveset'][1:])
         fast_move_name = FASTMOVES[fast_move]['name']
         charged_move_name = CHARGEDMOVES[charged_move]['name']
-
-        mymsg = await msg.reply(f"How many {fast_move_name}s does it take {mon['speciesName']} to get to one {charged_move_name}?")
-
-        for i in (1,2,3,4,5,6,7,8,9,10,'more'):
-            await mymsg.add_reaction(emoji=count_emojis[i])
         right_answer_full = CHARGEDMOVES[charged_move]['energy'] / FASTMOVES[fast_move]['energyGain']
         right_answer = int(math.ceil(right_answer_full))
         if right_answer > 10:
             right_answer = 'more'
         right_answer_emoji = count_emojis[right_answer]
-        def check(reaction,user):
-            result = (user == guesser) and (str(reaction.emoji) == right_answer_emoji)
-            return result
-        try:
-            reaction, user = await bot.wait_for('reaction_add',timeout=QUIZ_TIMEOUT, check=check)
-        except asyncio.TimeoutError:
-            await mymsg.channel.send('You timed out')
-            break
-        else:
-            await mymsg.add_reaction(emoji='👍')
-            if right_answer == 'more':
-                await channel.send(f"Yeah, it's {right_answer_full:g}")
 
+        view = View(timeout=QUIZ_TIMEOUT)
+        answer_or_timeout = 'timeout'
+        for i in (1,2,3,4,5,6,7,8,9,10,'more'):
+            emoji = count_emojis[i]
+            if emoji == right_answer_emoji:
+                async def button_callback(interaction):
+                    answer_or_timeout = 'answer'
+                    await interaction.message.add_reaction(emoji='👍')
+                    if right_answer == 'more':
+                        await interaction.message.reply(f"Yeah, it's {right_answer_full:g}")
+                    view.stop()
+            else:
+                async def button_callback(interaction):
+                    pass
+            #button = Button(emoji=emoji)
+            button = Button(label=i)
+            button.callback = button_callback
+            view.add_item(button)
+
+        mymsg = await msg.reply(f"How many {fast_move_name}s does it take {mon['speciesName']} to get to one {charged_move_name}?",
+                                    view=view)
+        await view.wait()
+        if answer_or_timeout == 'timeout':
+            break
+        
 @bot.slash_command(guild_ids=GUILD_IDS, description="Move counts for top 100 pokemon")
 #async def qm(ctx, league:str='great', ranktype:str='overall', num_questions:int=5):
 async def qm(ctx, league:str='great', num_questions:int=5):
