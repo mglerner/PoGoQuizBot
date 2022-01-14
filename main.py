@@ -32,33 +32,34 @@ from SecretInfo import TOKEN, GUILD_IDS
 bot = discord.Bot()
 
 MOVES_FILE = 'external/pvpoke/src/data/gamemaster.json'
+# Eh. We can just use the top overall rankings.
 RANKINGS_FILES = {
     'great':{
         'overall': 'external/pvpoke/src/data/rankings/gobattleleague/overall/rankings-1500.json',
-        'attackers': 'external/pvpoke/src/data/rankings/gobattleleague/attackers/rankings-1500.json',
-        'chargers': 'external/pvpoke/src/data/rankings/gobattleleague/chargers/rankings-1500.json',
-        'closers': 'external/pvpoke/src/data/rankings/gobattleleague/closers/rankings-1500.json',
-        'consistency': 'external/pvpoke/src/data/rankings/gobattleleague/consistency/rankings-1500.json',
-        'leads': 'external/pvpoke/src/data/rankings/gobattleleague/leads/rankings-1500.json',
-        'switches': 'external/pvpoke/src/data/rankings/gobattleleague/switches/rankings-1500.json',
+        #'attackers': 'external/pvpoke/src/data/rankings/gobattleleague/attackers/rankings-1500.json',
+        #'chargers': 'external/pvpoke/src/data/rankings/gobattleleague/chargers/rankings-1500.json',
+        #'closers': 'external/pvpoke/src/data/rankings/gobattleleague/closers/rankings-1500.json',
+        #'consistency': 'external/pvpoke/src/data/rankings/gobattleleague/consistency/rankings-1500.json',
+        #'leads': 'external/pvpoke/src/data/rankings/gobattleleague/leads/rankings-1500.json',
+        #'switches': 'external/pvpoke/src/data/rankings/gobattleleague/switches/rankings-1500.json',
         },
     'ultra':{
         'overall': 'external/pvpoke/src/data/rankings/gobattleleague/overall/rankings-2500.json',
-        'attackers': 'external/pvpoke/src/data/rankings/gobattleleague/attackers/rankings-2500.json',
-        'chargers': 'external/pvpoke/src/data/rankings/gobattleleague/chargers/rankings-2500.json',
-        'closers': 'external/pvpoke/src/data/rankings/gobattleleague/closers/rankings-2500.json',
-        'consistency': 'external/pvpoke/src/data/rankings/gobattleleague/consistency/rankings-2500.json',
-        'leads': 'external/pvpoke/src/data/rankings/gobattleleague/leads/rankings-2500.json',
-        'switches': 'external/pvpoke/src/data/rankings/gobattleleague/switches/rankings-2500.json',
+        #'attackers': 'external/pvpoke/src/data/rankings/gobattleleague/attackers/rankings-2500.json',
+        #'chargers': 'external/pvpoke/src/data/rankings/gobattleleague/chargers/rankings-2500.json',
+        #'closers': 'external/pvpoke/src/data/rankings/gobattleleague/closers/rankings-2500.json',
+        #'consistency': 'external/pvpoke/src/data/rankings/gobattleleague/consistency/rankings-2500.json',
+        #'leads': 'external/pvpoke/src/data/rankings/gobattleleague/leads/rankings-2500.json',
+        #'switches': 'external/pvpoke/src/data/rankings/gobattleleague/switches/rankings-2500.json',
         },
     'master':{
         'overall': 'external/pvpoke/src/data/rankings/gobattleleague/overall/rankings-10000.json',
-        'attackers': 'external/pvpoke/src/data/rankings/gobattleleague/attackers/rankings-10000.json',
-        'chargers': 'external/pvpoke/src/data/rankings/gobattleleague/chargers/rankings-10000.json',
-        'closers': 'external/pvpoke/src/data/rankings/gobattleleague/closers/rankings-10000.json',
-        'consistency': 'external/pvpoke/src/data/rankings/gobattleleague/consistency/rankings-10000.json',
-        'leads': 'external/pvpoke/src/data/rankings/gobattleleague/leads/rankings-10000.json',
-        'switches': 'external/pvpoke/src/data/rankings/gobattleleague/switches/rankings-10000.json',
+        #'attackers': 'external/pvpoke/src/data/rankings/gobattleleague/attackers/rankings-10000.json',
+        #'chargers': 'external/pvpoke/src/data/rankings/gobattleleague/chargers/rankings-10000.json',
+        #'closers': 'external/pvpoke/src/data/rankings/gobattleleague/closers/rankings-10000.json',
+        #'consistency': 'external/pvpoke/src/data/rankings/gobattleleague/consistency/rankings-10000.json',
+        #'leads': 'external/pvpoke/src/data/rankings/gobattleleague/leads/rankings-10000.json',
+        #'switches': 'external/pvpoke/src/data/rankings/gobattleleague/switches/rankings-10000.json',
         },
 }
         
@@ -114,10 +115,9 @@ This quiz uses emojis to represent type effectiveness. Here's what the emojis me
                         value=f"""/qm1 bastiodon
 gives you a quiz about one specific pokemon's move counts. In this case, bastiodon. You can also tell it how many questions to ask you.
 /qm
-gives you a quiz about the top 100 pokemon from a given league. You can tell it which league, and which method of ranking to use (overall, attackers, etc.). You can also tell it how many questions to ask you.
+gives you a quiz about the top 100 pokemon from a given league, using PvPoke's overall rankings. You can tell it which league (great, ultra, master). You can also tell it how many questions to ask you.
 
 I personally can't count past ten, and I didn't see any good emojis for 11+, so you just select {count_emojis['more']} for anything that takes more than 10 moves.""",)
-    #await ctx.respond(help_message)
     await ctx.respond(embed=embed)
 
 
@@ -162,7 +162,7 @@ def check_channel(ctx):
 
 async def create_channel(ctx):
     channel_name = get_private_channel_name(ctx)
-    # Check to see if it exists!
+    # MGL: TODO: Check to see if it exists!
     #https://stackoverflow.com/questions/67695694/discord-py-is-there-anyways-to-add-members-to-a-private-channel-through-discor
     overwrites = { 
         ctx.guild.default_role: discord.PermissionOverwrite(read_messages=False), # make private
@@ -304,10 +304,14 @@ async def ask_moves_questions(num_questions, mons, channel, guesser):
     for question_number in range(num_questions):
         record_channel_activity(channel)
         mon = random.choice(mons)
-        # Could use mon['moveset'] to quiz about pvpoke's default moveset.
-        fast_move = random.choice(mon['moves']['fastMoves'])['moveId']
+        if False: # random
+            fast_move = random.choice(mon['moves']['fastMoves'])['moveId']
+            charged_move = random.choice(mon['moves']['chargedMoves'])['moveId']
+        else:
+            # moveset lists fast move cm1, cm2.
+            fast_move = mon['moveset'][0] 
+            charged_move = random.choice(mon['moveset'][1:])
         fast_move_name = FASTMOVES[fast_move]['name']
-        charged_move = random.choice(mon['moves']['chargedMoves'])['moveId']
         charged_move_name = CHARGEDMOVES[charged_move]['name']
 
         mymsg = await msg.reply(f"How many {fast_move_name}s does it take {mon['speciesName']} to get to one {charged_move_name}?")
@@ -333,9 +337,11 @@ async def ask_moves_questions(num_questions, mons, channel, guesser):
                 await channel.send(f"Yeah, it's {right_answer_full:g}")
 
 @bot.slash_command(guild_ids=GUILD_IDS, description="Move counts for top 100 pokemon")
-async def qm(ctx, league:str='great', ranktype:str='overall', num_questions:int=5):
+#async def qm(ctx, league:str='great', ranktype:str='overall', num_questions:int=5):
+async def qm(ctx, league:str='great', num_questions:int=5):
     await check_channel_and_redirect_user(ctx)
     channel = get_private_channel(ctx)
+    ranktype='overall'
     
     if num_questions < 1:
         await ctx.respond(f"You asked for {num_questions} questions, but I'm giving you 1 instead")
