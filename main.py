@@ -32,19 +32,69 @@ from SecretInfo import TOKEN, GUILD_IDS
 bot = discord.Bot()
 
 MOVES_FILE = 'external/pvpoke/src/data/gamemaster.json'
+RANKINGS_FILES = {
+    'great':{
+        'overall': 'external/pvpoke/src/data/rankings/gobattleleague/overall/rankings-1500.json',
+        'attackers': 'external/pvpoke/src/data/rankings/gobattleleague/attackers/rankings-1500.json',
+        'chargers': 'external/pvpoke/src/data/rankings/gobattleleague/chargers/rankings-1500.json',
+        'closers': 'external/pvpoke/src/data/rankings/gobattleleague/closers/rankings-1500.json',
+        'consistency': 'external/pvpoke/src/data/rankings/gobattleleague/consistency/rankings-1500.json',
+        'leads': 'external/pvpoke/src/data/rankings/gobattleleague/leads/rankings-1500.json',
+        'switches': 'external/pvpoke/src/data/rankings/gobattleleague/switches/rankings-1500.json',
+        },
+    'ultra':{
+        'overall': 'external/pvpoke/src/data/rankings/gobattleleague/overall/rankings-2500.json',
+        'attackers': 'external/pvpoke/src/data/rankings/gobattleleague/attackers/rankings-2500.json',
+        'chargers': 'external/pvpoke/src/data/rankings/gobattleleague/chargers/rankings-2500.json',
+        'closers': 'external/pvpoke/src/data/rankings/gobattleleague/closers/rankings-2500.json',
+        'consistency': 'external/pvpoke/src/data/rankings/gobattleleague/consistency/rankings-2500.json',
+        'leads': 'external/pvpoke/src/data/rankings/gobattleleague/leads/rankings-2500.json',
+        'switches': 'external/pvpoke/src/data/rankings/gobattleleague/switches/rankings-2500.json',
+        },
+    'master':{
+        'overall': 'external/pvpoke/src/data/rankings/gobattleleague/overall/rankings-10000.json',
+        'attackers': 'external/pvpoke/src/data/rankings/gobattleleague/attackers/rankings-10000.json',
+        'chargers': 'external/pvpoke/src/data/rankings/gobattleleague/chargers/rankings-10000.json',
+        'closers': 'external/pvpoke/src/data/rankings/gobattleleague/closers/rankings-10000.json',
+        'consistency': 'external/pvpoke/src/data/rankings/gobattleleague/consistency/rankings-10000.json',
+        'leads': 'external/pvpoke/src/data/rankings/gobattleleague/leads/rankings-10000.json',
+        'switches': 'external/pvpoke/src/data/rankings/gobattleleague/switches/rankings-10000.json',
+        },
+}
+        
+    
 def get_moves():
     f = open(MOVES_FILE)
     mf = json.load(f)
     fastmoves = {i['moveId']:i for i in mf['moves'] if i['energyGain'] != 0}
-    chargemoves = {i['moveId']:i for i in mf['moves'] if i['energyGain'] == 0}
-    return fastmoves, chargemoves
+    chargedmoves = {i['moveId']:i for i in mf['moves'] if i['energyGain'] == 0}
+    return fastmoves, chargedmoves
+def get_rankings():
+    """Get rankings from json files
 
-FASTMOVES, CHARGEMOVES = get_moves()
+    make sure to sort the results by rank, best pokemon first
+    """
+    rankings = {}
+    for league in RANKINGS_FILES:
+        rankings[league] = {}
+        for ranktype in RANKINGS_FILES[league]:
+            fn = RANKINGS_FILES[league][ranktype]
+            f = open(fn)
+            r = json.load(f)
+            r.sort(key=lambda x: x['rating'], reverse=True)
+            rankings[league][ranktype] = r
+    return rankings
+
+FASTMOVES, CHARGEDMOVES = get_moves()
+RANKINGS = get_rankings()
 
 @bot.slash_command(guild_ids=GUILD_IDS,description="Help message for PoGoQuizBot")
 async def pqhelp(ctx):
-    help_message = f"""Welcome to the Pokemon Go Quiz Bot!
-/qa rock
+    embed = discord.Embed(title="PoGo Quiz Bot help",
+                              description="Here's everything I can do. Please note that I borrowed all of the move and ranking data from PvPoke."
+                              )
+    embed.add_field(name="Type matchups",
+                        value=f"""/qa rock
 gives you a quiz about rock as an attacker against all other types.
 /qa rock 2
 gives you a quiz about rock as an attacker against two other types.
@@ -58,8 +108,17 @@ This quiz uses emojis to represent type effectiveness. Here's what the emojis me
 {effectiveness_to_emoji['not very effective']}: not very effective
 {effectiveness_to_emoji['neutral']}: neutral
 {effectiveness_to_emoji['super effective']}: super effective
-"""
-    await ctx.respond(help_message)
+
+""",)
+    embed.add_field(name="Move counts",
+                        value=f"""/qm1 bastiodon
+gives you a quiz about one specific pokemon's move counts. In this case, bastiodon. You can also tell it how many questions to ask you.
+/qm
+gives you a quiz about the top 100 pokemon from a given league. You can tell it which league, and which method of ranking to use (overall, attackers, etc.). You can also tell it how many questions to ask you.
+
+I personally can't count past ten, and I didn't see any good emojis for 11+, so you just select {count_emojis['more']} for anything that takes more than 10 moves.""",)
+    #await ctx.respond(help_message)
+    await ctx.respond(embed=embed)
 
 
 CATEGORY_NAME = 'POGOQUIZ'
@@ -233,23 +292,33 @@ count_emojis = {
     8:"8️⃣",
     9:"9️⃣",
     10:"🔟",
+#    11:"⓫",
+#    12:"⓬",
+#    13:"⓭",
+#    14:"⓮",
+#    15:"⓯",
     'more':"🔼",
     }
-async def ask_moves_questions(num_questions, channel, guesser):
+async def ask_moves_questions(num_questions, mons, channel, guesser):
     msg = await channel.send("Here is your quiz")
     for question_number in range(num_questions):
         record_channel_activity(channel)
-        # Could think about excluding moves with archetype 'Low Quality'
-        fast_move = FASTMOVES[random.choice(list(FASTMOVES.keys()))]
-        charge_move = CHARGEMOVES[random.choice(list(CHARGEMOVES.keys()))]
-        mymsg = await msg.reply(f'How many {fast_move["moveId"]}s does it take to get to one {charge_move["moveId"]}?')
+        mon = random.choice(mons)
+        # Could use mon['moveset'] to quiz about pvpoke's default moveset.
+        fast_move = random.choice(mon['moves']['fastMoves'])['moveId']
+        fast_move_name = FASTMOVES[fast_move]['name']
+        charged_move = random.choice(mon['moves']['chargedMoves'])['moveId']
+        charged_move_name = CHARGEDMOVES[charged_move]['name']
+
+        mymsg = await msg.reply(f"How many {fast_move_name}s does it take {mon['speciesName']} to get to one {charged_move_name}?")
+
         for i in (1,2,3,4,5,6,7,8,9,10,'more'):
             await mymsg.add_reaction(emoji=count_emojis[i])
-        right_answer = charge_move['energy']/fast_move['energyGain']
-        right_answer = int(math.ceil(right_answer))
-        right_answer_emoji = count_emojis[right_answer]
+        right_answer_full = CHARGEDMOVES[charged_move]['energy'] / FASTMOVES[fast_move]['energyGain']
+        right_answer = int(math.ceil(right_answer_full))
         if right_answer > 10:
-            right_answer = 10
+            right_answer = 'more'
+        right_answer_emoji = count_emojis[right_answer]
         def check(reaction,user):
             result = (user == guesser) and (str(reaction.emoji) == right_answer_emoji)
             return result
@@ -259,24 +328,59 @@ async def ask_moves_questions(num_questions, channel, guesser):
             await mymsg.channel.send('You timed out')
             break
         else:
-            await mymsg.add_reaction(emoji='👍')    
+            await mymsg.add_reaction(emoji='👍')
+            if right_answer == 'more':
+                await channel.send(f"Yeah, it's {right_answer_full:g}")
 
-@bot.slash_command(guild_ids=GUILD_IDS, description="Prototype move quiz")
-async def qm(ctx, num_questions:int=5):
+@bot.slash_command(guild_ids=GUILD_IDS, description="Move counts for top 100 pokemon")
+async def qm(ctx, league:str='great', ranktype:str='overall', num_questions:int=5):
     await check_channel_and_redirect_user(ctx)
     channel = get_private_channel(ctx)
     
-    # Set up lists of attackers and defenders
     if num_questions < 1:
-        await ctx.response(f"You asked for {num_questions} questions, but I'm giving you 1 instead")
+        await ctx.respond(f"You asked for {num_questions} questions, but I'm giving you 1 instead")
         num_questions = 1
+    if league not in RANKINGS:
+        await ctx.respond("League must be one of " + ','.join(RANKINGS.keys()))
+        return
+    if ranktype not in RANKINGS[league]:
+        await ctx.respond("Ranking type must be one of " + ",".join(RANKINGS[league].keys()))
+        return
     try:
-        await ask_moves_questions(num_questions, channel, guesser=ctx.user)
+        mons = RANKINGS[league][ranktype][:100]
+        await ask_moves_questions(num_questions, mons, channel, guesser=ctx.user)
     except asyncio.TimeoutError:
         await channel.send('You timed out') # Where to send this? Could use ctx to send to original channel.
     await channel.send('The quiz is over!')
 
-        
+@bot.slash_command(guild_ids=GUILD_IDS, description="Move counts for single pokemon")
+async def qm1(ctx, pokemon:str, num_questions:int=5):
+    await check_channel_and_redirect_user(ctx)
+    channel = get_private_channel(ctx)
+
+    if num_questions < 1:
+        await ctx.respond(f"You asked for {num_questions} questions, but I'm giving you 1 instead")
+        num_questions = 1
+    found_it = False
+    for league in ('great','ultra','master'):
+        for mon in RANKINGS[league]['overall']:
+            if pokemon in (mon['speciesId'],mon['speciesName']):
+                pokemon = mon
+                found_it = True
+                break
+        if found_it:
+            break
+    else:
+        await ctx.respond(f"Could not find {pokemon} in the rankings. Did you use all lowercase letters?")
+        print(list(RANKINGS['great']['overall'].keys())[:5])
+        return
+    
+    try:
+        await ask_moves_questions(num_questions, [pokemon], channel, guesser=ctx.user)
+    except asyncio.TimeoutError:
+        await channel.send('You timed out') # Where to send this? Could use ctx to send to original channel.
+    await channel.send('The quiz is over!')
+
     
     
 @bot.event
