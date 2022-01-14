@@ -1,8 +1,9 @@
 #!/usr/bin/env python
-import discord
-# We're using py-cord https://docs.pycord.dev/en/master/index.html
-import os, random, asyncio
+import os, random, asyncio, json, math
 from datetime import datetime
+# We're using py-cord https://docs.pycord.dev/en/master/index.html
+import discord
+from discord.ext import tasks
 
 ## SECURITY WARNING: if this file becomes public, we need a way to
 ## make this secret. Probably import the *RIGHT* discord in repl.it
@@ -30,6 +31,15 @@ from SecretInfo import TOKEN, GUILD_IDS
 
 bot = discord.Bot()
 
+MOVES_FILE = 'external/pvpoke/src/data/gamemaster.json'
+def get_moves():
+    f = open(MOVES_FILE)
+    mf = json.load(f)
+    fastmoves = {i['moveId']:i for i in mf['moves'] if i['energyGain'] != 0}
+    chargemoves = {i['moveId']:i for i in mf['moves'] if i['energyGain'] == 0}
+    return fastmoves, chargemoves
+
+FASTMOVES, CHARGEMOVES = get_moves()
 
 @bot.slash_command(guild_ids=GUILD_IDS,description="Help message for PoGoQuizBot")
 async def pqhelp(ctx):
@@ -116,15 +126,7 @@ async def check_channel_and_redirect_user(ctx):
         txt = f'{ctx.author}, your quiz is in {get_private_channel(ctx).mention}!\n(asking for future quizzes there will help reduce clutter in {ctx.channel.mention}).'
         await ctx.respond(txt)
         return
-
-async def get_attackers_and_defenders(attacker, defender, num_questions, ctx):
-    random_attacker, random_defender = False, False
-    if attacker == 'random':
-        random_attacker = True
-    if defender == 'random':
-        random_defender = True
-    if attacker != 'random' and attacker not in efectiveness:
-        await ctx.respond(f"Attacker type {attacker} unknown. \nI'm choosing rock because nothing beats that.\nPlease either use 'random' or one of {list(effectiveness.keys())}")
+    return
 
 async def ask_type_questions(attackers, defenders, channel, question_mode, guesser):
     """Ask the questions.
@@ -220,11 +222,67 @@ async def qd(ctx, defender: str, num_questions:int=18,):
         await channel.send('You timed out') # Where to send this? Could use ctx to send to original channel.
     await channel.send('The quiz is over!')
 
+count_emojis = {
+    1:"1️⃣",
+    2:"2️⃣",
+    3:"3️⃣",
+    4:"4️⃣",
+    5:"5️⃣",
+    6:"6️⃣",
+    7:"7️⃣",
+    8:"8️⃣",
+    9:"9️⃣",
+    10:"🔟",
+    'more':"🔼",
+    }
+async def ask_moves_questions(num_questions, channel, guesser):
+    msg = await channel.send("Here is your quiz")
+    for question_number in range(num_questions):
+        record_channel_activity(channel)
+        # Could think about excluding moves with archetype 'Low Quality'
+        fast_move = FASTMOVES[random.choice(list(FASTMOVES.keys()))]
+        charge_move = CHARGEMOVES[random.choice(list(CHARGEMOVES.keys()))]
+        mymsg = await msg.reply(f'How many {fast_move["moveId"]}s does it take to get to one {charge_move["moveId"]}?')
+        for i in (1,2,3,4,5,6,7,8,9,10,'more'):
+            await mymsg.add_reaction(emoji=count_emojis[i])
+        right_answer = charge_move['energy']/fast_move['energyGain']
+        right_answer = int(math.ceil(right_answer))
+        right_answer_emoji = count_emojis[right_answer]
+        if right_answer > 10:
+            right_answer = 10
+        def check(reaction,user):
+            result = (user == guesser) and (str(reaction.emoji) == right_answer_emoji)
+            return result
+        try:
+            reaction, user = await bot.wait_for('reaction_add',timeout=QUIZ_TIMEOUT, check=check)
+        except asyncio.TimeoutError:
+            await mymsg.channel.send('You timed out')
+            break
+        else:
+            await mymsg.add_reaction(emoji='👍')    
+
+@bot.slash_command(guild_ids=GUILD_IDS, description="Prototype move quiz")
+async def qm(ctx, num_questions:int=5):
+    await check_channel_and_redirect_user(ctx)
+    channel = get_private_channel(ctx)
+    
+    # Set up lists of attackers and defenders
+    if num_questions < 1:
+        await ctx.response(f"You asked for {num_questions} questions, but I'm giving you 1 instead")
+        num_questions = 1
+    try:
+        await ask_moves_questions(num_questions, channel, guesser=ctx.user)
+    except asyncio.TimeoutError:
+        await channel.send('You timed out') # Where to send this? Could use ctx to send to original channel.
+    await channel.send('The quiz is over!')
+
+        
+    
+    
 @bot.event
 async def on_ready():
     print("We have logged in as {0.user}".format(bot))
 
-from discord.ext import tasks
 @tasks.loop(seconds=5.0)
 async def cleanup_channels():
     """Delete old channels.
