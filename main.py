@@ -12,6 +12,7 @@ from discord.ui import Button, View
 ##
 
 # TODO
+# * should tell users it's question N/M so they know.
 #
 
 # USEFUL LINKS
@@ -216,13 +217,11 @@ async def ask_type_questions(attackers, defenders, channel, question_mode, guess
         right_answer_emoji = effectiveness_to_emoji[effectiveness_to_words[right_answer]]
 
         view = View(timeout=QUIZ_TIMEOUT)
-        answer_or_timeout = 'timeout'
         for i in ('double resisted','not very effective','neutral','super effective'):
             emoji = effectiveness_to_emoji[i]
             if emoji == right_answer_emoji:
                 async def button_callback(interaction):
                     #await interaction.message.reply('You got it!')
-                    answer_or_timeout = 'answer'
                     await interaction.message.add_reaction(emoji='👍')
                     view.stop()
             else:
@@ -232,14 +231,11 @@ async def ask_type_questions(attackers, defenders, channel, question_mode, guess
             button = Button(emoji=emoji)
             button.callback = button_callback
             view.add_item(button)
-        
         if question_mode == 'attacker':
             mymsg = await msg.reply(f'damage is ??? when {attacker} is attacking against {defender}',view=view)
         else:
             mymsg = await msg.reply(f'damage is ??? when {defender} is defending against {attacker}',view=view)
         await view.wait()
-        if answer_or_timeout == 'timeout':
-            break
     return
             
 @bot.slash_command(guild_ids=GUILD_IDS,description="Attacker: normal, rock, random ...")
@@ -253,7 +249,7 @@ async def qa(ctx, attacker: str, num_questions:int=18,):
         num_questions = len(effectiveness)
 
     if attacker == 'random':
-        attackers = [random.choice(list(effectiveness.keys())) for i in num_questions]
+        attackers = [random.choice(list(effectiveness.keys())) for i in range(num_questions)]
     else:
         attackers = [attacker]*num_questions
     defenders = list(effectiveness.keys())
@@ -265,7 +261,7 @@ async def qa(ctx, attacker: str, num_questions:int=18,):
          await ask_type_questions(attackers, defenders, channel, question_mode='attacker', guesser=ctx.user)
     except asyncio.TimeoutError:
         await channel.send('You timed out') # Where to send this? Could use ctx to send to original channel.
-    await channel.send(f'The quiz is over! {right_answers}/{total_answers}')
+    await channel.send(f'The quiz is over!')
 
 @bot.slash_command(guild_ids=GUILD_IDS,description="Defender: normal, rock, random ...")
 async def qd(ctx, defender: str, num_questions:int=18,):
@@ -278,7 +274,7 @@ async def qd(ctx, defender: str, num_questions:int=18,):
         num_questions = len(effectiveness)
 
     if defender == 'random':
-        defenders = [random.choice(list(effectiveness.keys())) for i in num_questions]
+        defenders = [random.choice(list(effectiveness.keys())) for i in range(num_questions)]
     else:
         defenders = [defender]*num_questions
     attackers = list(effectiveness.keys())
@@ -335,12 +331,10 @@ async def ask_moves_questions(num_questions, mons, channel, guesser):
         right_answer_emoji = count_emojis[right_answer]
 
         view = View(timeout=QUIZ_TIMEOUT)
-        answer_or_timeout = 'timeout'
         for i in (1,2,3,4,5,6,7,8,9,10,'more'):
             emoji = count_emojis[i]
             if emoji == right_answer_emoji:
                 async def button_callback(interaction):
-                    answer_or_timeout = 'answer'
                     await interaction.message.add_reaction(emoji='👍')
                     if right_answer == 'more':
                         await interaction.message.reply(f"Yeah, it's {right_answer_full:g}")
@@ -356,8 +350,6 @@ async def ask_moves_questions(num_questions, mons, channel, guesser):
         mymsg = await msg.reply(f"How many {fast_move_name}s does it take {mon['speciesName']} to get to one {charged_move_name}?",
                                     view=view)
         await view.wait()
-        if answer_or_timeout == 'timeout':
-            break
         
 @bot.slash_command(guild_ids=GUILD_IDS, description="Move counts for top 100 pokemon")
 #async def qm(ctx, league:str='great', ranktype:str='overall', num_questions:int=5):
