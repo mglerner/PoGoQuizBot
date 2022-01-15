@@ -38,10 +38,11 @@ from SecretInfo import TOKEN, GUILD_IDS
 bot = discord.Bot()
 
 MOVES_FILE = 'external/pvpoke/src/data/gamemaster.json'
-# Eh. We can just use the top overall rankings.
-RANKINGS_FILES = {
+MOVES_FILE = 'gamemaster.json'
+RANKINGS_FILES = { # Eh. We can just use the top overall rankings.
     'great':{
-        'overall': 'external/pvpoke/src/data/rankings/gobattleleague/overall/rankings-1500.json',
+        'overall': 'rankings-1500.json',
+        #'overall': 'external/pvpoke/src/data/rankings/gobattleleague/overall/rankings-1500.json',
         #'attackers': 'external/pvpoke/src/data/rankings/gobattleleague/attackers/rankings-1500.json',
         #'chargers': 'external/pvpoke/src/data/rankings/gobattleleague/chargers/rankings-1500.json',
         #'closers': 'external/pvpoke/src/data/rankings/gobattleleague/closers/rankings-1500.json',
@@ -50,7 +51,8 @@ RANKINGS_FILES = {
         #'switches': 'external/pvpoke/src/data/rankings/gobattleleague/switches/rankings-1500.json',
         },
     'ultra':{
-        'overall': 'external/pvpoke/src/data/rankings/gobattleleague/overall/rankings-2500.json',
+        'overall': 'rankings-2500.json',
+        #'overall': 'external/pvpoke/src/data/rankings/gobattleleague/overall/rankings-2500.json',
         #'attackers': 'external/pvpoke/src/data/rankings/gobattleleague/attackers/rankings-2500.json',
         #'chargers': 'external/pvpoke/src/data/rankings/gobattleleague/chargers/rankings-2500.json',
         #'closers': 'external/pvpoke/src/data/rankings/gobattleleague/closers/rankings-2500.json',
@@ -59,7 +61,8 @@ RANKINGS_FILES = {
         #'switches': 'external/pvpoke/src/data/rankings/gobattleleague/switches/rankings-2500.json',
         },
     'master':{
-        'overall': 'external/pvpoke/src/data/rankings/gobattleleague/overall/rankings-10000.json',
+        'overall': 'rankings-10000.json',
+        #'overall': 'external/pvpoke/src/data/rankings/gobattleleague/overall/rankings-10000.json',
         #'attackers': 'external/pvpoke/src/data/rankings/gobattleleague/attackers/rankings-10000.json',
         #'chargers': 'external/pvpoke/src/data/rankings/gobattleleague/chargers/rankings-10000.json',
         #'closers': 'external/pvpoke/src/data/rankings/gobattleleague/closers/rankings-10000.json',
