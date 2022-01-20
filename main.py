@@ -131,6 +131,7 @@ I personally can't count past ten, and I didn't see any good emojis for 11+, so 
 
 
 CATEGORY_NAME = 'POGOQUIZ'
+CHANNELS_WE_DO_NOT_DELETE = ["about-quizbot",]
 CHANNEL_TIMEOUT = 600 # in seconds
 QUIZ_TIMEOUT = 15.0
 
@@ -409,7 +410,7 @@ async def qm1(ctx, pokemon:str, num_questions:int=5):
     
 @bot.event
 async def on_ready():
-    print("We have logged in as {0.user}".format(bot))
+    print(f"We have logged in as {bot.user} and are looking for GUILDS {GUILD_IDS}<")
 
 @tasks.loop(seconds=5.0)
 async def cleanup_channels():
@@ -441,6 +442,10 @@ async def cleanup_channels():
     for c in channels:
         if c.category not in our_categories:
             print(f'Skipping deletion of {c} because {c.category} is unrecognized')
+            continue
+        if str(c) in CHANNELS_WE_DO_NOT_DELETE:
+            print(f'Skipping deletion of {c} because it is in our list of channels not to delete')
+            continue
         time_in_existence = CHANNEL_ACTIVITY[c]['last'] - CHANNEL_ACTIVITY[c]['last']
         time_since_active = datetime.now() - CHANNEL_ACTIVITY[c]['last']
         if time_since_active.seconds > CHANNEL_TIMEOUT:
