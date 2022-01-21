@@ -311,7 +311,92 @@ count_emojis = {
     'more':"🔼",
     }
 
+
+
+class QuestionView(View):
+    @discord.ui.button(label="Right answer")
+    async def right_button_callback(self, button, interaction):
+        button.label="You got it!"
+        button.style = discord.ButtonStyle.green
+        await interaction.response.edit_message(view=self) # have to do this or else the button doesn't actually update.
+        self.stop()
+
+    @discord.ui.button(label="Wrong answer")
+    async def wrong_button_callback(self, button, interaction):
+        button.label="Nope"
+        button.style = discord.ButtonStyle.red
+        button.disabled = True
+        await interaction.response.edit_message(view=self) # have to do this or else the button doesn't actually update.
+
+
+class RightAnswerButton(Button):
+    def __init__(self,label,*,emoji=None,view=None,extra_text=None):
+        super().__init__(label=label,emoji=emoji)
+        self.view_to_stop = view
+        self.extra_text = extra_text
+    async def callback(self,interaction):
+        self.style = discord.ButtonStyle.green
+        await interaction.response.edit_message(view=self.view)
+        if self.extra_text:
+            await interaction.message.reply(self.extra_text)
+        self.view_to_stop.stop()
+class WrongAnswerButton(Button):
+    def __init__(self,label,*,emoji=None,view=None,extra_text=None):
+        super().__init__(label=label,emoji=emoji)
+        self.view_to_stop = view
+        self.extra_text = extra_text
+    async def callback(self,interaction):
+        self.style = discord.ButtonStyle.red
+        await interaction.response.edit_message(view=self.view)
+        if self.extra_text:
+            await interaction.message.reply(self.extra_text)
+
+        
 async def ask_moves_questions(num_questions, mons, channel, guesser):
+    msg = await channel.send("Here is your quiz!")
+    for question_number in range(num_questions):
+        record_channel_activity(channel)
+        view = View(timeout=QUIZ_TIMEOUT)
+        mon = random.choice(mons)
+        if False: # random
+            fast_move = random.choice(mon['moves']['fastMoves'])['moveId']
+            charged_move = random.choice(mon['moves']['chargedMoves'])['moveId']
+        else:
+            # moveset lists fast move cm1, cm2.
+            fast_move = mon['moveset'][0] 
+            charged_move = random.choice(mon['moveset'][1:])
+        fast_move_name = FASTMOVES[fast_move]['name']
+        charged_move_name = CHARGEDMOVES[charged_move]['name']
+        right_answer_full = CHARGEDMOVES[charged_move]['energy'] / FASTMOVES[fast_move]['energyGain']
+        right_answer = int(math.ceil(right_answer_full))
+        if right_answer > 10:
+            right_answer = 'more'
+        right_answer_emoji = count_emojis[right_answer]
+        for i in (1,2,3,4,5,6,7,8,9,10,'more'):
+            emoji = count_emojis[i]
+            if emoji == right_answer_emoji:
+                if right_answer == 'more':
+                    extra_text = f"Yeah, it's {right_answer_full:g}"
+                else:
+                    extra_text=None
+                button = RightAnswerButton(f'{i}',emoji=None,view=view, extra_text=extra_text)
+            else:
+                button = WrongAnswerButton(f'{i}',emoji=None,view=view)
+            view.add_item(button)
+        question_txt = f"How many {fast_move_name}s does it take {mon['speciesName']} to get to one {charged_move_name}?"
+        mymsg = await msg.reply(question_txt, view=view)
+        await view.wait()
+
+#        button = RightAnswerButton("Click me!",emoji=None,view=view)
+#        view.add_item(button)
+#        button = WrongAnswerButton("I'm wrong!",emoji=None,view=view)
+#        view.add_item(button)
+#        mymsg = await msg.reply("Can you click the right answer?",view=view)
+#        await view.wait()
+
+            
+
+async def old_ask_moves_questions(num_questions, mons, channel, guesser):
     # I can't decide if this looks better wtih emoji or text labels.
     # Since I can use text labels, I could definitely go all the way
     # up to 20 or whatever for low-energy moves.
@@ -385,7 +470,7 @@ async def ask_moves_questions(num_questions, mons, channel, guesser):
         
 @bot.slash_command(guild_ids=GUILD_IDS, description="Move counts for top 100 pokemon")
 #async def qm(ctx, league:str='great', ranktype:str='overall', num_questions:int=5):
-async def qm(ctx, league:str='great', num_questions:int=5):
+async def qm(ctx, league:str='great', num_questions:int=1):
     await check_channel_and_redirect_user(ctx)
     channel = get_private_channel(ctx)
     ranktype='overall'
