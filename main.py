@@ -98,6 +98,35 @@ def get_rankings():
 FASTMOVES, CHARGEDMOVES = get_moves()
 RANKINGS = get_rankings()
 
+
+class RightAnswerButton(Button):
+    def __init__(self,label=None,*,emoji=None,view=None,extra_text=None):
+        super().__init__(label=label,emoji=emoji)
+        self.view_to_stop = view
+        self.extra_text = extra_text
+    async def callback(self,interaction):
+        print(f"I think {interaction.user} clicked on '{self.label} {self.emoji}'")
+        self.style = discord.ButtonStyle.green
+        await interaction.response.edit_message(view=self.view)
+        if self.extra_text:
+            await interaction.message.reply(self.extra_text)
+        self.view_to_stop.stop()
+        print(f"  ... and I got to the end of the function")
+
+class WrongAnswerButton(Button):
+    def __init__(self,label=None,*,emoji=None,view=None,extra_text=None):
+        super().__init__(label=label,emoji=emoji)
+        self.view_to_stop = view
+        self.extra_text = extra_text
+    async def callback(self,interaction):
+        print(f"I think {interaction.user} clicked on '{self.label} {self.emoji}'")
+        self.style = discord.ButtonStyle.red
+        await interaction.response.edit_message(view=self.view)
+        if self.extra_text:
+            await interaction.message.reply(self.extra_text)
+        print(f"  ... and I got to the end of the function")
+
+
 @bot.slash_command(guild_ids=GUILD_IDS,description="Help message for PoGoQuizBot")
 async def pqhelp(ctx):
     embed = discord.Embed(title="PoGo Quiz Bot help",
@@ -224,21 +253,15 @@ async def ask_type_questions(attackers, defenders, channel, question_mode, guess
         for i in ('double resisted','not very effective','neutral','super effective'):
             emoji = effectiveness_to_emoji[i]
             if emoji == right_answer_emoji:
-                async def button_callback(interaction):
-                    #await interaction.message.reply('You got it!')
-                    await interaction.message.add_reaction(emoji='👍')
-                    view.stop()
+                button = RightAnswerButton(emoji=emoji,view=view)
             else:
-                async def button_callback(interaction):
-                    #await interaction.message.reply('No sir!')
-                    pass
-            button = Button(emoji=emoji)
-            button.callback = button_callback
+                button = WrongAnswerButton(emoji=emoji,view=view)
             view.add_item(button)
         if question_mode == 'attacker':
-            mymsg = await msg.reply(f'damage is ??? when {attacker} is attacking against {defender}',view=view)
+            question_txt = f'damage is ??? when {attacker} is attacking against {defender}'
         else:
-            mymsg = await msg.reply(f'damage is ??? when {defender} is defending against {attacker}',view=view)
+            question_txt = f'damage is ??? when {defender} is defending against {attacker}'
+        mymsg = await msg.reply(question_txt,view=view)
         await view.wait()
     return
             
@@ -313,45 +336,8 @@ count_emojis = {
 
 
 
-class QuestionView(View):
-    @discord.ui.button(label="Right answer")
-    async def right_button_callback(self, button, interaction):
-        button.label="You got it!"
-        button.style = discord.ButtonStyle.green
-        await interaction.response.edit_message(view=self) # have to do this or else the button doesn't actually update.
-        self.stop()
-
-    @discord.ui.button(label="Wrong answer")
-    async def wrong_button_callback(self, button, interaction):
-        button.label="Nope"
-        button.style = discord.ButtonStyle.red
-        button.disabled = True
-        await interaction.response.edit_message(view=self) # have to do this or else the button doesn't actually update.
 
 
-class RightAnswerButton(Button):
-    def __init__(self,label,*,emoji=None,view=None,extra_text=None):
-        super().__init__(label=label,emoji=emoji)
-        self.view_to_stop = view
-        self.extra_text = extra_text
-    async def callback(self,interaction):
-        self.style = discord.ButtonStyle.green
-        await interaction.response.edit_message(view=self.view)
-        if self.extra_text:
-            await interaction.message.reply(self.extra_text)
-        self.view_to_stop.stop()
-class WrongAnswerButton(Button):
-    def __init__(self,label,*,emoji=None,view=None,extra_text=None):
-        super().__init__(label=label,emoji=emoji)
-        self.view_to_stop = view
-        self.extra_text = extra_text
-    async def callback(self,interaction):
-        self.style = discord.ButtonStyle.red
-        await interaction.response.edit_message(view=self.view)
-        if self.extra_text:
-            await interaction.message.reply(self.extra_text)
-
-        
 async def ask_moves_questions(num_questions, mons, channel, guesser):
     msg = await channel.send("Here is your quiz!")
     for question_number in range(num_questions):
@@ -387,90 +373,10 @@ async def ask_moves_questions(num_questions, mons, channel, guesser):
         mymsg = await msg.reply(question_txt, view=view)
         await view.wait()
 
-#        button = RightAnswerButton("Click me!",emoji=None,view=view)
-#        view.add_item(button)
-#        button = WrongAnswerButton("I'm wrong!",emoji=None,view=view)
-#        view.add_item(button)
-#        mymsg = await msg.reply("Can you click the right answer?",view=view)
-#        await view.wait()
-
-            
-
-async def old_ask_moves_questions(num_questions, mons, channel, guesser):
-    # I can't decide if this looks better wtih emoji or text labels.
-    # Since I can use text labels, I could definitely go all the way
-    # up to 20 or whatever for low-energy moves.
-    msg = await channel.send("Here is your quiz")
-    for question_number in range(num_questions):
-        record_channel_activity(channel)
-        mon = random.choice(mons)
-        if False: # random
-            fast_move = random.choice(mon['moves']['fastMoves'])['moveId']
-            charged_move = random.choice(mon['moves']['chargedMoves'])['moveId']
-        else:
-            # moveset lists fast move cm1, cm2.
-            fast_move = mon['moveset'][0] 
-            charged_move = random.choice(mon['moveset'][1:])
-        fast_move_name = FASTMOVES[fast_move]['name']
-        charged_move_name = CHARGEDMOVES[charged_move]['name']
-        right_answer_full = CHARGEDMOVES[charged_move]['energy'] / FASTMOVES[fast_move]['energyGain']
-        right_answer = int(math.ceil(right_answer_full))
-        if right_answer > 10:
-            right_answer = 'more'
-        right_answer_emoji = count_emojis[right_answer]
-
-        if 0:
-            class MyView(View):
-                def __init__(self):#,ctx):
-                    super().__init__(timeout=QUIZ_TIMEOUT)
-
-                for i in (1,2,3,4,5,6,7,8,9,10,'more'):
-                    print("Doing",i)
-                    emoji = count_emojis[i]
-                    if emoji == right_answer_emoji:
-                        @discord.ui.button(label=i)
-                        async def button_callback(self,button,interaction):
-                            button.style = discord.ButtonStyle.green
-                            self.stop()
-                    else:
-                        @discord.ui.button(label=i)
-                        async def button_callback(self,button,interaction):
-                            button.style = discord.ButtonStyle.red
-            view = MyView()
-               
-        if 1:
-            view = View(timeout=QUIZ_TIMEOUT)
-            for i in (1,2,3,4,5,6,7,8,9,10,'more'):
-                emoji = count_emojis[i]
-                button = Button(label=i)
-                if emoji == right_answer_emoji:
-                    async def button_callback(interaction):
-                        button.style = discord.ButtonStyle.green
-                        await interaction.message.add_reaction(emoji='👍')
-                        if right_answer == 'more':
-                            await interaction.message.reply(f"Yeah, it's {right_answer_full:g}")
-                        view.stop()
-                else:
-                    def get_button_callback():
-                        async def button_callback(interaction,button=button):
-                            button.style = discord.ButtonStyle.red
-                            print(f"I think {interaction.user} clicked the button with the wrong answer")
-                            print(f'The button has label {button.label}')
-                            button.label = 'FROGS'
-                            pass
-                        return button_callback
-                    button_callback = get_button_callback()
-                #button = Button(emoji=emoji)
-                button.callback = button_callback
-                view.add_item(button)
-
-        mymsg = await msg.reply(f"How many {fast_move_name}s does it take {mon['speciesName']} to get to one {charged_move_name}?",
-                                    view=view)
-        await view.wait()
         
 @bot.slash_command(guild_ids=GUILD_IDS, description="Move counts for top 100 pokemon")
 #async def qm(ctx, league:str='great', ranktype:str='overall', num_questions:int=5):
-async def qm(ctx, league:str='great', num_questions:int=1):
+async def qm(ctx, league:str='great', num_questions:int=5):
     await check_channel_and_redirect_user(ctx)
     channel = get_private_channel(ctx)
     ranktype='overall'
