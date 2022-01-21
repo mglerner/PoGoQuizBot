@@ -334,22 +334,50 @@ async def ask_moves_questions(num_questions, mons, channel, guesser):
             right_answer = 'more'
         right_answer_emoji = count_emojis[right_answer]
 
-        view = View(timeout=QUIZ_TIMEOUT)
-        for i in (1,2,3,4,5,6,7,8,9,10,'more'):
-            emoji = count_emojis[i]
-            if emoji == right_answer_emoji:
-                async def button_callback(interaction):
-                    await interaction.message.add_reaction(emoji='👍')
-                    if right_answer == 'more':
-                        await interaction.message.reply(f"Yeah, it's {right_answer_full:g}")
-                    view.stop()
-            else:
-                async def button_callback(interaction):
-                    pass
-            #button = Button(emoji=emoji)
-            button = Button(label=i)
-            button.callback = button_callback
-            view.add_item(button)
+        if 0:
+            class MyView(View):
+                def __init__(self):#,ctx):
+                    super().__init__(timeout=QUIZ_TIMEOUT)
+
+                for i in (1,2,3,4,5,6,7,8,9,10,'more'):
+                    print("Doing",i)
+                    emoji = count_emojis[i]
+                    if emoji == right_answer_emoji:
+                        @discord.ui.button(label=i)
+                        async def button_callback(self,button,interaction):
+                            button.style = discord.ButtonStyle.green
+                            self.stop()
+                    else:
+                        @discord.ui.button(label=i)
+                        async def button_callback(self,button,interaction):
+                            button.style = discord.ButtonStyle.red
+            view = MyView()
+               
+        if 1:
+            view = View(timeout=QUIZ_TIMEOUT)
+            for i in (1,2,3,4,5,6,7,8,9,10,'more'):
+                emoji = count_emojis[i]
+                button = Button(label=i)
+                if emoji == right_answer_emoji:
+                    async def button_callback(interaction):
+                        button.style = discord.ButtonStyle.green
+                        await interaction.message.add_reaction(emoji='👍')
+                        if right_answer == 'more':
+                            await interaction.message.reply(f"Yeah, it's {right_answer_full:g}")
+                        view.stop()
+                else:
+                    def get_button_callback():
+                        async def button_callback(interaction,button=button):
+                            button.style = discord.ButtonStyle.red
+                            print(f"I think {interaction.user} clicked the button with the wrong answer")
+                            print(f'The button has label {button.label}')
+                            button.label = 'FROGS'
+                            pass
+                        return button_callback
+                    button_callback = get_button_callback()
+                #button = Button(emoji=emoji)
+                button.callback = button_callback
+                view.add_item(button)
 
         mymsg = await msg.reply(f"How many {fast_move_name}s does it take {mon['speciesName']} to get to one {charged_move_name}?",
                                     view=view)
@@ -444,7 +472,7 @@ async def cleanup_channels():
             print(f'Skipping deletion of {c} because {c.category} is unrecognized')
             continue
         if str(c) in CHANNELS_WE_DO_NOT_DELETE:
-            print(f'Skipping deletion of {c} because it is in our list of channels not to delete')
+            #print(f'Skipping deletion of {c} because it is in our list of channels not to delete')
             continue
         time_in_existence = CHANNEL_ACTIVITY[c]['last'] - CHANNEL_ACTIVITY[c]['last']
         time_since_active = datetime.now() - CHANNEL_ACTIVITY[c]['last']
