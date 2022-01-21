@@ -315,7 +315,7 @@
         }],
         "exclude": [{
             "filterType": "id",
-            "values": ["azumarill", "medicham", "dewgong", "scrafty", "jellicent", "nidoqueen", "diggersby"]
+            "values": ["azumarill", "medicham", "dewgong", "scrafty", "jellicent", "nidoqueen", "diggersby", "walrein"]
         }, {
             "filterType": "tag",
             "values": ["mega"]
@@ -9239,7 +9239,8 @@
 			"cp500": [5, 12, 15, 15],
 	        "cp1500": [15, 7, 11, 11],
 	        "cp2500": [25, 5, 12, 13]
-	    }
+	    },
+		"released": true
 	}, {
         "dex": 209,
         "speciesName": "Snubbull",
@@ -14180,8 +14181,9 @@
             "hp": 242
         },
         "types": ["ice", "water"],
-        "fastMoves": ["FROST_BREATH", "WATERFALL"],
-        "chargedMoves": ["BLIZZARD", "EARTHQUAKE", "WATER_PULSE"],
+        "fastMoves": ["FROST_BREATH", "WATERFALL", "POWDER_SNOW"],
+        "chargedMoves": ["BLIZZARD", "EARTHQUAKE", "WATER_PULSE", "ICICLE_SPEAR"],
+		"eliteMoves": ["POWDER_SNOW", "ICICLE_SPEAR"],
         "defaultIVs": {
             "cp500": [7, 4, 15, 12],
             "cp1500": [20.5, 5, 13, 11],
@@ -14189,6 +14191,7 @@
         },
         "level25CP": 1675,
         "tags": ["shadoweligible"],
+		"searchPriority": 10,
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
         "released": true
@@ -14202,8 +14205,9 @@
             "hp": 242
         },
         "types": ["ice", "water"],
-        "fastMoves": ["FROST_BREATH", "WATERFALL"],
-        "chargedMoves": ["BLIZZARD", "EARTHQUAKE", "WATER_PULSE"],
+		"fastMoves": ["FROST_BREATH", "WATERFALL", "POWDER_SNOW"],
+        "chargedMoves": ["BLIZZARD", "EARTHQUAKE", "WATER_PULSE", "ICICLE_SPEAR"],
+		"eliteMoves": ["POWDER_SNOW", "ICICLE_SPEAR"],
         "defaultIVs": {
             "cp500": [7, 4, 15, 12],
             "cp1500": [20.5, 5, 13, 11],
@@ -21984,7 +21988,7 @@
         },
         "types": ["bug", "steel"],
         "fastMoves": ["METAL_CLAW", "FURY_CUTTER"],
-        "chargedMoves": ["X_SCISSOR", "MAGNET_BOMB", "ZAP_CANNON"],
+        "chargedMoves": ["X_SCISSOR", "MAGNET_BOMB", "ZAP_CANNON", "TECHNO_BLAST_SHOCK"],
         "defaultIVs": {
             "cp500": [5.5, 12, 14, 13],
             "cp1500": [16, 12, 10, 15],
@@ -21993,7 +21997,7 @@
         "tags": ["mythical", "untradeable"],
         "buddyDistance": 20,
         "thirdMoveCost": 100000,
-        "released": false
+        "released": true
     }, {
         "dex": 650,
         "speciesName": "Chespin",
@@ -22952,7 +22956,7 @@
         },
         "types": ["electric", "normal"],
         "fastMoves": ["QUICK_ATTACK", "THUNDER_SHOCK"],
-        "chargedMoves": ["PARABOLIC_CHARGE", "BULLDOZE", "DISCHARGE"],
+        "chargedMoves": ["PARABOLIC_CHARGE", "BULLDOZE", "THUNDERBOLT"],
         "defaultIVs": {
             "cp500": [21, 5, 11, 12],
             "cp1500": [50, 15, 15, 15],
@@ -22960,7 +22964,7 @@
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
-        "released": false
+        "released": true
     }, {
         "dex": 695,
         "speciesName": "Heliolisk",
@@ -22981,7 +22985,7 @@
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
-        "released": false
+        "released": true
     }, {
         "dex": 696,
         "speciesName": "Tyrunt",
@@ -27084,6 +27088,16 @@
         "cooldown": 1500,
         "archetype": "General"
     }, {
+        "moveId": "ICICLE_SPEAR",
+        "name": "Icicle Spear",
+        "type": "ice",
+        "power": 60,
+        "energy": 35,
+        "energyGain": 0,
+        "cooldown": 500,
+        "archetype": "Spam/Bait",
+		"abbreviation": "ISp"
+    }, {
         "moveId": "ICY_WIND",
         "name": "Icy Wind",
         "type": "ice",
@@ -27437,7 +27451,7 @@
         "name": "Parabolic Charge",
         "abbreviation": "PbC",
         "type": "electric",
-        "power": 25,
+        "power": 65,
         "energy": 55,
         "energyGain": 0,
         "cooldown": 500,
