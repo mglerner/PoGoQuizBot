@@ -3,7 +3,9 @@
 PoGoQuizBot is a Discord bot that quizzes you about Pokemon Go things, like type matchups and move counts. To install it, you need
 
 * [py-cord](https://github.com/Pycord-Development/pycord) or some other [discord.py](https://discordpy.readthedocs.io/en/stable/) fork that supports slash commands. I installed via `pip install git+https://github.com/Pycord-Development/pycord` so that I could get the most recent version.
-* somewhere to run the code. You can run it from the command line. You can also follow the examples in the excellent [EncourageBot](https://www.freecodecamp.org/news/create-a-discord-bot-with-python/) tutorial from [freeCodeCamp](https://www.freecodecamp.org/) to see how to use [repl.it](https://replit.com/~) to run it continuously in the cloud, making use of [uptimerobot](https://uptimerobot.com) to monitor things. I'm using [pm2](https://pm2.keymetrics.io/)
+* somewhere to run the code.
+  * I run it from the command line and use [pm2](https://pm2.keymetrics.io/) to keep it alive.
+  * You can also follow the examples in the excellent [EncourageBot](https://www.freecodecamp.org/news/create-a-discord-bot-with-python/) tutorial from [freeCodeCamp](https://www.freecodecamp.org/) to see how to use [repl.it](https://replit.com/~) to run it continuously in the cloud, making use of [uptimerobot](https://uptimerobot.com) to monitor things. 
 
 Thanks go to
 
@@ -15,8 +17,7 @@ Thanks go to
 ## Move data
 [PvPoke](https://pvpoke.com/) is an amazing resource, and it's all available as an open-source [github repo](https://github.com/pvpoke/pvpoke). PoGoQuizBot uses PvPoke's move data. Since PvPoke uses the MIT License, I've included a copy of that license below.
 
-
-## MIT License, as it applies to the pvpoke code included in this repository.
+### MIT License, as it applies to the pvpoke code included in this repository.
 
 MIT License
 
