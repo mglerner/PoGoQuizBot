@@ -43,3 +43,25 @@ async def qm(ctx, num_questions:int=5):
     except asyncio.TimeoutError:
         await channel.send('You timed out') # Where to send this? Could use ctx to send to original channel.
     await channel.send('The quiz is over!')
+
+
+
+#
+# This would be nice, but I didn't see an easy way
+# to make a bunch of different function definitions. Making up the funciton names each time?
+class QuestionView(View):
+    @discord.ui.button(label="Right answer")
+    async def right_button_callback(self, button, interaction):
+        button.label="You got it!"
+        button.style = discord.ButtonStyle.green
+        await interaction.response.edit_message(view=self) # have to do this or else the button doesn't actually update.
+        self.stop()
+
+    @discord.ui.button(label="Wrong answer")
+    async def wrong_button_callback(self, button, interaction):
+        button.label="Nope"
+        button.style = discord.ButtonStyle.red
+        button.disabled = True
+        await interaction.response.edit_message(view=self) # have to do this or else the button doesn't actually update.
+
+    

@@ -101,6 +101,35 @@ def get_rankings():
 FASTMOVES, CHARGEDMOVES = get_moves()
 RANKINGS = get_rankings()
 
+
+class RightAnswerButton(Button):
+    def __init__(self,label=None,*,emoji=None,view=None,extra_text=None):
+        super().__init__(label=label,emoji=emoji)
+        self.view_to_stop = view
+        self.extra_text = extra_text
+    async def callback(self,interaction):
+        print(f"I think {interaction.user} clicked on '{self.label} {self.emoji}'")
+        self.style = discord.ButtonStyle.green
+        await interaction.response.edit_message(view=self.view)
+        if self.extra_text:
+            await interaction.message.reply(self.extra_text)
+        self.view_to_stop.stop()
+        print(f"  ... and I got to the end of the function")
+
+class WrongAnswerButton(Button):
+    def __init__(self,label=None,*,emoji=None,view=None,extra_text=None):
+        super().__init__(label=label,emoji=emoji)
+        self.view_to_stop = view
+        self.extra_text = extra_text
+    async def callback(self,interaction):
+        print(f"I think {interaction.user} clicked on '{self.label} {self.emoji}'")
+        self.style = discord.ButtonStyle.red
+        await interaction.response.edit_message(view=self.view)
+        if self.extra_text:
+            await interaction.message.reply(self.extra_text)
+        print(f"  ... and I got to the end of the function")
+
+
 @bot.slash_command(guild_ids=GUILD_IDS,description="Help message for PoGoQuizBot")
 async def pqhelp(ctx):
     embed = discord.Embed(title="PoGo Quiz Bot help",
@@ -134,6 +163,7 @@ I personally can't count past ten, and I didn't see any good emojis for 11+, so 
 
 
 CATEGORY_NAME = 'POGOQUIZ'
+CHANNELS_WE_DO_NOT_DELETE = ["about-quizbot",]
 CHANNEL_TIMEOUT = 600 # in seconds
 QUIZ_TIMEOUT = 15.0
 
@@ -226,21 +256,15 @@ async def ask_type_questions(attackers, defenders, channel, question_mode, guess
         for i in ('double resisted','not very effective','neutral','super effective'):
             emoji = effectiveness_to_emoji[i]
             if emoji == right_answer_emoji:
-                async def button_callback(interaction):
-                    #await interaction.message.reply('You got it!')
-                    await interaction.message.add_reaction(emoji='👍')
-                    view.stop()
+                button = RightAnswerButton(emoji=emoji,view=view)
             else:
-                async def button_callback(interaction):
-                    #await interaction.message.reply('No sir!')
-                    pass
-            button = Button(emoji=emoji)
-            button.callback = button_callback
+                button = WrongAnswerButton(emoji=emoji,view=view)
             view.add_item(button)
         if question_mode == 'attacker':
-            mymsg = await msg.reply(f'damage is ??? when {attacker} is attacking against {defender}',view=view)
+            question_txt = f'damage is ??? when {attacker} is attacking against {defender}'
         else:
-            mymsg = await msg.reply(f'damage is ??? when {defender} is defending against {attacker}',view=view)
+            question_txt = f'damage is ??? when {defender} is defending against {attacker}'
+        mymsg = await msg.reply(question_txt,view=view)
         await view.wait()
     return
             
@@ -313,13 +337,15 @@ count_emojis = {
     'more':"🔼",
     }
 
+
+
+
+
 async def ask_moves_questions(num_questions, mons, channel, guesser):
-    # I can't decide if this looks better wtih emoji or text labels.
-    # Since I can use text labels, I could definitely go all the way
-    # up to 20 or whatever for low-energy moves.
-    msg = await channel.send("Here is your quiz")
+    msg = await channel.send("Here is your quiz!")
     for question_number in range(num_questions):
         record_channel_activity(channel)
+        view = View(timeout=QUIZ_TIMEOUT)
         mon = random.choice(mons)
         if False: # random
             fast_move = random.choice(mon['moves']['fastMoves'])['moveId']
@@ -335,27 +361,21 @@ async def ask_moves_questions(num_questions, mons, channel, guesser):
         if right_answer > 10:
             right_answer = 'more'
         right_answer_emoji = count_emojis[right_answer]
-
-        view = View(timeout=QUIZ_TIMEOUT)
         for i in (1,2,3,4,5,6,7,8,9,10,'more'):
             emoji = count_emojis[i]
             if emoji == right_answer_emoji:
-                async def button_callback(interaction):
-                    await interaction.message.add_reaction(emoji='👍')
-                    if right_answer == 'more':
-                        await interaction.message.reply(f"Yeah, it's {right_answer_full:g}")
-                    view.stop()
+                if right_answer == 'more':
+                    extra_text = f"Yeah, it's {right_answer_full:g}"
+                else:
+                    extra_text=None
+                button = RightAnswerButton(f'{i}',emoji=None,view=view, extra_text=extra_text)
             else:
-                async def button_callback(interaction):
-                    pass
-            #button = Button(emoji=emoji)
-            button = Button(label=i)
-            button.callback = button_callback
+                button = WrongAnswerButton(f'{i}',emoji=None,view=view)
             view.add_item(button)
-
-        mymsg = await msg.reply(f"How many {fast_move_name}s does it take {mon['speciesName']} to get to one {charged_move_name}?",
-                                    view=view)
+        question_txt = f"How many {fast_move_name}s does it take {mon['speciesName']} to get to one {charged_move_name}?"
+        mymsg = await msg.reply(question_txt, view=view)
         await view.wait()
+
         
 @bot.slash_command(guild_ids=GUILD_IDS, description="Move counts for top 100 pokemon")
 #async def qm(ctx, league:str='great', ranktype:str='overall', num_questions:int=5):
@@ -412,7 +432,7 @@ async def qm1(ctx, pokemon:str, num_questions:int=5):
     
 @bot.event
 async def on_ready():
-    print("We have logged in as {0.user}".format(bot))
+    print(f"We have logged in as {bot.user} and are looking for GUILDS {GUILD_IDS}<")
 
 @tasks.loop(seconds=5.0)
 async def cleanup_channels():
@@ -444,6 +464,10 @@ async def cleanup_channels():
     for c in channels:
         if c.category not in our_categories:
             print(f'Skipping deletion of {c} because {c.category} is unrecognized')
+            continue
+        if str(c) in CHANNELS_WE_DO_NOT_DELETE:
+            #print(f'Skipping deletion of {c} because it is in our list of channels not to delete')
+            continue
         time_in_existence = CHANNEL_ACTIVITY[c]['last'] - CHANNEL_ACTIVITY[c]['last']
         time_since_active = datetime.now() - CHANNEL_ACTIVITY[c]['last']
         if time_since_active.seconds > CHANNEL_TIMEOUT:
