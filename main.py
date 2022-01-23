@@ -155,7 +155,7 @@ gives you a quiz about one specific pokemon's move counts. In this case, bastiod
 /qm
 gives you a quiz about the top 100 pokemon from a given league, using PvPoke's overall rankings. You can tell it which league (great, ultra, master). You can also tell it how many questions to ask you.
 
-I personally can't count past ten, and I didn't see any good emojis for 11+, so you just select "more" for anything that takes more than 10 moves.""",)
+I personally can't count past ten, so you just select "more" for anything that takes more than 10 moves.""",)
     await ctx.respond(embed=embed)
 
 
