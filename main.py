@@ -13,6 +13,9 @@ from discord.ui import Button, View
 
 # TODO
 # * should tell users it's question N/M so they know.
+# * buttons should change to green when you get the right answer, red when it's wrong.
+# * mode where you quiz on which moves to throw against which mons. which of these moves will do more damage (or DPE) to the target.
+#   * note taht a resisted psychic from medicham does more than a neutral ice punch.
 #
 
 # USEFUL LINKS
