@@ -27,6 +27,32 @@
 		"weight": 25
 	},
 	{
+		"speciesId": "primarina",
+		"fastMove": "CHARM",
+		"chargedMoves": ["MOONBLAST", "HYDRO_PUMP"]
+	},
+	{
+		"speciesId": "tapu_koko",
+		"chargedMoves": ["THUNDERBOLT", "DAZZLING_GLEAM"]
+	},
+	{
+		"speciesId": "regice",
+		"chargedMoves": ["THUNDER", "EARTHQUAKE"]
+	},
+	{
+		"speciesId": "florges",
+		"chargedMoves": ["DISARMING_VOICE", "MOONBLAST"]
+	},
+	{
+		"speciesId": "celebi",
+		"fastMove": ["CONFUSION"],
+		"chargedMoves": ["SEED_BOMB", "LEAF_STORM"]
+	},
+	{
+		"speciesId": "regirock",
+		"chargedMoves": ["STONE_EDGE", "FOCUS_BLAST"]
+	},
+	{
 		"speciesId": "terrakion",
 		"chargedMoves": ["SACRED_SWORD", "ROCK_SLIDE"]
 	},
@@ -34,6 +60,14 @@
 		"speciesId": "machamp_shadow",
 		"chargedMoves": ["CROSS_CHOP", "ROCK_SLIDE"],
 		"weight": 5
+	},
+	{
+		"speciesId": "hippowdon",
+		"chargedMoves": ["WEATHER_BALL_ROCK", "EARTH_POWER"]
+	},
+	{
+		"speciesId": "hippowdon_shadow",
+		"chargedMoves": ["WEATHER_BALL_ROCK", "EARTH_POWER"]
 	},
 	{
 		"speciesId": "goodra",
@@ -257,7 +291,11 @@
 	},
 	{
 		"speciesId": "mew",
-		"chargedMoves": ["DRAGON_CLAW","WILD_CHARGE"]
+		"chargedMoves": ["SURF","WILD_CHARGE"]
+	},
+	{
+		"speciesId": "incineroar",
+		"chargedMoves": ["DARK_PULSE", "FIRE_BLAST"]
 	},
 	{
 		"speciesId": "kyogre",

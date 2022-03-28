@@ -26,6 +26,13 @@ body {
   clear: both;
 }
 
+.flex {
+  display: flex;
+}
+.flex.cols-3 > div {
+  flex-basis: 33%;
+}
+
 .hide {
   display: none;
 }
@@ -232,13 +239,6 @@ header {
   display: none;
 }
 
-.flex {
-  display: flex;
-}
-.flex.cols-3 > div {
-  flex-basis: 33%;
-}
-
 /* POKEMON SELECT */
 .poke-select-container {
   display: flex;
@@ -275,6 +275,11 @@ header {
 .poke input.poke-select, .poke select.poke-select {
   font-size: 18px;
   font-weight: bold;
+}
+.poke input.poke-select option:checked, .poke select.poke-select option:checked {
+  font-weight: bold;
+  background: #ddd;
+  color: #000;
 }
 .poke input.charged, .poke select.charged {
   font-weight: bold;
@@ -2877,13 +2882,16 @@ a.download-csv {
   margin-top: 1em;
 }
 .article p, .article ul {
-  line-height: 26px;
+  font-size: 14px;
+  line-height: 20px;
 }
 .article ul li {
   margin-bottom: 10px;
 }
 .article .article-section h3 {
-  font-weight: normal;
+  font-size: 18px;
+  border-bottom: 1px solid;
+  padding-bottom: 4px;
 }
 .article h2 {
   font-size: 22px;
@@ -2891,10 +2899,11 @@ a.download-csv {
 }
 .article h3.article-header,
 .article .tip {
-  background: rgba(0, 0, 0, 0.5);
+  background: #62728b;
   padding: 10px;
   border-radius: 8px;
   color: #eee;
+  line-height: 24px;
 }
 .article table {
   border: none;
@@ -2995,6 +3004,34 @@ a.download-csv {
 .article .rating-table.matrix-table a {
   padding: 5px 5px 5px 36px;
 }
+.article .rating-table.matrix-table .matrix-record,
+.article .rating-table.matrix-table .matrix-average {
+  font-size: 14px;
+  white-space: nowrap;
+  padding: 8px 10px 0px 10px;
+}
+.article .rating-table.matrix-table .rating.average {
+  padding: 5px 5px 5px 27px;
+  width: 60px;
+}
+.article .rating-table.matrix-table .rating.average span {
+  width: auto;
+  background: none !important;
+}
+.article .rating-table.matrix-table th:first-of-type, .article .rating-table.matrix-table thead td:first-of-type, .article .rating-table.meta-table th:first-of-type, .article .rating-table.meta-table thead td:first-of-type, .article .rating-table.threats-table th:first-of-type, .article .rating-table.threats-table thead td:first-of-type, .article .rating-table.alternatives-table th:first-of-type, .article .rating-table.alternatives-table thead td:first-of-type {
+  background-image: url("../img/matrix-arrow-header.png");
+  background-repeat: no-repeat;
+  background-position: right 4px bottom 4px;
+}
+.article .rating-table.matrix-table th.name, .article .rating-table.meta-table th.name, .article .rating-table.threats-table th.name, .article .rating-table.alternatives-table th.name {
+  background-image: url("../img/matrix-arrow.png");
+  background-repeat: no-repeat;
+  background-position: right 4px center;
+  padding-right: 20px;
+}
+.article .rating-table.matrix-table td.name-small, .article .rating-table.meta-table td.name-small, .article .rating-table.threats-table td.name-small, .article .rating-table.alternatives-table td.name-small {
+  padding-bottom: 12px;
+}
 .article .results-buttons {
   display: flex;
   justify-content: center;
@@ -3078,6 +3115,19 @@ a.download-csv {
 }
 .article-item h4 {
   margin-top: 0;
+}
+.article-item .tags {
+  display: flex;
+}
+.article-item .tags a {
+  display: block;
+  text-decoration: none;
+  background: #003748;
+  color: #eee;
+  border-radius: 8px;
+  font-size: 12px;
+  padding: 4px 8px;
+  margin-right: 5px;
 }
 
 .article .date, .article-item .date {

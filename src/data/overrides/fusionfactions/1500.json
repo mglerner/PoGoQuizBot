@@ -9,6 +9,10 @@
 	    "fastMove": "CONFUSION"
 	},
 	{
+	    "speciesId": "primarina",
+	    "fastMove": "CHARM"
+	},
+	{
 	    "speciesId": "heracross",
 	    "chargedMoves": ["ROCK_BLAST", "MEGAHORN"]
 	},
@@ -18,8 +22,9 @@
 		"weight": 2
 	},
 	{
-	    "speciesId": "sandslash_alolan",
-	    "chargedMoves": ["ICE_PUNCH", "BULLDOZE"],
+		"speciesId": "sandslash_alolan",
+		"fastMove": "SHADOW_CLAW",
+		"chargedMoves": ["ICE_PUNCH", "BULLDOZE"],
 		"weight": 2
 	},
 	{
@@ -29,6 +34,14 @@
 	{
 	    "speciesId": "seismitoad",
 	    "chargedMoves": ["EARTH_POWER", "SLUDGE_BOMB"]
+	},
+	{
+	    "speciesId": "jumpluff",
+	    "chargedMoves": ["ACROBATICS", "ENERGY_BALL"]
+	},
+	{
+	    "speciesId": "jumpluff_shadow",
+	    "chargedMoves": ["ACROBATICS", "ENERGY_BALL"]
 	},
 	{
 	    "speciesId": "sealeo",

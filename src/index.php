@@ -34,17 +34,16 @@
 	<!--Update section for updates-->
 	<h3>What's New</h3>
 
-	<h4>v1.25.0 (January 20, 2022)</h4>
+	<h4>v1.26.2 (February 21, 2022)</h4>
 	<ul>
-		<li>Multi-Battle now uses meta Pokemon by default instead of all eligible Pokemon, with a toggle to switch between them.</li>
+		<li>Matchup tables such as in Matrix Battle and the Team Builder now always read row vs column.</li>
 		<ul>
-			<li>The meta group feature has existed for a long time but was previously buried in submenus. I hope this change helps  provide more useful results!</li>
+			<li>This was previously an option in the settings, and the default was column vs row. This tended to cause confusion and made it unclear how the tables were intended to read.</li>
+			<li>Added visuals to indicate correct reading direction.</li>
 		</ul>
-		<li>The <a href="<?php echo $WEB_ROOT; ?>settings/">Settings page</a> has a new option to dispaly a Pokemon's ranking details in tabs instead of a full page.</li>
-		<li>Fixes for Custom Rankings:</li>
+		<li>Matrix Battle results now include win/loss record and average.</li>
 		<ul>
-			<li>Cup selection in the advanced settings is now listed alphabetically.</li>
-			<li>Fixed an issue with importing cups and filters not being assigned the correct types.</li>
+			<li>Win/Loss records show battle wins and losses for the row. When viewing the "Attack" tab, this record shows Charged Move tie wins and losses.</li>
 		</ul>
 	</ul>
 
@@ -52,16 +51,16 @@
 
 	<div class="article-item flex">
 		<div class="col-3">
-			<a href="<?php echo $WEB_ROOT; ?>articles/ultimate-guide-to-team-building/">
-				<img src="<?php echo $WEB_ROOT; ?>assets/articles/team-building-thumb.jpg" />
+			<a href="<?php echo $WEB_ROOT; ?>articles/strategy/tournament-guide/">
+				<img src="<?php echo $WEB_ROOT; ?>articles/article-assets/tournament-guide/thumb.jpg">
 			</a>
 		</div>
 		<div class="col-9">
-			<h4><a href="<?php echo $WEB_ROOT; ?>articles/ultimate-guide-to-team-building/">Ultimate Team Building Guide by PolymersUp</a></h4>
-			<div class="date">August 11, 2020</div>
-			<p>Learn the fundamentals of building a good team and how to use the PvPoke Team Builder to its full potential.</p>
+			<h4><a href="<?php echo $WEB_ROOT; ?>articles/strategy/tournament-guide/">Strategy Guide for Tournament Play</a></h4>
+			<div class="date">March 25, 2022</div>
+			<p>How do you build a team for tournament play and pick your Pokemon for battle? Get an in depth look at tournament strategies with advice from veteran trainers!</p>
+			<div class="tags"><a href="<?php echo $WEB_ROOT; ?>articles?tag=Strategy"># Strategy</a></div>
 		</div>
-
 	</div>
 
 </div>

@@ -120,6 +120,14 @@ body{
 	clear:both;
 }
 
+.flex{
+	display:flex;
+
+	&.cols-3 > div{
+		flex-basis:33%;
+	}
+}
+
 .hide{
 	display:none;
 }
@@ -348,14 +356,6 @@ header{
 	span{ display:none; }
 }
 
-.flex{
-	display:flex;
-
-	&.cols-3 > div{
-		flex-basis:33%;
-	}
-}
-
 /* POKEMON SELECT */
 .poke-select-container{
 	display: flex;
@@ -397,6 +397,12 @@ header{
 		&.poke-select{
 			font-size:18px;
 			font-weight:bold;
+
+			option:checked{
+				font-weight:bold;
+				background:#ddd;
+				color:#000;
+			}
 		}
 
 		&.charged{
@@ -1699,7 +1705,6 @@ a.download-csv{
 }
 
 .rating-table{
-
 	text-align: center;
 
 	tr{
@@ -3304,7 +3309,8 @@ a.download-csv{
 	}
 
 	p, ul{
-		line-height:26px;
+		font-size:14px;
+		line-height:20px;
 	}
 
 	ul li{
@@ -3314,7 +3320,9 @@ a.download-csv{
 	.article-section{
 
 		h3{
-			font-weight:normal;
+			font-size: 18px;
+		    border-bottom: 1px solid;
+		    padding-bottom: 4px;
 		}
 	}
 
@@ -3325,10 +3333,11 @@ a.download-csv{
 
 	h3.article-header,
 	.tip{
-		background: rgba(0,0,0,.5);
+		background: rgb(98 114 139);
 		padding: 10px;
 		border-radius: 8px;
 		color:$color-off-white;
+		line-height: 24px;
 	}
 
 	table{
@@ -3454,8 +3463,46 @@ a.download-csv{
 			}
 		}
 
-		&.matrix-table a{
-			padding: 5px 5px 5px 36px;
+		&.matrix-table{
+			a{
+				padding: 5px 5px 5px 36px;
+			}
+
+			.matrix-record,
+			.matrix-average{
+				font-size:14px;
+				white-space: nowrap;
+				padding:8px 10px 0px 10px;
+			}
+
+			.rating.average{
+				padding: 5px 5px 5px 27px;
+				width: 60px;
+
+				span{
+					width:auto;
+					background:none !important;
+				}
+			}
+		}
+
+		&.matrix-table, &.meta-table, &.threats-table, &.alternatives-table{
+			th:first-of-type, thead td:first-of-type{
+				background-image:url('../img/matrix-arrow-header.png');
+				background-repeat: no-repeat;
+				background-position: right 4px bottom 4px;
+			}
+
+			th.name{
+				background-image:url('../img/matrix-arrow.png');
+				background-repeat: no-repeat;
+				background-position: right 4px center;
+				padding-right: 20px;
+			}
+
+			td.name-small{
+				padding-bottom:12px;
+			}
 		}
 	}
 
@@ -3519,6 +3566,21 @@ a.download-csv{
 
 	h4{
 		margin-top:0;
+	}
+
+	.tags{
+		display: flex;
+
+		a{
+			display: block;
+			text-decoration: none;
+			background:$color-links;
+			color:$color-off-white;
+			border-radius: 8px;
+			font-size:12px;
+			padding:4px 8px;
+			margin-right:5px;
+		}
 	}
 }
 

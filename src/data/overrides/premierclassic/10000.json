@@ -25,12 +25,25 @@
 		"chargedMoves": ["NIGHT_SLASH", "EARTHQUAKE"]
 	},
 	{
+		"speciesId": "florges",
+		"chargedMoves": ["DISARMING_VOICE", "MOONBLAST"]
+	},
+	{
 		"speciesId": "hariyama",
 		"chargedMoves": ["CLOSE_COMBAT", "HEAVY_SLAM"]
 	},
 	{
 		"speciesId": "samurott",
 		"chargedMoves": ["HYDRO_CANNON", "BLIZZARD"]
+	},
+	{
+		"speciesId": "primarina",
+		"fastMove": "CHARM",
+		"chargedMoves": ["MOONBLAST", "HYDRO_PUMP"]
+	},
+	{
+		"speciesId": "incineroar",
+		"chargedMoves": ["DARK_PULSE", "FIRE_BLAST"]
 	},
 	{
 		"speciesId": "scizor_shadow",

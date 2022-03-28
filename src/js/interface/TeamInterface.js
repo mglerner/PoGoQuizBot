@@ -209,6 +209,10 @@ var InterfaceMaster = (function () {
 								} else{
 									multiSelectors[0].setCliffhangerMode(false);
 								}
+
+								if(battle.getCup().partySize == 8){
+									multiSelectors[0].setMaxPokemonCount(8);
+								}
 								break;
 
 							case "m1":
@@ -750,13 +754,17 @@ var InterfaceMaster = (function () {
 				// If using a restricted Pokemon, exclude restricted list
 
 				if(battle.getCup().restrictedPokemon){
-					for(var i = 0; i < team.length; i++){
-						if(battle.getCup().restrictedPokemon.indexOf(team[i].speciesId) > -1){
-							for(var n = 0; n < battle.getCup().restrictedPokemon.length; n++){
-								exclusionList.push(battle.getCup().restrictedPokemon[n]);
-							}
+					var restrictedPicks = 0;
 
-							break;
+					for(var i = 0; i < team.length; i++){
+						if(battle.getCup().restrictedPokemon.indexOf(team[i].speciesId.replace("shadow","")) > -1){
+							restrictedPicks++;
+						}
+					}
+
+					if(restrictedPicks >= battle.getCup().restrictedPicks){
+						for(var n = 0; n < battle.getCup().restrictedPokemon.length; n++){
+							exclusionList.push(battle.getCup().restrictedPokemon[n]);
 						}
 					}
 				}
@@ -931,7 +939,7 @@ var InterfaceMaster = (function () {
 
 
 
-				if(team.length == 6){
+				if(multiSelectors[0].getAvailableSpots() <= 0){
 					$(".alternatives-table .button.add").hide();
 				}
 
@@ -1358,6 +1366,12 @@ var InterfaceMaster = (function () {
 					multiSelectors[0].setCliffhangerMode(true);
 				} else{
 					multiSelectors[0].setCliffhangerMode(false);
+				}
+
+				if(battle.getCup().partySize == 8){
+					multiSelectors[0].setMaxPokemonCount(8);
+				} else{
+					multiSelectors[0].setMaxPokemonCount(6);
 				}
 
 				// Load ranking data for movesets
