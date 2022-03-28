@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import os, random, asyncio, json, math
+import os, random, asyncio, json, math, inspect
 from datetime import datetime
 # We're using py-cord https://docs.pycord.dev/en/master/index.html
 import discord
@@ -101,6 +101,26 @@ def get_rankings():
 FASTMOVES, CHARGEDMOVES = get_moves()
 RANKINGS = get_rankings()
 
+def get_move_damage(attacker, defender, move):
+    """Get move damage
+
+    Definitely read https://gamerant.com/pokemon-go-damage-calculation-explanation-guide/ when writing this.
+
+    Actually, I think this might be better. And it means incorporating the info from the notebook, probably. cpm and all.
+    https://pokemongohub.net/post/questions-and-answers/move-damage-output-actually-calculated/
+    """
+    # you could either use the base stats (comes from ['pokemon'] and note that yo will have an entry for the regular and the shadow.) or the recommended stats for these two.
+    attack = 10# attack of defending pokemon 
+    defense = 10# defense stat of defending pokemon
+
+    montype = 10 # average of two for dual type?
+    stab = 1 # or 1.2 if attacker's move matches type. how handle dual type?
+    weather, friendship, dodged, mega = 1,1,1,1
+    trainer = 1.3 # apparently this is 1 if you're battling the computer
+    charge = 1 # value from 0.5 to 1 depending on how you did in the minigame.
+    power = 1 # base power of move used by attacking pokemon, "power" in gamemaster.json
+    modifier = montype*stab*weather*friendship*dodged*mega*trainer*charge
+    damage = 0.5*power*(attack/defense)*modifier + 1
 
 class RightAnswerButton(Button):
     def __init__(self,label=None,*,emoji=None,view=None,extra_text=None):
@@ -130,6 +150,21 @@ class WrongAnswerButton(Button):
         print(f"  ... and I got to the end of the function")
 
 
+#@bot.slash_command(guild_ids=GUILD_IDS, description="RyanSwag links")
+#async def rsinfo(ctx):
+#    embed = discord.Embed(title="RyanSwag Links",
+#                              description="Here's a collection of useful Ryan Swag links",
+#                              )
+#    embed.add_field(name="Walrein",
+#                        value=inspect.cleandoc("""[GamePress article](https://gamepress.gg/pokemongo/walrein-pvp-iv-deep-dive)
+#                        [Youtube video](https://www.youtube.com/watch?v=yJUjtPAPkEM)
+#
+#                        UPLC: attack breakpionts give you Gyrardos, Swampert, A-Muk, Crobat, Greedent 1-1, and mirrors as you go higher.
+#                        Defense gives the 0-0 mirror, but you also ned 197 hp.
+#""")
+
+# https://pvpoke.com/team-builder/premierclassic/2500-40/walrein-38-8-9-11-4-4-1-0-m-1-3-2%2Ctoxicroak-40-15-14-14-4-4-1-0-m-0-3-2%2Cgallade-30-4-9-15-4-4-1-0-m-1-2-1
+        
 @bot.slash_command(guild_ids=GUILD_IDS,description="Help message for PoGoQuizBot")
 async def pqhelp(ctx):
     embed = discord.Embed(title="PoGo Quiz Bot help",
