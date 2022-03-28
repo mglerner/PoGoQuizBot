@@ -51,16 +51,16 @@ switch($cup){
 		$league = 'Holiday Cup';
 		break;
 
-	case "johto":
-		$league = 'Johto Cup';
+	case "littlejungle":
+		$league = 'Little Jungle Cup';
 		break;
 
 	case "sinnoh":
 		$league = 'Sinnoh Cup';
 		break;
 
-	case "love":
-		$league = 'Love Cup';
+	case "halloween":
+		$league = 'Halloween Cup';
 		break;
 
 	case "goteamup":
@@ -75,16 +75,24 @@ switch($cup){
 		$league = 'Silph Factions Rankings';
 		break;
 
-	case "brawler":
-		$league = 'Silph Brawler Cup';
+	case "obsidian":
+		$league = 'Silph Obsidian Cup';
 		break;
 
-	case "glacial":
-		$league = 'Silph Glacial Cup';
+	case "nemesis":
+		$league = 'Silph Nemesis Cup';
 		break;
 
-	case "comet":
-		$league = 'Gymbreakers Comet Cup';
+	case "floatingcity":
+		$league = 'Silph Factions Rankings';
+		break;
+
+	case "dungeon":
+		$league = 'Silph Factions Rankings';
+		break;
+
+	case "cometultra":
+		$league = 'Silph Factions Rankings';
 		break;
 
 	case "remix":

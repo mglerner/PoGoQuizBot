@@ -115,6 +115,11 @@
 		"chargedMoves":["CRUNCH","OUTRAGE"]
 	},
 	{
+		"speciesId":"florges",
+		"fastMove":"VINE_WHIP",
+		"chargedMoves":["DISARMING_VOICE","MOONBLAST"]
+	},
+	{
 		"speciesId":"rhyperior",
 		"fastMove":"MUD_SLAP",
 		"chargedMoves":["ROCK_WRECKER","SURF"]

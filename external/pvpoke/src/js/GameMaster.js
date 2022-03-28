@@ -37,7 +37,7 @@ var GameMaster = (function () {
 
 				InterfaceMaster.getInstance().init(object);
 
-				if(customRankingInterface){
+				if(typeof customRankingInterface !== 'undefined'){
 					customRankingInterface.init(object);
 				}
 			} else if(settings.gamemaster == "gamemaster-mega"){
@@ -680,6 +680,16 @@ var GameMaster = (function () {
 			}
 		}
 
+		// Load article metadata json and return it to the interface
+
+		object.loadArticleData = function(callback){
+			var file = webRoot+"articles/articles.json?v="+siteVersion;
+
+			$.getJSON( file, function( data ){
+				console.log("article metadata loaded [" + data.length + "]");
+				callback(data);
+			});
+		}
 
 		// Modify a Pokemon data entry
 
@@ -721,7 +731,7 @@ var GameMaster = (function () {
 				minStats = 0;
 			}
 
-			var bannedList = ["mewtwo","mewtwo_armored","giratina_altered","groudon","kyogre","palkia","dialga","heatran","giratina_origin","darkrai","cobalion","terrakion","virizion","thundurus_incarnate","regigigas","tornadus_incarnate","tornadus_therian","tornadus_therian_xl","landorus_incarnate", "landorus_therian", "reshiram", "zekrom", "kyurem", "genesect_burn", "xerneas", "thundurus_therian", "yveltal", "meloetta_aria", "zacian", "zamazenta", "zacian_hero", "zamazenta_hero", "genesect_douse", "zarude", "hoopa_unbound", "genesect_shock"];
+			var bannedList = ["mewtwo","mewtwo_armored","giratina_altered","groudon","kyogre","palkia","dialga","heatran","giratina_origin","darkrai","cobalion","terrakion","virizion","thundurus_incarnate","regigigas","tornadus_incarnate","tornadus_therian","tornadus_therian_xl","landorus_incarnate", "landorus_therian", "reshiram", "zekrom", "kyurem", "genesect_burn", "xerneas", "thundurus_therian", "yveltal", "meloetta_aria", "zacian", "zamazenta", "zacian_hero", "zamazenta_hero", "genesect_douse", "zarude", "hoopa_unbound", "genesect_shock", "tapu_koko", "tapu_lele"];
 
 			// Aggregate filters
 

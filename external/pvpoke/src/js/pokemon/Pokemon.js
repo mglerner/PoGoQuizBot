@@ -98,7 +98,7 @@ function Pokemon(id, i, b){
 	}
 
 	if(data.eliteMoves){
-		this.eliteMoves = data.eliteMoves;
+		this.eliteMoves = data.eliteMoves.slice();
 	}
 
 	// Set tags
@@ -106,7 +106,7 @@ function Pokemon(id, i, b){
 	this.tags = [];
 
 	if(data.tags){
-		this.tags = data.tags;
+		this.tags = data.tags.slice();
 	}
 
 	// Set level cap
@@ -625,6 +625,31 @@ function Pokemon(id, i, b){
 					self.activeChargedMoves.push(move);
 				}
 
+				// The Zap Cannon Registeel clause! It will treat Focus Blast like a self debuffing move and prefer Zap Cannon shields up
+
+				if((self.activeChargedMoves[0].moveId == "FOCUS_BLAST")&&(self.activeChargedMoves[1].moveId == "ZAP_CANNON")){
+					if(self.activeChargedMoves[1].dpe - self.activeChargedMoves[0].dpe > -.3){
+						self.activeChargedMoves[0].buffs = [0,0];
+						self.activeChargedMoves[0].buffTarget = "self";
+						self.activeChargedMoves[0].selfDebuffing = true;
+					} else{
+						delete self.activeChargedMoves[0].buffs;
+						delete self.activeChargedMoves[0].buffTarget;
+						delete self.activeChargedMoves[0].selfDebuffing;
+					}
+				}
+
+				// If both moves cost similar energy and DPE and one has a buff effect, prioritize the buffing move
+
+				if((self.activeChargedMoves[1].energy - self.activeChargedMoves[0].energy <= 10)&&(! self.activeChargedMoves[1].selfDebuffing)){
+
+					if((self.activeChargedMoves[1].selfBuffing)&&(self.activeChargedMoves[0].dpe - self.activeChargedMoves[1].dpe < .3)){
+						var move = self.activeChargedMoves[0];
+						self.activeChargedMoves.splice(0, 1);
+						self.activeChargedMoves.push(move);
+					}
+				}
+
 				// If the cheaper move is a self debuffing move and the other move is a close non-debuffing move, prioritize the non-debuffing move
 
 				if((self.activeChargedMoves[1].energy - self.activeChargedMoves[0].energy <= 10)&&(self.activeChargedMoves[0].selfAttackDebuffing)&&(! self.activeChargedMoves[1].selfDebuffing)){
@@ -651,7 +676,10 @@ function Pokemon(id, i, b){
 
 				// Use moves that have higher DPE
 				if(((move.dpe - self.bestChargedMove.dpe > .03)&&(move.moveId != "SUPER_POWER"))||(move.dpe - self.bestChargedMove.dpe > .3)){
-					self.bestChargedMove = self.activeChargedMoves[i];
+					if((! self.bestChargedMove.selfBuffing)||((self.bestChargedMove.selfBuffing)&&(move.dpe - self.bestChargedMove.dpe > .3))){
+						self.bestChargedMove = self.activeChargedMoves[i];
+					}
+
 				}
 
 				// When DPE is close, favor moves with guaranteed buff effects
@@ -694,7 +722,11 @@ function Pokemon(id, i, b){
 					buffEffect = Math.abs(move.buffs[1]) * (80 / move.energy);
 				}
 
-				var multiplier = ( (gm.data.settings.buffDivisor +(buffEffect* move.buffApplyChance)) / gm.data.settings.buffDivisor);
+				var multiplier = 1;
+
+				if(buffEffect > 0){
+					multiplier = ( (gm.data.settings.buffDivisor +(buffEffect* move.buffApplyChance)) / gm.data.settings.buffDivisor);
+				}
 
 				move.dpe *= multiplier;
 			}
@@ -1924,10 +1956,10 @@ function Pokemon(id, i, b){
 		var consistencyScore = 1;
 
 		// Reset move stats
-		fastMove.damage = Math.floor(fastMove.power * fastMove.stab);
+		fastMove.damage = fastMove.power * fastMove.stab;
 
 		for(var i = 0; i < chargedMoves.length; i++){
-			chargedMoves[i].damage = Math.floor(chargedMoves[i].power * chargedMoves[i].stab);
+			chargedMoves[i].damage = chargedMoves[i].power * chargedMoves[i].stab;
 		}
 
 		// Only calculate with two Charged Moves
@@ -1965,6 +1997,12 @@ function Pokemon(id, i, b){
 				var cycleFastMoves = Math.ceil(chargedMoves[0].energy / fastMove.energyGain);
 				var cycleFastDamage = fastMove.damage * cycleFastMoves;
 				var cycleDamage = cycleFastDamage + chargedMoves[0].damage;
+
+				if(fastMove.type == chargedMoves[0].type){
+					cycleFastDamage *= effectivenessScenarios[n][0];
+				} else if(fastMove.type == chargedMoves[1].type){
+					cycleFastDamage *= effectivenessScenarios[n][1];
+				}
 
 				var factor = 1;
 				if((chargedMoves[0].energy > chargedMoves[1].energy)||( (chargedMoves[0].energy == chargedMoves[1].energy) && (chargedMoves[1].moveId == "ACID_SPRAY")||((chargedMoves[0].selfAttackDebuffing)&&(! chargedMoves[1].selfDebuffing)&&(chargedMoves[1].energy - chargedMoves[0].energy <= 10))||((chargedMoves[0].selfDebuffing)&&(chargedMoves[0].energy > 50)&&(! chargedMoves[1].selfDebuffing)&&(chargedMoves[1].energy - chargedMoves[0].energy <= 10)))){

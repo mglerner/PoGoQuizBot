@@ -38,12 +38,46 @@
 		"weight": 2
 	},
 	{
+		"speciesId": "primarina",
+		"fastMove": "CHARM",
+		"chargedMoves": ["MOONBLAST", "HYDRO_PUMP"]
+	},
+	{
+		"speciesId": "tapu_koko",
+		"chargedMoves": ["THUNDERBOLT", "DAZZLING_GLEAM"]
+	},
+	{
 		"speciesId": "goodra",
 		"chargedMoves": ["MUDDY_WATER", "DRACO_METEOR"]
 	},
 	{
+		"speciesId": "celebi",
+		"fastMove": ["CONFUSION"],
+		"chargedMoves": ["SEED_BOMB", "LEAF_STORM"]
+	},
+	{
+		"speciesId": "registeel",
+		"chargedMoves": ["ZAP_CANNON", "FOCUS_BLAST"]
+	},
+	{
+		"speciesId": "regirock",
+		"chargedMoves": ["STONE_EDGE", "FOCUS_BLAST"]
+	},
+	{
+		"speciesId": "florges",
+		"chargedMoves": ["DISARMING_VOICE", "MOONBLAST"]
+	},
+	{
 		"speciesId": "heracross",
 		"chargedMoves": ["CLOSE_COMBAT", "ROCK_BLAST"]
+	},
+	{
+		"speciesId": "hippowdon",
+		"chargedMoves": ["WEATHER_BALL_ROCK", "EARTH_POWER"]
+	},
+	{
+		"speciesId": "hippowdon_shadow",
+		"chargedMoves": ["WEATHER_BALL_ROCK", "EARTH_POWER"]
 	},
 	{
 		"speciesId": "zacian_hero",
@@ -65,6 +99,10 @@
 	{
 		"speciesId": "regigigas",
 		"fastMove": "HIDDEN_POWER_ICE"
+	},
+	{
+		"speciesId": "regice",
+		"chargedMoves": ["THUNDER", "EARTHQUAKE"]
 	},
 	{
 		"speciesId": "landorus_therian",
@@ -175,8 +213,7 @@
 	{
 		"speciesId": "rhyperior",
 		"fastMove": "MUD_SLAP",
-		"chargedMoves": ["ROCK_WRECKER","SURF"],
-		"weight": 6
+		"chargedMoves": ["ROCK_WRECKER","SURF"]
 	},
 	{
 		"speciesId": "rhyperior_xl",
@@ -243,7 +280,7 @@
 	},
 	{
 		"speciesId": "mew",
-		"chargedMoves": ["PSYSHOCK","FOCUS_BLAST"]
+		"chargedMoves": ["SURF","WILD_CHARGE"]
 	},
 	{
 		"speciesId": "kyogre",
