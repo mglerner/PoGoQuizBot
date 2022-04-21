@@ -29,7 +29,7 @@ function PokeMultiSelect(element){
 	var settings = {
 		shields: 1,
 		ivs: "original",
-		bait: true,
+		bait: 1,
 		levelCap: 50
 	}
 
@@ -339,6 +339,13 @@ function PokeMultiSelect(element){
 					 }
 				 }
 			 }
+		}
+
+		// Show or hide sort button
+		if(pokemonList.length > 0){
+			$el.find("a.custom-group-sort").css("visibility", "visible");
+		} else{
+			$el.find("a.custom-group-sort").css("visibility", "hidden");
 		}
 
 		if(pokemonList.length >= maxPokemonCount){
@@ -663,9 +670,15 @@ function PokeMultiSelect(element){
 	// Returns the currently selected filter mode
 
 	this.setFilterMode = function(val){
-		$el.find(".form-group .check").removeClass("on");
-		$el.find(".form-group .check[value=\""+val+"\"]").addClass("on");
+		$el.find(".form-group.filter-picker .option").removeClass("on");
+		$el.find(".form-group.filter-picker .option[value=\""+val+"\"]").addClass("on");
 		filterMode = val;
+	}
+
+	// Externally select the number of shields
+
+	this.setShields = function(value){
+		$el.find(".shield-picker .option[value="+value+"]").trigger("click");
 	}
 
 	// Show or hide custom options when changing the cup select
@@ -740,8 +753,9 @@ function PokeMultiSelect(element){
 
 	// Change a form option
 
-	$el.find(".form-group .check").on("change", function(e){
+	$el.find(".form-group.filter-picker .option").on("click", function(e){
 		filterMode = $(e.target).attr("value");
+		console.log(filterMode);
 	});
 
 	// Select a quick fill group
@@ -897,10 +911,19 @@ function PokeMultiSelect(element){
 		});
 	});
 
+	// Select an option from the form section
+
+	$el.find(".form-group .option").on("click", function(e){
+		$(e.target).closest(".form-group").find(".option").removeClass("on");
+		$(e.target).closest(".option").addClass("on");
+	});
+
 	// Change shield settings
 
-	$el.find(".shield-select").on("change", function(e){
-		settings.shields = parseInt($el.find(".shield-select option:selected").val());
+	$el.find(".shield-picker .option").on("click", function(e){
+		var value = parseInt($(e.target).closest(".option").attr("value"));
+
+		settings.shields = value;
 	});
 
 	// Change IV settings
@@ -911,8 +934,8 @@ function PokeMultiSelect(element){
 
 	// Change bait toggle
 
-	$el.find(".check.shield-baiting").on("click", function(e){
-		settings.bait = (! settings.bait == true);
+	$el.find(".bait-picker .option").on("click", function(e){
+		settings.bait = parseInt($(e.target).attr("value"));
 	});
 
 	// Change level cap
@@ -935,8 +958,43 @@ function PokeMultiSelect(element){
 		self.changeFormatSelect();
 	});
 
+	// Open the sort modal window and handle group sorting
+
+	$el.find("a.custom-group-sort").on("click",function(e){
+		e.preventDefault();
+
+		modalWindow("Sort Group", $(".sort-group").first());
+
+		$(".modal .name").click(function(e){
+			// Sort alphabetically
+
+			pokemonList.sort((a,b) => (a.speciesId > b.speciesId) ? 1 : ((b.speciesId > a.speciesId) ? -1 : 0));
+			self.updateListDisplay();
+
+			closeModalWindow();
+		});
+
+		$(".modal .attack").click(function(e){
+			// Sort by Attack stats
+
+			pokemonList.sort((a,b) => (a.stats.atk > b.stats.atk) ? -1 : ((b.stats.atk > a.stats.atk) ? 1 : 0));
+			self.updateListDisplay();
+
+			closeModalWindow();
+		});
+
+		$(".modal .defense").click(function(e){
+			// Sort by Defense stats
+
+			pokemonList.sort((a,b) => (a.stats.def > b.stats.def) ? -1 : ((b.stats.def > a.stats.def) ? 1 : 0));
+			self.updateListDisplay();
+
+			closeModalWindow();
+		});
+	});
+
 	this.setBaitSetting = function(val){
-		settings.bait = val;
+		$el.find(".form-group.bait-picker .option[value=\""+val+"\"]").trigger("click");
 	}
 
 	// Return the list of selected Pokemon

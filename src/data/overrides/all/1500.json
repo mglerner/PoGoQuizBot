@@ -33,12 +33,20 @@
 		"chargedMoves": ["ICE_PUNCH", "PSYCHIC"]
 	},
 	{
+		"speciesId": "salazzle",
+		"chargedMoves": ["POISON_FANG", "DRAGON_PULSE"]
+	},
+	{
 		"speciesId": "slowbro_galarian",
 		"chargedMoves": ["SLUDGE_BOMB", "FOCUS_BLAST"]
 	},
 	{
 		"speciesId": "regirock",
 		"chargedMoves": ["STONE_EDGE", "FOCUS_BLAST"]
+	},
+	{
+		"speciesId": "oranguru",
+		"chargedMoves": ["FOUL_PLAY", "FUTURE_SIGHT"]
 	},
 	{
 		"speciesId": "ho_oh",
@@ -55,6 +63,14 @@
 	{
 		"speciesId": "regice",
 		"chargedMoves": ["THUNDER", "BLIZZARD"]
+	},
+	{
+		"speciesId": "exeggutor_alolan",
+		"chargedMoves": ["SEED_BOMB", "DRACO_METEOR"]
+	},
+	{
+		"speciesId": "exeggutor_alolan_shadow",
+		"chargedMoves": ["SEED_BOMB", "DRACO_METEOR"]
 	},
 	{
 		"speciesId": "mantine",
@@ -456,6 +472,11 @@
 	},
 	{
 		"speciesId": "sandslash_alolan",
+		"fastMove": "SHADOW_CLAW",
+		"chargedMoves": ["ICE_PUNCH", "BULLDOZE"]
+	},
+	{
+		"speciesId": "sandslash_alolan_shadow",
 		"fastMove": "SHADOW_CLAW",
 		"chargedMoves": ["ICE_PUNCH", "BULLDOZE"]
 	},
