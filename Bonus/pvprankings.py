@@ -23,6 +23,7 @@ pokemon = get_pokemon()
 # Kind of surprised this isn't in PvPoke
 evolutions = ( ['Spheal', 'Sealeo','Walrein'],
         ['Bulbasaur', 'Ivysaur', 'Venusaur'],
+        ['Mudkip','Marshtomp','Swampert'],
         ['Hoppip','Skiploom','Jumpluff'],
         ['Deoxys'],
         ['Seel','Dewgong'],
@@ -311,6 +312,16 @@ RS_INFO = {
             'Slight attack weight':{'attack':119.47,'defense':132.25,'hp':0},
             'Alolan Ninetails Slayer':{'attack':121.87,'defense':132.25,'hp':0},
             'Lickitung Slayer (no brain, just charmm)':{'attack':122.81,'defense':132.25,'hp':0},
+            },
+        },
+    'Swampert':{
+        'article':'',
+        'videos':('',),
+        'extrainfo':'No good deep dive',
+        'Great':
+        {
+            'Def':{'attack':0,'defense':110,'hp':0},
+            'Atk':{'attack':121.6,'defense':108,'hp':0},
             },
         },
 }
