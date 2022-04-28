@@ -29,6 +29,7 @@ evolutions = ( ['Spheal', 'Sealeo','Walrein'],
         ['Seel','Dewgong'],
         ['Sandshrew','Sandslash'],
         ['Cottonee','Whimsicott'],
+        ['Registeel'],
         )
 
 
@@ -323,6 +324,22 @@ RS_INFO = {
             'Def':{'attack':0,'defense':110,'hp':0},
             'Atk':{'attack':121.6,'defense':108,'hp':0},
             },
+        },
+    'Registeel':{
+        'article':'https://gamepress.gg/pokemongo/registeel-pvp-iv-deep-dive#topic-379686',
+        'videos':('https://www.youtube.com/watch?v=C66Ud9me-tg','https://www.youtube.com/watch?v=W_ZOJPz7LV4'),
+        'extrainfo':'Oof. Raid IVs.',
+        'Great':
+        {
+            'Raid Only 186.7 Def 127 HP':{'attack':0,'defense':186.7,'hp':127},
+            '190.09 Def 129 HP (trade only)':{'attack':0,'defense':190.09,'hp':129},
+            '191.97 Def 129 HP (trade only)':{'attack':0,'defense':191.97,'hp':129},
+            },
+        'Ultra':
+        {
+            'Raid Only 240.5 Def 165 HP':{'attack':0,'defense':240.5,'hp':165},
+            '244.4 Def 167 HP':{'attack':0,'defense':244.4,'hp':167},
+            }
         },
 }
 

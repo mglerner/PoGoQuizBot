@@ -34,32 +34,31 @@
 	<!--Update section for updates-->
 	<h3>What's New</h3>
 
-	<h4>v1.26.2 (February 21, 2022)</h4>
+	<h4>v1.27.0 (April 16, 2022)</h4>
 	<ul>
-		<li>Matchup tables such as in Matrix Battle and the Team Builder now always read row vs column.</li>
+		<li>Core simulation logic has been updated with several changes and fixes:</li>
 		<ul>
-			<li>This was previously an option in the settings, and the default was column vs row. This tended to cause confusion and made it unclear how the tables were intended to read.</li>
-			<li>Added visuals to indicate correct reading direction.</li>
+			<li>Added a new baiting behavior, "selective baiting", which only baits shields when it can meaningfully threaten the opponent. This behavior is now the default behavior.</li>
+			<li>Optimized move timing is now default behavior.</li>
+			<li>In some scenarios, Pokemon with self-debuffing moves like Close Combat will wait to use their moves if they can survive an imminent Charged Move.</li>
+			<li>Fixed some issues surrounding faint predictions. Pokemon will now more reliably throw available energy before they faint.</li>
 		</ul>
-		<li>Matrix Battle results now include win/loss record and average.</li>
-		<ul>
-			<li>Win/Loss records show battle wins and losses for the row. When viewing the "Attack" tab, this record shows Charged Move tie wins and losses.</li>
-		</ul>
+		<li>Updated Pokemon select interface with new shield, bait, and Shadow toggles</li>
 	</ul>
 
 	<h3>Latest Article</h3>
 
 	<div class="article-item flex">
 		<div class="col-3">
-			<a href="<?php echo $WEB_ROOT; ?>articles/strategy/tournament-guide/">
-				<img src="<?php echo $WEB_ROOT; ?>articles/article-assets/tournament-guide/thumb.jpg">
+			<a href="<?php echo $WEB_ROOT; ?>articles/development/developer-notes-1-27-0/">
+				<img src="<?php echo $WEB_ROOT; ?>articles/article-assets/developer-notes-1-27-0/thumb.jpg">
 			</a>
 		</div>
 		<div class="col-9">
-			<h4><a href="<?php echo $WEB_ROOT; ?>articles/strategy/tournament-guide/">Strategy Guide for Tournament Play</a></h4>
-			<div class="date">March 25, 2022</div>
-			<p>How do you build a team for tournament play and pick your Pokemon for battle? Get an in depth look at tournament strategies with advice from veteran trainers!</p>
-			<div class="tags"><a href="<?php echo $WEB_ROOT; ?>articles?tag=Strategy"># Strategy</a></div>
+			<h4><a href="<?php echo $WEB_ROOT; ?>articles/development/developer-notes-1-27-0/">PvPoke Developer Notes - Update 1.27.0</a></h4>
+			<div class="date">April 16, 2022</div>
+			<p>Get an overview on updates to the core simulation logic and default settings, including baiting behavior and optimized move timing.</p>
+			<div class="tags"><a href="<?php echo $WEB_ROOT; ?>articles?tag=Development"># Development</a></div>
 		</div>
 	</div>
 
