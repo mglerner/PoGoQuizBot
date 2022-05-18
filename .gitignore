@@ -1,5 +1,8 @@
 SecretInfo.py
 
+# Mac specific
+.DS_Store
+
 # emacs backup files
 *~
 
