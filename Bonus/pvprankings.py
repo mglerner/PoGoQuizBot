@@ -30,6 +30,7 @@ evolutions = ( ['Spheal', 'Sealeo','Walrein'],
         ['Sandshrew','Sandslash'],
         ['Cottonee','Whimsicott'],
         ['Registeel'],
+        ['Azurill','Marill','Azumarill'],
         )
 
 
@@ -341,6 +342,18 @@ RS_INFO = {
             '244.4 Def 167 HP':{'attack':0,'defense':244.4,'hp':167},
             }
         },
+    'Azumarill':{
+        'article':'https://gamepress.gg/pokemongo/azumarill-pvp-iv-deep-dive',
+        'videos':('https://www.youtube.com/watch?v=iYaqdQG0Ic8',),
+        'extrainfo':'Old non-XL article: https://gamepress.gg/pokemongo/azumarill-great-league-pvp-iv-deep-dive .. you can make up or lower def/hp at a 1:2 ratio, so 134.7 def is fixed by a94 hp, 190 hp is fixed by 136.7 def.',
+        'Great':
+        {
+            'Medicham 1-1 consistency, 1-2 potential with play rough':{'attack':0,'defense':137.64,'hp':0},
+            'Hits the min':{'attack':0,'defense':135.78,'hp':192},
+            'General Def/HP Azu':{'attack':0,'defense':132.8,'hp':187},
+            'Slight Atk Weight Azu':{'attack':92,'defense':132.8,'hp':187},
+            },
+            }
 }
 
 
