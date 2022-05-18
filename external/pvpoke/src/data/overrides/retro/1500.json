@@ -28,6 +28,10 @@
 		"chargedMoves": ["GRASS_KNOT", "PAYBACK"]
 	},
 	{
+		"speciesId": "bewear",
+		"chargedMoves": ["SUPER_POWER", "PAYBACK"]
+	},
+	{
 		"speciesId": "liepard",
 		"chargedMoves": ["DARK_PULSE", "PLAY_ROUGH"]
 	},

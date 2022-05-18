@@ -34,31 +34,26 @@
 	<!--Update section for updates-->
 	<h3>What's New</h3>
 
-	<h4>v1.27.0 (April 16, 2022)</h4>
+	<h4>v1.27.2 (April 30, 2022)</h4>
 	<ul>
-		<li>Core simulation logic has been updated with several changes and fixes:</li>
-		<ul>
-			<li>Added a new baiting behavior, "selective baiting", which only baits shields when it can meaningfully threaten the opponent. This behavior is now the default behavior.</li>
-			<li>Optimized move timing is now default behavior.</li>
-			<li>In some scenarios, Pokemon with self-debuffing moves like Close Combat will wait to use their moves if they can survive an imminent Charged Move.</li>
-			<li>Fixed some issues surrounding faint predictions. Pokemon will now more reliably throw available energy before they faint.</li>
-		</ul>
-		<li>Updated Pokemon select interface with new shield, bait, and Shadow toggles</li>
+		<li>Fixed shielding issues surrounding boosting moves like Flame Charge, which sometimes weren't being shielded correctly before.</li>
+		<li>Relaxed optimized move timing for Pokemon with long duration Fast Moves; these Pokemon will now use Charged Moves with mostly optimal timing but not perfectly optimal timing. They will throw energy earlier and more consistently.</li>
+		<li>Fixed an issue with optimized timing where Pokemon would sometimes go over 100 energy.</li>
 	</ul>
 
 	<h3>Latest Article</h3>
 
 	<div class="article-item flex">
 		<div class="col-3">
-			<a href="<?php echo $WEB_ROOT; ?>articles/development/developer-notes-1-27-0/">
-				<img src="<?php echo $WEB_ROOT; ?>articles/article-assets/developer-notes-1-27-0/thumb.jpg">
+			<a href="<?php echo $WEB_ROOT; ?>articles/infographics/22-05-friend-trade-tier-list/">
+				<img src="<?php echo $WEB_ROOT; ?>articles/article-assets/infographics/22-05-friend-trade-tier-list/thumb.jpg">
 			</a>
 		</div>
 		<div class="col-9">
-			<h4><a href="<?php echo $WEB_ROOT; ?>articles/development/developer-notes-1-27-0/">PvPoke Developer Notes - Update 1.27.0</a></h4>
-			<div class="date">April 16, 2022</div>
-			<p>Get an overview on updates to the core simulation logic and default settings, including baiting behavior and optimized move timing.</p>
-			<div class="tags"><a href="<?php echo $WEB_ROOT; ?>articles?tag=Development"># Development</a></div>
+			<h4><a href="<?php echo $WEB_ROOT; ?>articles/infographics/22-05-friend-trade-tier-list/">Sh!tty Friend Trade Tier List</a></h4>
+			<div class="date">May 14, 2022</div>
+			<p>Whether you meet new friends or that one person who doesn't open your gifts, here's a list of PvP trade ideas with low friendship level!</p>
+			<div class="tags"><a href="<?php echo $WEB_ROOT; ?>articles?tag=Infographic"># Infographic</a></div>
 		</div>
 	</div>
 

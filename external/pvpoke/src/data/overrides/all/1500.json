@@ -53,6 +53,14 @@
 		"chargedMoves": ["BRAVE_BIRD", "EARTHQUAKE"]
 	},
 	{
+		"speciesId": "latias",
+		"chargedMoves": ["MIST_BALL", "THUNDER"]
+	},
+	{
+		"speciesId": "latias_shadow",
+		"chargedMoves": ["MIST_BALL", "THUNDER"]
+	},
+	{
 		"speciesId": "ho_oh_shadow",
 		"chargedMoves": ["BRAVE_BIRD", "EARTHQUAKE"]
 	},
@@ -81,6 +89,10 @@
 		"speciesId": "garchomp",
 		"fastMove": "DRAGON_TAIL",
 		"chargedMoves": ["SAND_TOMB", "OUTRAGE"]
+	},
+	{
+		"speciesId": "crustle",
+		"fastMove": "SMACK_DOWN"
 	},
 	{
 		"speciesId": "dartrix",
@@ -1027,6 +1039,10 @@
 	{
 		"speciesId": "trevenant",
 		"weight": 14
+	},
+	{
+		"speciesId": "araquanid",
+		"weight": 9
 	},
 	{
 		"speciesId": "gourgeist_small",

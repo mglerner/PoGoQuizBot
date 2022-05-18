@@ -400,6 +400,7 @@ header {
 }
 .poke .poke-stats .mega-cp-container h3.section-title {
   font-size: 12px;
+  margin-top: 0;
 }
 .poke .poke-stats .mega-cp-container .mega-cp {
   font-size: 14px;
@@ -3394,6 +3395,15 @@ a.download-csv {
 .modal .list-export .search-string-options .check,
 .modal .search-string-window .search-string-options .check {
   margin-right: 10px;
+}
+.modal .list-export .export-options,
+.modal .search-string-window .export-options {
+  display: flex;
+  justify-content: space-between;
+}
+.modal .list-export .export-options a.json,
+.modal .search-string-window .export-options a.json {
+  font-size: 12px;
 }
 .modal .save-list input {
   font-size: 18px;
