@@ -31,6 +31,15 @@ var GameMaster = (function () {
 		$.getJSON( webRoot+"data/"+gmVersion+".json?v="+siteVersion, function( data ){
 			object.data = data;
 
+			// Insert cup and format values into cup and format select dropdowns
+			if(typeof updateFormatSelect === "function"){
+				updateFormatSelect(object.data.formats, InterfaceMaster.getInstance());
+			}
+
+			if(typeof updateCupSelect === "function"){
+				updateCupSelect(object.data.formats, InterfaceMaster.getInstance());
+			}
+
 			if(settings.gamemaster == "gamemaster"){
 				// Sort Pokemon alphabetically for searching
 				object.data.pokemon.sort((a,b) => (a.speciesName > b.speciesName) ? 1 : ((b.speciesName > a.speciesName) ? -1 : 0));
@@ -302,7 +311,7 @@ var GameMaster = (function () {
 
 			object.data.pokemon.sort((a,b) => (a.dex > b.dex) ? 1 : ((b.dex > a.dex) ? -1 : 0));
 
-			var json = JSON.stringify(object.data);
+			var json = JSON.stringify(object.data.pokemon);
 
 			console.log(json);
 		}
@@ -749,7 +758,9 @@ var GameMaster = (function () {
 
 				var stats = (pokemon.stats.hp * pokemon.stats.atk * pokemon.stats.def) / 1000;
 
-				if((stats >= minStats)||((battle.getCP() == 1500)&&(pokemon.hasTag("include1500")))){
+				if((stats >= minStats) ||
+				 ( (battle.getCP() == 1500) &&
+				 (pokemon.hasTag("include1500") || pokemon.hasTag("mega") ))){
 					// Today is the day
 					if(! pokemon.released){
 						continue;

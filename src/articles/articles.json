@@ -1,5 +1,37 @@
 [
 	{
+		"id": "22-05-geodude",
+		"title": "Alolan Geodude Community Day Guide for PvP",
+		"description": "The Alolan Geodude family is ready to rock! Which leagues and Pokemon should you be on the lookout for and how impactful will Rollout be on the meta?",
+		"path": "community-day",
+		"tags": ["Community Day", "Infographic"],
+		"date": "May 19, 2022"
+	},
+	{
+		"id": "22-05-friend-trade-tier-list",
+		"title": "Sh!tty Friend Trade Tier List",
+		"description": "Whether you meet new friends or that one person who doesn't open your gifts, here's a list of PvP trade ideas with low friendship level!",
+		"path": "infographics",
+		"tags": ["Infographic"],
+		"date": "May 14, 2022"
+	},
+	{
+		"id": "22-05-latias-latios-counters",
+		"title": "Latias and Latios Counters for Master League",
+		"description": "See which Latias and Latios raid counters also double as top Master League picks!",
+		"path": "infographics",
+		"tags": ["Infographic"],
+		"date": "May 3, 2022"
+	},
+	{
+		"id": "22-04-stufful",
+		"title": "Stufful Community Day Guide for PvP",
+		"description": "Learn about the brand new Pokemon Stufful, and how its evolution may perform in PvP!",
+		"path": "community-day",
+		"tags": ["Community Day", "Infographic"],
+		"date": "April 22, 2022"
+	},
+	{
 		"id": "developer-notes-1-27-0",
 		"title": "PvPoke Developer Notes - Update 1.27.0",
 		"description": "Get an overview on updates to the core simulation logic and default settings, including baiting behavior and optimized move timing.",

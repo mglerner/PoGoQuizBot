@@ -1,5 +1,5 @@
 <?php require_once 'modules/config.php';
-$SITE_VERSION = '1.27.1.4';
+$SITE_VERSION = '1.28.3.11';
 
 // This prevents caching on local testing
 if (strpos($WEB_ROOT, 'src') !== false) {
@@ -40,6 +40,10 @@ if(isset($_COOKIE['settings'])){
 		$_SETTINGS->rankingDetails = "one-page";
 	}
 
+	if(! isset($_SETTINGS->hardMovesetLinks)){
+		$_SETTINGS->hardMovesetLinks = 0;
+	}
+
 	// Validate the gamemaster setting, only allow these options
 	$gamemasters = ["gamemaster", "gamemaster-mega"];
 
@@ -55,7 +59,8 @@ if(isset($_COOKIE['settings'])){
 		'pokeboxId' => 0,
 		'ads' => 1,
 		'xls' => 1,
-		'rankingDetails' => 'one-page'
+		'rankingDetails' => 'one-page',
+		'hardMovesetLinks' => 0
 	];
 }
 
@@ -107,14 +112,14 @@ if(! isset($OG_IMAGE)){
 <link rel="manifest" href="<?php echo $WEB_ROOT; ?>data/manifest.json?v=2">
 
 <link rel="icon" href="<?php echo $WEB_ROOT; ?>img/favicon.png">
-<link rel="stylesheet" type="text/css" href="<?php echo $WEB_ROOT; ?>css/style.css?v=139">
+<link rel="stylesheet" type="text/css" href="<?php echo $WEB_ROOT; ?>css/style.css?v=141">
 
 <?php if(strpos($META_TITLE, 'Train') !== false): ?>
 	<link rel="stylesheet" type="text/css" href="<?php echo $WEB_ROOT; ?>css/train.css?v=20">
 <?php endif; ?>
 
 <?php if(strpos($_SERVER['REQUEST_URI'], 'articles') !== false): ?>
-	<link rel="stylesheet" type="text/css" href="<?php echo $WEB_ROOT; ?>css/article-extras.css?v=3">
+	<link rel="stylesheet" type="text/css" href="<?php echo $WEB_ROOT; ?>css/article-extras.css?v=4">
 <?php endif; ?>
 
 <?php if((isset($_SETTINGS->theme))&&($_SETTINGS->theme != "default")): ?>
@@ -141,7 +146,8 @@ if(! isset($OG_IMAGE)){
 			pokeboxId: "<?php echo intval($_SETTINGS->pokeboxId); ?>",
 			pokeboxLastDateTime: "<?php echo intval($_SETTINGS->pokeboxLastDateTime); ?>",
 			xls: <?php echo $_SETTINGS->xls; ?>,
-			rankingDetails: "<?php echo htmlspecialchars($_SETTINGS->rankingDetails); ?>"
+			rankingDetails: "<?php echo htmlspecialchars($_SETTINGS->rankingDetails); ?>",
+			hardMovesetLinks: <?php echo intval($_SETTINGS->hardMovesetLinks); ?>
 		};
 	<?php else: ?>
 
@@ -153,19 +159,11 @@ if(! isset($OG_IMAGE)){
 			pokeboxId: 0,
 			pokeboxLastDateTime: 0,
 			xls: true,
-			rankingDetails: "one-page"
+			rankingDetails: "one-page",
+			hardMovesetLinks: 0
 		};
 
 	<?php endif; ?>
-
-	<?php if((strpos($_SERVER['REQUEST_URI'], 'mega') !== false) && (strpos($_SERVER['REQUEST_URI'], 'meganium') === false) && (strpos($_SERVER['REQUEST_URI'], 'venusaur_mega') === false) && (strpos($_SERVER['REQUEST_URI'], 'blastoise_mega') === false) && ((strpos($_SERVER['REQUEST_URI'], 'charizard_mega_x') === false)) && (strpos($_SERVER['REQUEST_URI'], 'charizard_mega_y') === false) && (strpos($_SERVER['REQUEST_URI'], 'beedrill_mega') === false) && (strpos($_SERVER['REQUEST_URI'], 'pidgeot_mega') === false) && (strpos($_SERVER['REQUEST_URI'], 'houndoom_mega') === false)&&
-	(strpos($_SERVER['REQUEST_URI'], 'ampharos_mega') === false)&& (strpos($_SERVER['REQUEST_URI'], 'abomasnow_mega') === false)):
-		$_SETTINGS->gamemaster = 'gamemaster-mega';
-		?>
-		// If "Mega" is contained in the URL, default to the mega gamemaster
-		settings.gamemaster = "gamemaster-mega";
-	<?php endif; ?>
-
 
 	// If $_GET request exists, output as JSON into Javascript
 

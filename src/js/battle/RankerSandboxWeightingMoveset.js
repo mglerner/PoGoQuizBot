@@ -431,6 +431,14 @@ var RankerMaster = (function () {
 					iterations = 1;
 				}
 
+				if(cup.name == "colony"){
+					iterations = 1;
+				}
+
+				if(cup.name == "element"){
+					iterations = 1;
+				}
+
 				if(cup.name == "halloween"){
 					iterations = 1;
 				}
@@ -455,6 +463,10 @@ var RankerMaster = (function () {
 					iterations = 1;
 				}
 
+				if(cup.name == "flying"){
+					iterations = 1;
+				}
+
 				if((cup.name == "remix")&&(battle.getCP() == 1500)){
 					iterations = 1;
 				}
@@ -472,6 +484,10 @@ var RankerMaster = (function () {
 				}
 
 				if(cup.name == "firefly"){
+					iterations = 1;
+				}
+
+				if(cup.name == "river"){
 					iterations = 1;
 				}
 

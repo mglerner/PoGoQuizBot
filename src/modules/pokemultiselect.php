@@ -26,16 +26,6 @@
 				<option value="great" type="great" class="multi-battle">Great League Meta</option>
 				<option value="ultra" type="ultra" class="hide multi-battle">Ultra League Meta</option>
 				<option value="master" type="master" class="hide multi-battle">Master League Meta</option>
-				<option value="remixultra" type="ultra" class="hide multi-battle">Remix Meta</option>
-				<option value="ultrapremierclassic" type="ultra" class="hide multi-battle">Premier Classic Meta</option>
-				<option value="masterpremierclassic" type="master" class="hide multi-battle">Premier Classic Meta</option>
-				<option value="retro" type="great" class="multi-battle">Retro Cup Meta</option>
-				<option value="kanto" type="great" class="multi-battle">Kanto Cup Meta</option>
-				<option value="nemesis" type="great" class="multi-battle">Silph Nemesis Cup</option>
-				<option value="firefly" type="great" class="multi-battle">Silph Firefly Cup</option>
-				<option value="cometultra" type="ultra" class="multi-battle">Silph Factions (Ultra Comet)</option>
-				<option value="floatingcity" type="great" class="multi-battle">Silph Factions (Floating City)</option>
-				<option value="dungeon" type="great" class="multi-battle">Silph Factions (Dungeon)</option>
 			</select>
 			<div class="flex quick-fill-buttons">
 				<button class="save-btn save-custom">Save</button>
@@ -101,7 +91,11 @@
 <div class="list-export hide">
 	<p>Copy the text below or paste to import a custom group.</p>
 	<textarea class="list-text" type="text"></textarea>
-	<div class="copy">Copy</div>
+	<div class="export-options">
+		<div class="copy">Copy</div>
+		<a class="json" href="#">JSON Export</a>
+	</div>
+
 	<div class="center">
 		<div class="button import">Import</div>
 	</div>
