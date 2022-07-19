@@ -87,7 +87,7 @@ function PokeMultiSelect(element){
 
 			var groupRegex = new RegExp("([a-z_]*),([A-Z_]*),([A-Z_]*),([A-Z_]*)");
 
-			if(groupRegex.test(content)){
+			if((groupRegex.test(content))&&(key.indexOf("criteo") == -1)){
 				$el.find(".quick-fill-select").append("<option value=\""+key+"\" type=\"custom\">"+key+"</option>");
 			}
 
@@ -103,7 +103,7 @@ function PokeMultiSelect(element){
 
 		selectedIndex = index;
 
-		modalWindow("Select Pokemon", $(".poke.single").first());
+		modalWindow("Select Pokemon", $el.find(".poke.single").first());
 
 		pokeSelector = new PokeSelect($(".modal .poke"), 1);
 		pokeSelector.setContext("modal"+context);
@@ -317,66 +317,33 @@ function PokeMultiSelect(element){
 		$el.find(".team-warning").hide();
 
 		if((context == "team")&&(pokemonList.length > 0)){
-			// Check for any ineligible Pokemon
-			var eligibleList =  gm.generateFilteredPokemonList(battle, battle.getCup().include, battle.getCup().exclude, false, false, false);
+			// Check the rankings for any ineligible Pokemon
+			var key = battle.getCup().name + "overall" + battle.getCP();
 
-			for(var i = 0; i < pokemonList.length; i++){
-				var speciesId = pokemonList[i].speciesId;
-				var found = false;
+			if(gm.rankings[key]){
+				var eligibleList = gm.rankings[key];
 
-				if((pokemonList[i].shadowType == "shadow")&&(speciesId.indexOf("_shadow") == -1)){
-					speciesId += "_shadow";
-				}
+				for(var i = 0; i < pokemonList.length; i++){
+					var speciesId = pokemonList[i].speciesId;
+					var found = false;
 
-				for(var n = 0; n < eligibleList.length; n++){
-					if(eligibleList[n].speciesId == speciesId){
-						found = true;
-						break;
+					if((pokemonList[i].shadowType == "shadow")&&(speciesId.indexOf("_shadow") == -1)){
+						speciesId += "_shadow";
 					}
-				}
 
-				if(! found){
-					$el.find(".rank").eq(i).addClass("warning");
-					$el.find(".team-warning.ineligible").show();
+					for(var n = 0; n < eligibleList.length; n++){
+						if(eligibleList[n].speciesId == speciesId){
+							found = true;
+							break;
+						}
+					}
+
+					if(! found){
+						$el.find(".rank").eq(i).addClass("warning");
+						$el.find(".team-warning.ineligible").show();
+					}
 				}
 			}
-
-			// For Labyrinth Cup, check there are no repeated types
-			 if(battle.getCup().name == "labyrinth"){
-				var usedTypes = [];
-				var doubleTypes = [];
-
-				// First, gather any double used types
-				for(var i = 0; i < pokemonList.length; i++){
-					if(usedTypes.indexOf(pokemonList[i].types[0]) > -1){
-						doubleTypes.push(pokemonList[i].types[0]);
-					}
-
-					if(usedTypes.indexOf(pokemonList[i].types[1]) > -1){
-						doubleTypes.push(pokemonList[i].types[1]);
-					}
-
-					if(usedTypes.indexOf(pokemonList[i].types[0]) > -1 || usedTypes.indexOf(pokemonList[i].types[1]) > -1){
-
-						$el.find(".rank").eq(i).addClass("warning");
-						$el.find(".team-warning.labyrinth").show();
-					}
-
-					usedTypes.push(pokemonList[i].types[0]);
-
-					if(pokemonList[i].types[1] != "none"){
-						usedTypes.push(pokemonList[i].types[1]);
-					}
-				}
-
-				 // Mark Pokemon with double used types with a warning
-				 for(var i = 0; i < pokemonList.length; i++){
-					 if(doubleTypes.indexOf(pokemonList[i].types[0]) > -1 || doubleTypes.indexOf(pokemonList[i].types[1]) > -1){
-						 $el.find(".rank").eq(i).addClass("warning");
-						 $el.find(".team-warning.labyrinth").show();
-					 }
-				 }
-			 }
 		}
 
 		// Show or hide sort button
@@ -859,7 +826,7 @@ function PokeMultiSelect(element){
 		// Copy list text
 
 		$(".modal .list-export .copy").click(function(e){
-			var el = $(e.target).prev()[0];
+			var el = $(e.target).parent().prev()[0];
 			el.focus();
 			el.setSelectionRange(0, el.value.length);
 			document.execCommand("copy");

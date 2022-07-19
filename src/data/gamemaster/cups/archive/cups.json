@@ -653,18 +653,6 @@
 	"exclude": [],
 	"partySize": 3
 }, {
-	"name": "kanto",
-	"title": "Kanto Cup",
-	"include": [{
-		"filterType": "dex",
-		"values": [1, 151]
-	}],
-	"exclude": [{
-		"filterType": "tag",
-		"values": ["mega"]
-	}],
-	"partySize": 3
-}, {
 	"name": "johto",
 	"title": "Johto Cup",
 	"include": [{
@@ -704,36 +692,6 @@
 	"exclude": [],
 	"partySize": 3
 }, {
-	"name": "retro",
-	"title": "Retro Cup",
-	"include": [],
-	"exclude": [{
-		"filterType": "type",
-		"values": ["dark", "fairy", "steel"]
-	}, {
-		"filterType": "tag",
-		"values": ["mega"]
-	}],
-	"partySize": 3
-}, {
-	"name": "remix",
-	"title": "Remix",
-	"include": [],
-	"exclude": [{
-		"filterType": "id",
-		"values": ["venusaur", "nidoqueen", "ninetales_alolan", "azumarill", "umbreon", "skarmory", "swampert", "vigoroth", "sableye", "medicham", "altaria", "deoxys_defense", "bastiodon", "scrafty", "jellicent", "galvantula", "stunfisk_galarian", "mandibuzz", "talonflame", "obstagoon"],
-		"leagues": [1500]
-	}, {
-		"filterType": "id",
-		"values": ["venusaur", "muk_alolan", "umbreon", "swampert", "empoleon", "togekiss", "giratina_altered", "cresselia", "talonflame", "obstagoon"],
-		"leagues": [2500]
-	}, {
-		"filterType": "tag",
-		"values": ["mega"]
-	}],
-	"partySize": 3,
-	"presetOnly": true
-}, {
 	"name": "nightfall",
 	"title": "Silph Nightfall Cup",
 	"include": [{
@@ -757,17 +715,6 @@
 	"exclude": [{
 		"filterType": "tag",
 		"values": ["mega"]
-	}]
-}, {
-	"name": "adl",
-	"title": "Arrohh Draft League",
-	"include": [],
-	"exclude": [{
-		"filterType": "tag",
-		"values": ["mega"]
-	}, {
-		"filterType": "id",
-		"values": ["stunfisk_galarian", "lickitung", "azumarill", "azumarill", "bastiodon", "medicham", "altaria", "galvantula", "machamp", "nidoqueen", "sableye", "scrafty", "jellicent", "ninetales_alolan", "registeel", "mandibuzz", "wobbuffet", "dewgong", "mew", "wigglytuff", "swampert", "drifblim", "cresselia", "deoxys_defense", "obstagoon", "umbreon", "pachirisu", "cofagrigus", "skarmory", "pidgeot", "talonflame", "venusaur", "tropius"]
 	}]
 }, {
 	"name": "cerberus",
@@ -816,14 +763,6 @@
 	}, {
 		"filterType": "id",
 		"values": ["medicham", "medicham_xl", "deoxys_defense", "azumarill_xl", "azumarill", "altaria", "sableye_shadow", "sableye", "sableye_xl", "stunfisk_galarian", "swampert", "swampert_shadow", "scrafty", "wobbuffet", "wobbuffet_xl", "lickitung", "lickitung_xl", "machamp", "machamp_shadow", "bastiodon", "bastiodon_xl", "cresselia", "wigglytuff", "abomasnow", "abomasnow_shadow", "skarmory", "vigoroth", "tropius", "marowak_alolan", "sirfetchd", "obstagoon", "umbreon", "politoed", "politoed_shadow"]
-	}]
-}, {
-	"name": "ou",
-	"title": "OVerused Cup",
-	"include": [],
-	"exclude": [{
-		"filterType": "id",
-		"values": ["dialga", "palkia", "giratina_altered", "giratina_origin", "charizard_mega_x", "charizard_mega_y", "blastoise_mega", "gengar_mega", "melmetal", "kyogre", "groudon", "zekrom", "reshiram", "mewtwo", "lugia", "ho_oh", "dragonite", "gyarados_mega"]
 	}]
 }, {
 	"name": "slitzko",

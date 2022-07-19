@@ -51,52 +51,36 @@ switch($cup){
 		$league = 'Master League Classic';
 		break;
 
-	case "holiday":
-		$league = 'Holiday Cup';
-		break;
-
-	case "littlejungle":
-		$league = 'Little Jungle Cup';
-		break;
-
 	case "kanto":
 		$league = 'Kanto Cup';
+		break;
+
+	case "summer":
+		$league = 'Summer Cup';
 		break;
 
 	case "retro":
 		$league = 'Retro Cup';
 		break;
 
-	case "goteamup":
-		$league = 'GO Stadium GOTeamUp';
+	case "championship":
+		$league = '2022 Championship Series';
 		break;
 
-	case "fusionfactions":
-		$league = 'Silph Fusion Cup';
+	case "mega":
+		$league = 'Mega Master League';
 		break;
 
 	case "factions":
 		$league = 'Silph Factions';
 		break;
 
-	case "obsidian":
-		$league = 'Silph Obsidian Cup';
+	case "architect":
+		$league = 'Silph Architect Cup';
 		break;
 
-	case "nemesis":
-		$league = 'Silph Nemesis Cup';
-		break;
-
-	case "floatingcity":
-		$league = 'Silph Factions';
-		break;
-
-	case "dungeon":
-		$league = 'Silph Factions';
-		break;
-
-	case "firefly":
-		$league = 'Silph Firefly Cup';
+	case "littleremix":
+		$league = 'Little Cup Remix';
 		break;
 
 	case "alchemy":
@@ -107,14 +91,14 @@ switch($cup){
 		$league = 'Silph Factions (Colony)';
 		break;
 
-	case "flying":
-		$league = 'Flying Cup';
+	case "colony":
+		$league = 'Silph Factions (Colony)';
 		break;
 
-	case "river":
-		$league = 'River Cup';
+	case "catchgofest":
+		$league = 'Catch Cup GO Fest Edition';
 		break;
-
+		
 	case "remix":
 		$league = $league . ' Remix';
 		break;

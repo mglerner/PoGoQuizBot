@@ -411,11 +411,19 @@ var RankerMaster = (function () {
 					iterations = 1;
 				}
 
+				if((cup.name == "mega")&&(battle.getCP() == 10000)){
+					iterations = 1;
+				}
+
 				if((cup.name == "all")&&(battle.getCP() == 2500)){
 					iterations = 1;
 				}
 
 				if((cup.name == "all")&&(battle.getCP() == 1500)){
+					iterations = 1;
+				}
+
+				if((cup.name == "championship")&&(battle.getCP() == 1500)){
 					iterations = 1;
 				}
 
@@ -428,6 +436,10 @@ var RankerMaster = (function () {
 				}
 
 				if(cup.name == "lunar"){
+					iterations = 1;
+				}
+
+				if(cup.name == "fossil"){
 					iterations = 1;
 				}
 
@@ -483,7 +495,15 @@ var RankerMaster = (function () {
 					iterations = 1;
 				}
 
+				if(cup.name == "littleremix"){
+					iterations = 1;
+				}
+
 				if(cup.name == "firefly"){
+					iterations = 1;
+				}
+
+				if(cup.name == "architect"){
 					iterations = 1;
 				}
 
@@ -545,7 +565,7 @@ var RankerMaster = (function () {
 									weight = 0;
 								}
 
-								if((cup.name == "worlds")&&(battle.getCP() == 1500)){
+								if((cup.name == "championship")&&(battle.getCP() == 1500)){
 									weight = 0;
 								}
 							}

@@ -9,12 +9,48 @@
 		"showMeta": false
 	},
 	{
-		"title": "Mega Master League",
-		"cup": "all",
+		"title": "Master League (Megas)",
+		"cup": "mega",
 		"cp": 10000,
 		"meta": "mastermega",
 		"showCup": false,
 		"showFormat": false,
+		"showMeta": true
+	},
+	{
+		"title": "ML Overused",
+		"cup": "overused",
+		"cp": 10000,
+		"meta": "overused",
+		"showCup": false,
+		"showFormat": false,
+		"showMeta": true
+	},
+	{
+		"title": "Flying Cup",
+		"cup": "flying",
+		"cp": 1500,
+		"meta": "flying",
+		"showCup": true,
+		"showFormat": true,
+		"showMeta": true
+	},
+	{
+		"title": "Little Cup Remix",
+		"cup": "littleremix",
+		"cp": 500,
+		"meta": "littleremix",
+		"showCup": true,
+		"showFormat": true,
+		"showMeta": true
+	},
+	{
+		"title": "2022 Championship Series",
+		"cup": "championship",
+		"cp": 1500,
+		"meta": "great",
+		"showCup": true,
+		"showFormat": true,
 		"showMeta": true
 	},
 	{
@@ -31,24 +67,15 @@
 		"cup": "premierclassic",
 		"cp": 10000,
 		"meta": "masterpremierclassic",
-		"showCup": true,
-		"showFormat": true,
+		"showCup": false,
+		"showFormat": false,
 		"showMeta": true
 	},
 	{
-		"title": "Element Cup",
-		"cup": "element",
-		"cp": 500,
-		"meta": "element",
-		"showCup": true,
-		"showFormat": true,
-		"showMeta": true
-	},
-	{
-		"title": "Silph Firefly Cup",
-		"cup": "firefly",
+		"title": "Silph Architect Cup",
+		"cup": "architect",
 		"cp": 1500,
-		"meta": "firefly",
+		"meta": "architect",
 		"showCup": true,
 		"showFormat": true,
 		"showMeta": true
@@ -72,10 +99,10 @@
 		"showMeta": true
 	},
 	{
-		"title": "San Benedetto River Cup",
-		"cup": "river",
-		"cp": 1500,
-		"meta": "river",
+		"title": "Silph Factions (Celestial)",
+		"cup": "celestial",
+		"cp": 2500,
+		"meta": "celestial",
 		"showCup": true,
 		"showFormat": true,
 		"showMeta": true
