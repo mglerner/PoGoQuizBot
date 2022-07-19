@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 
+# TODO
+# * Deal with shadows
+# * Make it so that for shadows, you also see the purified IVs
+
 import pandas as pd, numpy as np
 import math, json, re
 from IPython.display import display, Markdown, Latex, HTML
@@ -31,6 +35,9 @@ evolutions = ( ['Spheal', 'Sealeo','Walrein'],
         ['Cottonee','Whimsicott'],
         ['Registeel'],
         ['Azurill','Marill','Azumarill'],
+        ['Dewpider','Araquanid'],
+        ['Geodude','Graveler','Golem'],
+        ['Cubone','Marowak'],
         )
 
 
@@ -353,7 +360,46 @@ RS_INFO = {
             'General Def/HP Azu':{'attack':0,'defense':132.8,'hp':187},
             'Slight Atk Weight Azu':{'attack':92,'defense':132.8,'hp':187},
             },
-            }
+            },
+    'Araquanid':{
+        'article':'',
+        'videos':('https://www.youtube.com/watch?v=dQKFwYr9tQY',),
+        'extrainfo':'In general, HP > def, Atk > b/c walrus.',
+        'Great':
+        {
+            'Shadow Drapion attack':{'attack':99.02,'defense':0,'hp':0},
+            'High end viggy atk':{'attack':99.2,'defense':0,'hp':0},
+            'Best best walrus atk':{'attack':99.93,'defense':0,'hp':0},
+            'DD D min':{'attack':0,'defense':163.77,'hp':0},
+            'DD D max':{'attack':0,'defense':165.21,'hp':0},
+            'HP sable min':{'attack':0,'defense':0,'hp':134},
+            'HP sable max':{'attack':0,'defense':0,'hp':136},
+            'General':{'attack':99.2,'defense':165.2,'hp':134},
+            },
+            },
+    'Golem (Alolan)':{
+        'article':'',
+        'videos':('',),
+        'extrainfo':'',
+        'Great':
+        {
+            'General':{'attack':124.79,'defense':0,'hp':0},
+            'Min':{'attack':123.93,'defense':0,'hp':0},
+            'Best':{'attack':126,'defense':118,'hp':0},
+            },
+            },
+    'Marowak (Alolan)':{
+        'article':'https://gamepress.gg/pokemongo/alolan-marowak-pvp-iv-deep-dive',
+        'videos':('https://www.youtube.com/watch?v=jMwFqbkVlpU',),
+        'extrainfo':'Right now, this is looking at everything, so you have to check for shadow explicitly. Go for mid range attack if hit the bulk.',
+        'Great':
+        {
+            'Shadow AWak Min attack, very min defense':{'attack':110.5,'defense':141.49,'hp':0},
+            'Shadow AWak Min attack high end':{'attack':111.85,'defense':141.49,'hp':0},
+            'All':{'attack':0.,'defense':0,'hp':0},
+            'Best':{'attack':126,'defense':118,'hp':0},
+            },
+            },
 }
 
 
