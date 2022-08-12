@@ -202,15 +202,7 @@ def mons_to_consider(df,mon):
         evolution_line = evolution_line[0]
 
     all_results = [_mons_to_consider(df,mon) for mon in evolution_line]
-    if len(all_results) == 1:
-        result = all_results[0]
-    elif len(all_results) == 2:
-        result = all_results[0].append(all_results[1])
-    elif len(all_results) == 3:
-        result = all_results[0].append(all_results[1])
-        result = result.append(all_results[2])
-    else:
-        raise Exception('Too many mons in evolution line')
+    result = pd.concat(all_results)
     return result
 
 def _mons_to_consider(df,mon):
