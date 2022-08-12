@@ -43,6 +43,10 @@ switch($cup){
 		$league = 'Kanto Cup';
 		break;
 
+	case "hisui":
+		$league = 'Hisui Cup';
+		break;
+
 	case "element":
 		$league = 'Element Cup';
 		break;
@@ -89,7 +93,7 @@ require_once '../header.php';
 		<option value="1500" cup="all" level-cap="50">Great League</option>
 		<option value="2500" cup="all" level-cap="50">Ultra League</option>
 		<option value="10000" cup="all" level-cap="50">Master League</option>
-		<option value="1500" cup="kanto" level-cap="50">Kanto Cup</option>
+		<option value="500" cup="element" level-cap="50">Element Cup</option>
 	</select>
 
 	<div class="date-updated">Last updated</div>

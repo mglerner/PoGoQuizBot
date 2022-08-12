@@ -22,7 +22,12 @@
 		"weight": 2
 	},
 	{
+		"speciesId": "obstagoon",
+		"chargedMoves": ["NIGHT_SLASH", "OBSTRUCT"]
+	},
+	{
 		"speciesId": "yveltal",
+		"fastMove": "SNARL",
 		"chargedMoves": ["DARK_PULSE", "FOCUS_BLAST"],
 		"weight": 4
 	},
@@ -42,6 +47,26 @@
 	{
 		"speciesId": "aurorus",
 		"chargedMoves": ["WEATHER_BALL_ICE", "THUNDERBOLT"]
+	},
+	{
+		"speciesId": "xurkitree",
+		"chargedMoves": ["DISCHARGE", "DAZZLING_GLEAM"]
+	},
+	{
+		"speciesId": "overqwil",
+		"chargedMoves": ["AQUA_TAIL", "SHADOW_BALL"]
+	},
+	{
+		"speciesId": "moltres_galarian",
+		"chargedMoves": ["ANCIENT_POWER", "BRAVE_BIRD"]
+	},
+	{
+		"speciesId": "zapdos_galarian",
+		"chargedMoves": ["ANCIENT_POWER", "BRAVE_BIRD"]
+	},
+	{
+		"speciesId": "articuno_galarian",
+		"chargedMoves": ["ANCIENT_POWER", "BRAVE_BIRD"]
 	},
 	{
 		"speciesId": "tapu_koko",
