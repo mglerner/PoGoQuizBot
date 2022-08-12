@@ -551,6 +551,17 @@ function Battle(){
 		pokemon[0].cooldown = cooldownsToSet[0];
 		pokemon[1].cooldown = cooldownsToSet[1];
 
+		// Check for a Charged Move this turn to apply floating Fast Moves
+		var chargedMoveQueuedThisTurn = false;
+
+		for(var i = 0; i < queuedActions.length; i++){
+			var action = queuedActions[i];
+			if(action.type == "charged"){
+				chargedMoveQueuedThisTurn = true;
+			}
+		}
+
+
 		// Take actions from the queue to be processed now
 		for(var i = 0; i < queuedActions.length; i++){
 			var action = queuedActions[i];
@@ -574,11 +585,15 @@ function Battle(){
 				if(timeSinceActivated >= requiredTimeToPass){
 					action.settings.priority += 20;
 					valid = true;
-				}
-				if((timeSinceActivated >= 500)&&(chargedMoveLastTurn)){
-					action.settings.priority += 20;
+				} else if(chargedMoveQueuedThisTurn){
+					action.settings.priority -= 20;
 					valid = true;
 				}
+
+				/*if((timeSinceActivated >= 500)&&(chargedMoveLastTurn)){
+					action.settings.priority += 20;
+					valid = true;
+				}*/
 			}
 
 			if(action.type == "charged"){
@@ -636,6 +651,10 @@ function Battle(){
 					action.valid = true;
 
 					if(opponent.hp < 1){
+						action.valid = false;
+					}
+
+					if((poke.hp < 1)&&(chargedMoveUsed)){
 						action.valid = false;
 					}
 					break;
@@ -1035,7 +1054,7 @@ function Battle(){
 				}
 
 				if(action.type == "switch"){
-					action.settings.priority += 20;
+					action.settings.priority += 15;
 				}
 			}
 		}
@@ -1905,7 +1924,7 @@ function Battle(){
 		}
 
 		// Defer self debuffing moves until after survivable Charged Moves
-		if(finalState.moves[0].selfDebuffing && poke.shields == 0 && poke.energy < 100){
+		if(finalState.moves[0].selfDebuffing && poke.shields == 0 && poke.energy < 100 && opponent.bestChargedMove){
 			if((opponent.energy >= opponent.bestChargedMove.energy)&&(! self.wouldShield(opponent, poke, opponent.bestChargedMove).value)&&(! poke.activeChargedMoves[0].selfBuffing)){
 				useChargedMove = false;
 				self.logDecision(turns, poke, " is deferring its self debuffing move until after the opponent fires its move");
@@ -2166,11 +2185,11 @@ function Battle(){
 					} else if((mode == "emulate")&&(phase != "suspend_charged")){
 						// Initiate the suspended phase
 
-						// If multiple charged moves are being used on this turn, set the turn counter back
+						// If multiple moves are set to process on this turn, continue the same turn
 						var continueSameTurn = false;
 
 						for(var i = 0; i < turnActions.length; i++){
-							if((turnActions[i].type == "charged")&&(turnActions[i].actor != poke.index)){
+							if(((turnActions[i].type == "charged")||(turnActions[i].type == "fast"))&&(turnActions[i].actor != poke.index)){
 								continueSameTurn = true;
 							}
 						}
@@ -2477,6 +2496,12 @@ function Battle(){
 		} else if(roundShieldUsed){
 			displayTime -= chargedMinigameTime;
 		}
+
+		if((move.energyGain > 0)&&(roundChargedMoveUsed)){
+			displayTime += 9500;
+		}
+
+
 
 		// Apply move buffs and debuffs
 

@@ -34,6 +34,10 @@
 		"chargedMoves": ["SUPER_POWER", "PAYBACK"]
 	},
 	{
+		"speciesId": "hydreigon",
+		"chargedMoves": ["BRUTAL_SWING", "FLASH_CANNON"]
+	},
+	{
 		"speciesId": "tapu_bulu",
 		"chargedMoves": ["GRASS_KNOT", "DAZZLING_GLEAM"]
 	},
@@ -42,9 +46,17 @@
 		"chargedMoves": ["FOUL_PLAY", "FUTURE_SIGHT"]
 	},
 	{
+		"speciesId": "aurorus",
+		"chargedMoves": ["WEATHER_BALL_ICE", "THUNDERBOLT"]
+	},
+	{
 		"speciesId": "celebi",
 		"fastMove": "CONFUSION",
 		"chargedMoves": ["SEED_BOMB", "LEAF_STORM"]
+	},
+	{
+		"speciesId": "staraptor",
+		"fastMove": "GUST"
 	},
 	{
 		"speciesId": "slowking_galarian",
@@ -86,6 +98,11 @@
 	{
 		"speciesId": "falinks",
 		"chargedMoves": ["SUPER_POWER", "MEGAHORN"]
+	},
+	{
+		"speciesId": "shaymin_land",
+		"fastMove": "ZEN_HEADBUTT",
+		"chargedMoves": ["GRASS_KNOT", "SEED_FLARE"]
 	},
 	{
 		"speciesId": "terrakion",

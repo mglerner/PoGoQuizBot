@@ -34,25 +34,35 @@
 	<!--Update section for updates-->
 	<h3>What's New</h3>
 
-	<h4>v1.27.2 (April 30, 2022)</h4>
+	<h4>v1.29.0 (July 7th, 2022)</h4>
 	<ul>
-		<li>Fixed shielding issues surrounding boosting moves like Flame Charge, which sometimes weren't being shielded correctly before.</li>
-		<li>Relaxed optimized move timing for Pokemon with long duration Fast Moves; these Pokemon will now use Charged Moves with mostly optimal timing but not perfectly optimal timing. They will throw energy earlier and more consistently.</li>
-		<li>Fixed an issue with optimized timing where Pokemon would sometimes go over 100 energy.</li>
+		<li>Updated simulation mechanics to match behavior from the latest game version:</li>
+		<ul>
+			<li>Floating Fast Moves now apply immediately after a Charged Move instead of the turn after.</li>
+			<ul>
+				<li>This change effectively removes "overtapping" from the simulations.</li>
+				<li>Fast Moves in the simulations still apply before Charged Moves. This will remain until in-game behavior is tested and confirmed otherwise.</li>
+			</ul>
+			<li>In battles using the Train feature, Fast Move damage now applies before switches that occur on the same turn.</li>
+			<ul>
+				<li>If you attempt to switch after a Charged Move, any floating Fast Moves will also apply to the current Pokemon first.</li>
+			</ul>
+		</ul>
+		<li>"Consistency" score formula has been updated to weigh Fast Move duration less. Pokemon with long duration Fast Moves now have marginally higher Consistency scores.</li>
 	</ul>
 
 	<h3>Latest Article</h3>
 
 	<div class="article-item flex">
 		<div class="col-3">
-			<a href="<?php echo $WEB_ROOT; ?>articles/infographics/22-05-friend-trade-tier-list/">
-				<img src="<?php echo $WEB_ROOT; ?>articles/article-assets/infographics/22-05-friend-trade-tier-list/thumb.jpg">
+			<a href="<?php echo $WEB_ROOT; ?>articles/infographics/22-07-shadow-pokemon-pvp/">
+				<img src="<?php echo $WEB_ROOT; ?>articles/article-assets/infographics/22-07-shadow-pokemon-pvp/thumb.jpg">
 			</a>
 		</div>
 		<div class="col-9">
-			<h4><a href="<?php echo $WEB_ROOT; ?>articles/infographics/22-05-friend-trade-tier-list/">Sh!tty Friend Trade Tier List</a></h4>
-			<div class="date">May 14, 2022</div>
-			<p>Whether you meet new friends or that one person who doesn't open your gifts, here's a list of PvP trade ideas with low friendship level!</p>
+			<h4><a href="<?php echo $WEB_ROOT; ?>articles/infographics/22-07-shadow-pokemon-pvp/">Best Shadow Pokemon to TM for PvP</a></h4>
+			<div class="date">July 9, 2022</div>
+			<p>When a Team Rocket event arrives, which Shadow Pokemon should you prepare for trouble? Check out the top Shadow Pokemon in each league!</p>
 			<div class="tags"><a href="<?php echo $WEB_ROOT; ?>articles?tag=Infographic"># Infographic</a></div>
 		</div>
 	</div>
