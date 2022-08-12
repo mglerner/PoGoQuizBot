@@ -27,19 +27,19 @@
 		"showMeta": true
 	},
 	{
-		"title": "Flying Cup",
-		"cup": "flying",
+		"title": "Summer Cup",
+		"cup": "summer",
 		"cp": 1500,
-		"meta": "flying",
+		"meta": "summer",
 		"showCup": true,
 		"showFormat": true,
 		"showMeta": true
 	},
 	{
-		"title": "Little Cup Remix",
-		"cup": "littleremix",
-		"cp": 500,
-		"meta": "littleremix",
+		"title": "Fighting Cup",
+		"cup": "fighting",
+		"cp": 1500,
+		"meta": "fighting",
 		"showCup": true,
 		"showFormat": true,
 		"showMeta": true
@@ -51,6 +51,15 @@
 		"meta": "great",
 		"showCup": true,
 		"showFormat": true,
+		"showMeta": true
+	},
+	{
+		"title": "Gymbreakers Invitational 2022",
+		"cup": "gymbreakers",
+		"cp": 1500,
+		"meta": "gymbreakers",
+		"showCup": false,
+		"showFormat": false,
 		"showMeta": true
 	},
 	{
@@ -69,33 +78,6 @@
 		"meta": "masterpremierclassic",
 		"showCup": false,
 		"showFormat": false,
-		"showMeta": true
-	},
-	{
-		"title": "Silph Architect Cup",
-		"cup": "architect",
-		"cp": 1500,
-		"meta": "architect",
-		"showCup": true,
-		"showFormat": true,
-		"showMeta": true
-	},
-	{
-		"title": "Silph Factions (Alchemy)",
-		"cup": "alchemy",
-		"cp": 1500,
-		"meta": "alchemy",
-		"showCup": true,
-		"showFormat": true,
-		"showMeta": true
-	},
-	{
-		"title": "Silph Factions (Colony)",
-		"cup": "colony",
-		"cp": 1500,
-		"meta": "colony",
-		"showCup": true,
-		"showFormat": true,
 		"showMeta": true
 	},
 	{

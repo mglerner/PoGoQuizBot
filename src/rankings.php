@@ -51,8 +51,8 @@ switch($cup){
 		$league = 'Master League Classic';
 		break;
 
-	case "kanto":
-		$league = 'Kanto Cup';
+	case "fighting":
+		$league = 'Fighting Cup';
 		break;
 
 	case "summer":
@@ -75,30 +75,10 @@ switch($cup){
 		$league = 'Silph Factions';
 		break;
 
-	case "architect":
-		$league = 'Silph Architect Cup';
+	case "element":
+		$league = 'Element Cup';
 		break;
 
-	case "littleremix":
-		$league = 'Little Cup Remix';
-		break;
-
-	case "alchemy":
-		$league = 'Silph Factions (Alchemy)';
-		break;
-
-	case "colony":
-		$league = 'Silph Factions (Colony)';
-		break;
-
-	case "colony":
-		$league = 'Silph Factions (Colony)';
-		break;
-
-	case "catchgofest":
-		$league = 'Catch Cup GO Fest Edition';
-		break;
-		
 	case "remix":
 		$league = $league . ' Remix';
 		break;
@@ -273,7 +253,9 @@ require_once 'header.php';
 <script src="<?php echo $WEB_ROOT; ?>js/interface/ModalWindow.js?v=<?php echo $SITE_VERSION; ?>"></script>
 <script src="<?php echo $WEB_ROOT; ?>js/interface/PokeSearch.js?v=<?php echo $SITE_VERSION; ?>"></script>
 <script src="<?php echo $WEB_ROOT; ?>js/battle/TimelineEvent.js?v=<?php echo $SITE_VERSION; ?>"></script>
+<script src="<?php echo $WEB_ROOT; ?>js/battle/TimelineAction.js?v=<?php echo $SITE_VERSION; ?>"></script>
 <script src="<?php echo $WEB_ROOT; ?>js/battle/Battle.js?v=<?php echo $SITE_VERSION; ?>"></script>
+<script src="<?php echo $WEB_ROOT; ?>js/battle/TeamRanker.js?v=<?php echo $SITE_VERSION; ?>"></script>
 <script src="<?php echo $WEB_ROOT; ?>js/RankingMain.js?v=<?php echo $SITE_VERSION; ?>"></script>
 <script src="<?php echo $WEB_ROOT; ?>js/libs/hexagon-chart.js?v=<?php echo $SITE_VERSION; ?>"></script>
 

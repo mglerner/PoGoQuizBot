@@ -33,12 +33,33 @@
 		"chargedMoves": ["ICE_PUNCH", "PSYCHIC"]
 	},
 	{
+		"speciesId": "qwilfish_hisuian",
+		"chargedMoves": ["AQUA_TAIL", "SHADOW_BALL"]
+	},
+	{
+		"speciesId": "overqwil",
+		"chargedMoves": ["AQUA_TAIL", "SHADOW_BALL"]
+	},
+	{
+		"speciesId": "moltres_galarian",
+		"chargedMoves": ["ANCIENT_POWER", "BRAVE_BIRD"]
+	},
+	{
+		"speciesId": "articuno_galarian",
+		"chargedMoves": ["ANCIENT_POWER", "BRAVE_BIRD"]
+	},
+	{
 		"speciesId": "salazzle",
 		"chargedMoves": ["POISON_FANG", "DRAGON_PULSE"]
 	},
 	{
 		"speciesId": "slowbro_galarian",
 		"chargedMoves": ["SLUDGE_BOMB", "FOCUS_BLAST"]
+	},
+	{
+		"speciesId": "sneasler",
+		"fastMove": "SHADOW_CLAW",
+		"chargedMoves": ["X_SCISSOR", "CLOSE_COMBAT"]
 	},
 	{
 		"speciesId": "regirock",
@@ -498,7 +519,7 @@
 	},
 	{
 		"speciesId": "obstagoon",
-		"chargedMoves": ["NIGHT_SLASH", "GUNK_SHOT"],
+		"chargedMoves": ["NIGHT_SLASH", "OBSTRUCT"],
 		"weight": 3
 	},
 	{
@@ -952,12 +973,12 @@
 	},
 	{
 		"speciesId": "swampert",
-		"chargedMoves": ["HYDRO_CANNON","SLUDGE_WAVE"],
+		"chargedMoves": ["HYDRO_CANNON","EARTHQUAKE"],
 		"weight": 23
 	},
 	{
 		"speciesId": "swampert_shadow",
-		"chargedMoves": ["HYDRO_CANNON","SLUDGE_WAVE"]
+		"chargedMoves": ["HYDRO_CANNON","EARTHQUAKE"]
 	},
 	{
 		"speciesId": "venusaur",

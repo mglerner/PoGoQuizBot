@@ -528,6 +528,11 @@ var GameMaster = (function () {
 						move.buffApplyChance = parseFloat(m.buffApplyChance);
 						move.buffTarget = m.buffTarget;
 
+						if(move.buffTarget == "both"){
+							move.buffsSelf = m.buffsSelf;
+							move.buffsOpponent = m.buffsOpponent;
+						}
+
 						if((move.buffTarget == "self")&&((move.buffs[0] < 0)||(move.buffs[1] < 0))){
 							move.selfDebuffing = true;
 
@@ -537,7 +542,7 @@ var GameMaster = (function () {
 							}
 						}
 
-						if(move.buffApplyChance == 1 && (move.buffTarget == "opponent" || (move.buffTarget == "self" && (move.buffs[0] > 0 || move.buffs[1] > 0)))){
+						if(move.buffApplyChance == 1 && (move.buffTarget == "opponent" || (move.buffTarget == "self" && (move.buffs[0] > 0 || move.buffs[1] > 0) || (move.buffTarget == "both" && (move.buffsSelf[0] > 0 || move.buffsSelf[1] > 0) )))){
 							move.selfBuffing = true;
 						}
 					}
@@ -565,6 +570,16 @@ var GameMaster = (function () {
 			var buffApplyChance = parseFloat(move.buffApplyChance)*100 + '%';
 			var buffTarget = move.buffTarget;
 			var stringArray = [buffApplyChance + " chance", atk, def, buffTarget];
+
+			if(move.buffTarget == "both"){
+				stringArray[3] = "self";
+
+				var atkOpp = object.getStatusEffectStatString(move.buffsOpponent[0], 'Atk');
+				var defOpp = object.getStatusEffectStatString(move.buffsOpponent[1], 'Def');
+				var buffApplyChance = parseFloat(move.buffApplyChance)*100 + '%';
+				stringArray.push(buffApplyChance + " chance", atkOpp, defOpp, "opponent");
+			}
+
 			return "<div class=\"status-effect-description\">"+stringArray.join(' ')+"</div>";
 		}
 
@@ -640,7 +655,7 @@ var GameMaster = (function () {
 
 		// Load quick fill group JSON
 
-		object.loadGroupData = function(caller, group){
+		object.loadGroupData = function(caller, group, rankingData){
 
 			var key = group;
 
@@ -654,18 +669,26 @@ var GameMaster = (function () {
 					data.sort((a,b) => (a.speciesId > b.speciesId) ? 1 : ((b.speciesId > a.speciesId) ? -1 : 0));
 
 					object.groups[key] = data;
-					if(caller.context != "team"){
-						caller.quickFillGroup(data);
+
+					// Return group data for all contexts except rankings
+					var returnData = data;
+
+					if(rankingData){
+						returnData = rankingData;
+					}
+
+					if(caller.context != "team" && caller.context != "rankings"){
+						caller.quickFillGroup(returnData);
 					} else{
-						caller.displayRankingData(data);
+						caller.displayRankingData(returnData);
 					}
 				});
 			} else{
 
-				if(caller.context != "team"){
+				if(caller.context != "team" && caller.context != "rankings"){
 					caller.quickFillGroup(object.groups[key]);
 				} else{
-					caller.displayRankingData(data);
+					caller.displayRankingData(returnData);
 				}
 
 			}
@@ -740,7 +763,7 @@ var GameMaster = (function () {
 				minStats = 0;
 			}
 
-			var bannedList = ["mewtwo","mewtwo_armored","giratina_altered","groudon","kyogre","palkia","dialga","heatran","giratina_origin","darkrai","cobalion","terrakion","virizion","thundurus_incarnate","regigigas","tornadus_incarnate","tornadus_therian","tornadus_therian_xl","landorus_incarnate", "landorus_therian", "reshiram", "zekrom", "kyurem", "genesect_burn", "xerneas", "thundurus_therian", "yveltal", "meloetta_aria", "zacian", "zamazenta", "zacian_hero", "zamazenta_hero", "genesect_douse", "zarude", "hoopa_unbound", "genesect_shock", "tapu_koko", "tapu_lele", "tapu_bulu", "nihilego"];
+			var bannedList = ["mewtwo","mewtwo_armored","giratina_altered","groudon","kyogre","palkia","dialga","heatran","giratina_origin","darkrai","cobalion","terrakion","virizion","thundurus_incarnate","regigigas","tornadus_incarnate","tornadus_therian","tornadus_therian_xl","landorus_incarnate", "landorus_therian", "reshiram", "zekrom", "kyurem", "genesect_burn", "xerneas", "thundurus_therian", "yveltal", "meloetta_aria", "zacian", "zamazenta", "zacian_hero", "zamazenta_hero", "genesect_douse", "zarude", "hoopa_unbound", "genesect_shock", "tapu_koko", "tapu_lele", "tapu_bulu", "nihilego", "shaymin_sky", "genesect_chill", "braviary_hisuian"];
 
 			// Aggregate filters
 
