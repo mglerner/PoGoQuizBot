@@ -200,8 +200,6 @@ def mons_to_consider(df,mon):
         raise Exception(f'Could not find evolution line for {mon}. got {evolution_line}')
     else:
         evolution_line = evolution_line[0]
-    print('Yo, my  evolution line is')
-    print(evolution_line)
 
     all_results = [_mons_to_consider(df,mon) for mon in evolution_line]
     if len(all_results) == 1:
@@ -437,7 +435,7 @@ RS_INFO = {
             },
     'Obstagoon':{
         'article':'https://gamepress.gg/pokemongo/obstagoon-pvp-iv-deep-dive',
-        'videos':(),
+        'videos':('https://www.youtube.com/watch?v=XEygOnJDnlY',),
         'extrainfo':'You want two of each league, one with obstruct and one without. Also, this does not filter for galarian zig/lin; you have to do that yourself.',
         'Great':
         {
