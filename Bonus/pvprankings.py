@@ -25,11 +25,11 @@ def get_pokemon():
 
 pokemon = get_pokemon()
 # Kind of surprised this isn't in PvPoke
-evolutions = ( ['Spheal', 'Sealeo','Walrein'],
+EVOLUTIONS = ( ['Spheal', 'Sealeo','Walrein'],
         ['Bulbasaur', 'Ivysaur', 'Venusaur'],
         ['Mudkip','Marshtomp','Swampert'],
         ['Hoppip','Skiploom','Jumpluff'],
-        ['Deoxys'],
+        ['Deoxys (Defense)'],
         ['Seel','Dewgong'],
         ['Sandshrew','Sandslash'],
         ['Cottonee','Whimsicott'],
@@ -38,6 +38,7 @@ evolutions = ( ['Spheal', 'Sealeo','Walrein'],
         ['Dewpider','Araquanid'],
         ['Geodude','Graveler','Golem'],
         ['Cubone','Marowak'],
+        ['Zigzagoon (Galarian)','Linoone (Galarian)','Obstagoon'],
         )
 
 
@@ -187,6 +188,36 @@ def ivs_to_stats(my_a, my_d, my_s, my_level,*,mon, max_level=40,max_cp=1500.99,
     
     
 def mons_to_consider(df,mon):
+    """Get a list of mons to consider from a df
+
+    We had to split this into two functions because you get weirdo mons
+    like Obstagoon where the base forms are Galarian, but the final form
+    isn't. We probably could combine it into one function with "or" but
+    it's easier this way.
+    """
+    evolution_line = [i for i in EVOLUTIONS if mon in i]
+    if not len(evolution_line) == 1:
+        raise Exception(f'Could not find evolution line for {mon}. got {evolution_line}')
+    else:
+        evolution_line = evolution_line[0]
+    print('Yo, my  evolution line is')
+    print(evolution_line)
+
+    all_results = [_mons_to_consider(df,mon) for mon in evolution_line]
+    if len(all_results) == 1:
+        result = all_results[0]
+    elif len(all_results) == 2:
+        result = all_results[0].append(all_results[1])
+    elif len(all_results) == 3:
+        result = all_results[0].append(all_results[1])
+        result = result.append(all_results[2])
+    else:
+        raise Exception('Too many mons in evolution line')
+    return result
+
+def _mons_to_consider(df,mon):
+    """Helper function for `mons_to_consider` that just does a single mon, not a whole evolution line.
+    """
     if '(' in mon:
         if 'Shadow' in mon:
             raise Exception('No code for shadows yet')
@@ -198,19 +229,23 @@ def mons_to_consider(df,mon):
         form = 'Normal'
     if form == 'Alolan':
         form = 'Alola'
-    evolution_line = [i for i in evolutions if mon in i]
-    if not len(evolution_line) == 1:
-        raise Exception(f'Could not find evolution line for {mon}. got {evolution_line}')
-    else:
-        evolution_line = evolution_line[0]
-    result = df[df.Name.isin(evolution_line)]
+    elif form == 'Galarian':
+        # This is to remind us that it's actually listed as galarian for zig and lin
+        form = 'Galarian'
+    #evolution_line = [i for i in EVOLUTIONS if mon in i]
+    #if not len(evolution_line) == 1:
+    #    raise Exception(f'Could not find evolution line for {mon}. got {evolution_line}')
+    #else:
+    #    evolution_line = evolution_line[0]
+    #result = df[df.Name.isin(evolution_line)]
+    result = df[df.Name == mon]
     if form is not None:
         # Sometimes, if there isn't an alola form or whatever, the normal form gets Form set to NaN.
         # If that happens, we won't get any results, so check explicitly for isna and use those.
         _result = result[result.Form == form]
         if not len(_result):
             _result = result[pd.isna(result.Form)]
-        resut = _result
+        result = _result
             
     return result
 
@@ -398,6 +433,25 @@ RS_INFO = {
             'Shadow AWak Min attack high end':{'attack':111.85,'defense':141.49,'hp':0},
             'All':{'attack':0.,'defense':0,'hp':0},
             'Best':{'attack':126,'defense':118,'hp':0},
+            },
+            },
+    'Obstagoon':{
+        'article':'https://gamepress.gg/pokemongo/obstagoon-pvp-iv-deep-dive',
+        'videos':(),
+        'extrainfo':'You want two of each league, one with obstruct and one without. Also, this does not filter for galarian zig/lin; you have to do that yourself.',
+        'Great':
+        {
+            'Super Premium Atk ':{'attack':115.5,'defense':123.56,'hp':137},
+            'Premium Atk (115.5 Atk slightly better, 123.56 Def 137 HP better)':{'attack':115,'defense':123.3,'hp':135},
+            'Bulk focus':{'attack':0,'defense':126,'hp':137},
+            #'All':{'attack':0.,'defense':0,'hp':0},
+            },
+        'Ultra':
+        {
+            'Unicorn':{'attack':146.95,'defense':166.8,'hp':174},
+            'General Atk':{'attack':146.95,'defense':163.8,'hp':172},
+            'Mirror Focus':{'attack':149.1,'defense':0,'hp':172},
+            'Bulk Focus':{'attack':0,'defense':166.8,'hp':174},
             },
             },
 }
