@@ -3,6 +3,8 @@
 # TODO
 # * Deal with shadows
 # * Make it so that for shadows, you also see the purified IVs
+# * Some PVP IV Deep Dives, like Medicham, use the "top N" pokemon in addition to stats cutoffs. We should do that or a stat product cutoff.
+# * Figure out if we're actually calculating things correctly, since we disagree very slightly with pvpivs.com
 
 import pandas as pd, numpy as np
 import math, json, re
@@ -39,6 +41,8 @@ EVOLUTIONS = ( ['Spheal', 'Sealeo','Walrein'],
         ['Geodude','Graveler','Golem'],
         ['Cubone','Marowak'],
         ['Zigzagoon (Galarian)','Linoone (Galarian)','Obstagoon'],
+        ['Zigzagoon (Galarian)','Linoone (Galarian)'],
+        ['Meditite','Medicham'],
         )
 
 
@@ -195,13 +199,19 @@ def mons_to_consider(df,mon):
     isn't. We probably could combine it into one function with "or" but
     it's easier this way.
     """
-    evolution_line = [i for i in EVOLUTIONS if mon in i]
+    #evolution_line = [i for i in EVOLUTIONS if mon in i]
+    evolution_line = [i for i in EVOLUTIONS if mon in i[-1]]
     if not len(evolution_line) == 1:
         raise Exception(f'Could not find evolution line for {mon}. got {evolution_line}')
     else:
         evolution_line = evolution_line[0]
 
+
     all_results = [_mons_to_consider(df,mon) for mon in evolution_line]
+#    print(evolution_line)
+#    print(all_results[0])
+#    print(all_results[1])
+#    print(all_results[2])
     result = pd.concat(all_results)
     return result
 
@@ -229,6 +239,7 @@ def _mons_to_consider(df,mon):
     #    evolution_line = evolution_line[0]
     #result = df[df.Name.isin(evolution_line)]
     result = df[df.Name == mon]
+#    print(f"Looking for {mon} of form {form} I see {result}")
     if form is not None:
         # Sometimes, if there isn't an alola form or whatever, the normal form gets Form set to NaN.
         # If that happens, we won't get any results, so check explicitly for isna and use those.
@@ -425,25 +436,52 @@ RS_INFO = {
             'Best':{'attack':126,'defense':118,'hp':0},
             },
             },
+    'Linoone (Galarian)':{
+        'article':'https://twitter.com/SwgTips/status/1558892455017185280',
+        'videos':('',),
+        'extrainfo':'Still bad right now.',
+        'Great':
+        {
+            'Swamp/cash':{'attack':112.87,'defense':0,'hp':144},
+            'Drap/A9 CMP':{'attack':114,'defense':0,'hp':144},
+            'Diggers':{'attack':0.,'defense':110.11,'hp':144},
+            'SwagAtk FS Awak':{'attack':0.,'defense':111.14,'hp':144},
+            'Best':{'attack':114,'defense':111.14,'hp':144},
+            },
+            },
     'Obstagoon':{
         'article':'https://gamepress.gg/pokemongo/obstagoon-pvp-iv-deep-dive',
         'videos':('https://www.youtube.com/watch?v=XEygOnJDnlY',),
-        'extrainfo':'You want two of each league, one with obstruct and one without. Also, this does not filter for galarian zig/lin; you have to do that yourself.',
+        'extrainfo':'You want three of each league, one with obstruct and one without, and one with high bulk. Also, this does not filter for galarian zig/lin; you have to do that yourself.\n For UL you really want 148+ attack, then 172 HP',
         'Great':
         {
             'Super Premium Atk ':{'attack':115.5,'defense':123.56,'hp':137},
             'Premium Atk (115.5 Atk slightly better, 123.56 Def 137 HP better)':{'attack':115,'defense':123.3,'hp':135},
             'Bulk focus':{'attack':0,'defense':126,'hp':137},
-            #'All':{'attack':0.,'defense':0,'hp':0},
+            'All':{'attack':0.,'defense':0,'hp':0},
             },
         'Ultra':
         {
-            'Unicorn':{'attack':146.95,'defense':166.8,'hp':174},
+            'Unicorn':{'attack':148,'defense':166.8,'hp':172},
+            'Bare minimum':{'attack':148,'defense':0,'hp':172},
             'General Atk':{'attack':146.95,'defense':163.8,'hp':172},
+            'General Atk+':{'attack':148,'defense':163.8,'hp':172},
             'Mirror Focus':{'attack':149.1,'defense':0,'hp':172},
             'Bulk Focus':{'attack':0,'defense':166.8,'hp':174},
+            'All':{'attack':0.,'defense':0,'hp':0},
             },
             },
+    'Medicham':{
+        'article':'https://gamepress.gg/pokemongo/medicham-pvp-iv-deep-dive',
+        'videos':('https://www.youtube.com/watch?v=-ihUhkBfdok',),
+        'extrainfo':'',
+        'Great':{
+            'The Good (105.38 Atk, 138.6 Def, 140 HP)':{'attack':105.38,'defense':138.6,'hp':140},
+            'Premium Cut':{'attack':105.87,'defense':138.64,'hp':140},
+            'The few worthwhile best buddies':{'attack':105.38,'defense':140.3,'hp':142},
+            'The Mirror Slayers (note: the drop in bulk may cause trouble in other matchups. Simply going for CMP may be better)':{'attack':108,'defense':137.64,'hp':0},
+            }
+        }
 }
 
 
