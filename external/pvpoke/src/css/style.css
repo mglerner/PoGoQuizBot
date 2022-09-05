@@ -1441,6 +1441,47 @@ select, input {
   overflow: scroll;
   max-height: 500px;
 }
+.battle-results.matrix .rating-table th.selected, .battle-results.matrix .rating-table td.selected {
+  background: #546fe8;
+}
+.battle-results.matrix .difference-table {
+  width: 100%;
+}
+.battle-results.matrix .difference-table th {
+  padding: 3px 6px;
+  width: 100px;
+}
+.battle-results.matrix .difference-table td {
+  text-align: left;
+}
+.battle-results.matrix .difference-table tr:first-of-type {
+  background: #444;
+  color: #eee;
+}
+.battle-results.matrix .difference-table .differences {
+  font-size: 12px;
+}
+.battle-results.matrix .difference-table a.difference {
+  color: #fff6d4;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 8px;
+  display: inline-block;
+  text-decoration: none;
+  text-align: center;
+  padding: 3px 6px;
+  margin: 0 5px 5px 0;
+}
+.battle-results.matrix .difference-table a.difference span {
+  font-weight: normal;
+  font-size: 11px;
+}
+.battle-results.matrix .difference-table a.difference.win {
+  background: #1b79b4;
+}
+.battle-results.matrix .difference-table a.difference.lose {
+  background: #8f2099;
+}
 
 a.download-csv {
   display: none;
@@ -4067,10 +4108,10 @@ a.pokebattler {
 .custom-rankings .filters .filter .field-section {
   display: none;
 }
-.custom-rankings .filters .filter .field-section.type .check, .custom-rankings .filters .filter .field-section.tag .check, .custom-rankings .filters .filter .field-section.cost .check, .custom-rankings .filters .filter .field-section.distance .check, .custom-rankings .filters .filter .field-section.move-type .check {
+.custom-rankings .filters .filter .field-section.type .check, .custom-rankings .filters .filter .field-section.tag .check, .custom-rankings .filters .filter .field-section.cost .check, .custom-rankings .filters .filter .field-section.distance .check, .custom-rankings .filters .filter .field-section.move-type .check, .custom-rankings .filters .filter .field-section.evolution .check {
   margin: 10px 5px;
 }
-.custom-rankings .filters .filter .field-section.type .select-all, .custom-rankings .filters .filter .field-section.tag .select-all, .custom-rankings .filters .filter .field-section.cost .select-all, .custom-rankings .filters .filter .field-section.distance .select-all, .custom-rankings .filters .filter .field-section.move-type .select-all {
+.custom-rankings .filters .filter .field-section.type .select-all, .custom-rankings .filters .filter .field-section.tag .select-all, .custom-rankings .filters .filter .field-section.cost .select-all, .custom-rankings .filters .filter .field-section.distance .select-all, .custom-rankings .filters .filter .field-section.move-type .select-all, .custom-rankings .filters .filter .field-section.evolution .select-all {
   margin-right: 10px;
 }
 .custom-rankings .filters .filter .field-section.dex input {
@@ -4094,6 +4135,9 @@ a.pokebattler {
   display: block;
 }
 .custom-rankings .filters .filter[type=dex] .field-section.dex {
+  display: block;
+}
+.custom-rankings .filters .filter[type=evolution] .field-section.evolution {
   display: block;
 }
 .custom-rankings .filters .filter[type=cost] .field-section.cost {
@@ -4437,20 +4481,6 @@ a.pokebattler {
     min-width: 60px;
   }
 }
-/* Ad styling and display */
-#nitro-header-mobile,
-#nitro-body-mobile,
-#nitro-body-desktop,
-#nitro-body-mobile,
-#nitro-sidebar-right,
-#nitro-sidebar-left {
-  display: none;
-}
-
-#nitro-header-mobile {
-  overflow: hidden;
-}
-
 #dev-panel {
   width: 300px;
   position: fixed;
@@ -4491,6 +4521,22 @@ a.pokebattler {
   color: #ccc;
   border-bottom: 1px solid #bbb;
   margin-bottom: 0;
+}
+
+/* Ad styling and display */
+#nitro-header-mobile,
+#nitro-body-mobile,
+#nitro-body-desktop,
+#nitro-body-mobile,
+#nitro-sidebar-right,
+#nitro-sidebar-right-300,
+#nitro-sidebar-left,
+#nitro-sidebar-left-300 {
+  display: none;
+}
+
+#nitro-header-mobile {
+  overflow: hidden;
 }
 
 .mobile-ad-container,
@@ -4552,7 +4598,7 @@ a.pokebattler {
     margin: 0 auto;
   }
 }
-@media only screen and (min-width: 1190px) {
+@media only screen and (min-width: 1190px) and (max-width: 1449px) {
   #nitro-sidebar-left {
     display: block;
     position: fixed;
@@ -4561,6 +4607,21 @@ a.pokebattler {
   }
 
   #nitro-sidebar-right {
+    display: block;
+    position: fixed;
+    top: 95px;
+    right: 20px;
+  }
+}
+@media only screen and (min-width: 1450px) {
+  #nitro-sidebar-left-300 {
+    display: block;
+    position: fixed;
+    top: 95px;
+    left: 20px;
+  }
+
+  #nitro-sidebar-right-300 {
     display: block;
     position: fixed;
     top: 95px;

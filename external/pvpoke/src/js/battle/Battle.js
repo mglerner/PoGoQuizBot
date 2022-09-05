@@ -630,21 +630,6 @@ function Battle(){
 			var poke = pokemon[action.actor];
 			var opponent = pokemon[ (action.actor == 0) ? 1 : 0 ];
 
-			var chargedMoveThisTurn = false;
-			var priorityChargedMoveThisTurn = false;
-
-			for(var j = 0; j < turnActions.length; j++){
-				var a = turnActions[j];
-
-				if(a.type == "charged"){
-					chargedMoveThisTurn = true;
-
-					if(a.settings.priority > 0){
-						priorityChargedMoveThisTurn = true;
-					}
-				}
-			}
-
 			switch(action.type){
 
 				case "fast":
@@ -668,16 +653,10 @@ function Battle(){
 						if(poke.energy >= move.energy){
 							action.valid = true;
 						}
-
-						// Check if knocked out from a priority move
-
-						if((usePriority)&&(poke.hp <= 0)&&(poke.priority == 0)&&(priorityChargedMoveThisTurn)){
-							action.valid = false;
-						}
 					}
 
 					// Check if knocked out from a priority move
-					if((usePriority)&&(poke.hp <= 0)){
+					if((usePriority)&&(poke.hp <= 0)&&(poke.faintSource == "charged")){
 						action.valid = false;
 					}
 
@@ -699,6 +678,7 @@ function Battle(){
 						}
 					}
 
+					// This prevents Charged Moves from being used on the same turn as lethal Fast Moves
 					if((lethalFastMove)&&(! opponentChargedMoveThisTurn)){
 						action.valid = false;
 					}
@@ -738,10 +718,6 @@ function Battle(){
 				time += chargedMinigameTime;
 			}
 
-			if((roundChargedMoveUsed > 1) && (pokemon[0].stats.atk == pokemon[1].stats.atk) && (!roundShieldUsed)){
-				time += chargedMinigameTime;
-			}
-
 		}
 
 		duration = time;
@@ -776,21 +752,21 @@ function Battle(){
 				}
 
 				faintedPokemonIndexes.push(poke.index);
-
-				if(mode == "emulate"){
-					self.pushAnimation(poke.index, "switch", true);
-				}
 			}
 
 			// Reset after a charged move
 
 			if(roundChargedMoveUsed){
-				poke.damageWindow = 0;
 				poke.cooldown = 0;
 			}
 		}
 
-		if((mode == "emulate")&&(faintedPokemonIndexes.length > 0)){
+		if((mode == "emulate")&&(faintedPokemonIndexes.length > 0)&&(phase == "neutral")){
+
+			// Push faint animations
+			for(var i = 0; i < faintedPokemonIndexes.length; i++){
+				self.pushAnimation(faintedPokemonIndexes[i], "switch", true);
+			}
 
 			// Are all Pokemon fainted or should the battle continue?
 
@@ -2334,6 +2310,29 @@ function Battle(){
 					}
 				}
 
+				// Don't shield early moves if the user has a defense debuffing move
+
+				if( (! sandbox) && defender.bestChargedMove.selfDefenseDebuffing){
+					if(attacker.shields > 0){
+						useShield = shieldDecision.value;
+					} else{
+						// If the attacker has no shields, shield this attack if the defender's next move will knock out the attacker
+						var fastToNextCharged = Math.ceil( (defender.bestChargedMove.energy - defender.energy) / defender.fastMove.energyGain);
+						var turnsToNextCharged = fastToNextCharged * (defender.fastMove.cooldown / 500);
+						var cycleDamage = (fastToNextCharged * defender.fastMove.damage) + defender.bestChargedMove.damage;
+
+						var attackerTurnsToNextCharged = Math.ceil((attacker.activeChargedMoves[0].energy - attacker .energy) / attacker.fastMove.energyGain) * (attacker.fastMove.cooldown / 500);
+
+						if(attacker.stats.atk > defender.stats.atk){
+							attackerTurnsToNextCharged--;
+						}
+
+						if((turnsToNextCharged >= attackerTurnsToNextCharged) && (attacker.hp <= cycleDamage)){
+							useShield = shieldDecision.value;
+						}
+					}
+				}
+
 				if(decisionMethod == "random"){
 					// For randomized battles, randomize shield usage
 					shieldWeight = shieldDecision.shieldWeight;
@@ -2527,6 +2526,18 @@ function Battle(){
 				buffRoll += 1; // Force guaranteed buffs even when they're disabled
 			}
 
+			// For moves that have a buff apply chance, apply the deterministically by incrementing a value each activation based on the chance
+			if((move.buffApplyChance < 1) && (move.buffApplyMeter !== undefined) &&(! sandbox)&&(buffChanceModifier == -1)){
+
+				var startApplyCount = Math.floor(move.buffApplyMeter);
+				move.buffApplyMeter += move.buffApplyChance;
+
+				// If the cumulative activations of this move pass a whole number, deterministically apply the buff
+				if(startApplyCount < Math.floor(move.buffApplyMeter)){
+					buffRoll += 2;
+				}
+			}
+
 			if(buffRoll > 1 - move.buffApplyChance){
 
 				// Gather targets for move buffs or debuffs
@@ -2652,9 +2663,20 @@ function Battle(){
 
 		// If a Pokemon has fainted, clear the action queue
 
-		if((defender.hp < 1)&&(mode == "emulate")){
-			turnActions = [];
-			queuedActions = [];
+		if(defender.hp <= 0){
+
+			// Mark how this Pokemon fainted
+			var moveType = "fast";
+
+			if(move.energy > 0){
+				moveType = "charged";
+			}
+
+			defender.faintSource = moveType;
+
+			if(mode == "emulate"){
+				queuedActions = [];
+			}
 		}
 
 		return time;

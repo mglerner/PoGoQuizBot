@@ -202,6 +202,20 @@ var GameMaster = (function () {
 						entry.tags.splice(entry.tags.indexOf("shadowEligible"), 1);
 						entry.tags.push("shadow");
 
+						// Adjust IDs for evolutions
+
+						if(entry.family){
+							if(entry.family.parent && object.data.shadowPokemon.indexOf(entry.family.parent) > -1){
+								entry.family.parent += "_shadow";
+							}
+
+							if(entry.family.evolutions){
+								for(var i = 0; i < entry.family.evolutions.length; i++){
+									entry.family.evolutions[i] += "_shadow";
+								}
+							}
+						}
+
 						// Remove all legacy and exclusive moves that aren't available via Elite TM
 						if(entry.legacyMoves){
 							for(var i = 0; i < entry.fastMoves.length; i++){
@@ -372,6 +386,36 @@ var GameMaster = (function () {
 			console.log(json);
 		}
 
+		// Check parent and evolution IDs to validate Pokemon family data
+
+		object.validateFamilyData = function(){
+
+			$.each(object.data.pokemon, function(index, poke){
+
+				if(poke.family){
+					if(poke.family.parent){
+						var parent = object.getPokemonById(poke.family.parent);
+						if(! parent){
+							console.error(poke.family.parent + " does not exist");
+						}
+					}
+
+					if(poke.family.evolutions){
+						for(var i = 0; i < poke.family.evolutions.length; i++){
+							var evolution = object.getPokemonById(poke.family.evolutions[i]);
+
+							if(! evolution){
+								console.error(poke.family.evolutions[i] + " does not exist");
+							}
+						}
+					}
+				}
+
+			});
+
+			console.log("Family validation complete");
+		}
+
 		// Analyze Charged Moves and bucket them into archetypes
 
 		object.generateMoveArchetypes = function(){
@@ -514,6 +558,7 @@ var GameMaster = (function () {
 						selfDebuffing: false,
 						selfBuffing: false,
 						selfAttackDebuffing: false,
+						selfDefenseDebuffing: false,
 						legacy: false,
 						elite: false
 					};
@@ -539,6 +584,11 @@ var GameMaster = (function () {
 							// Mark if move debuffs attack
 							if(move.buffs[0] < 0){
 								move.selfAttackDebuffing = true;
+							}
+
+							// Mark if move debuffs defense
+							if(move.buffs[1] < 0){
+								move.selfDefenseDebuffing = true;
 							}
 						}
 
@@ -848,6 +898,12 @@ var GameMaster = (function () {
 									}
 									break;
 
+								case "evolution":
+									if(filter.values.indexOf(pokemon.getEvolutionStage()) > -1){
+										filtersMatched++;
+									}
+									break;
+
 								case "id":
 									if((include)&&(filters.length > 1)){
 										requiredFilters--;
@@ -979,6 +1035,17 @@ var GameMaster = (function () {
 						if((param.charAt(0) == "!")&&(param.length > 1)){
 							isNot = true;
 							param = param.substr(1, param.length-1);
+						}
+
+						// Evolution family search
+						if((param.charAt(0) == "+")&&(param.length > 2)){
+							param = param.substr(1, param.length-1);
+
+							var searchPokemon = object.getPokemonById(param);
+
+							if(searchPokemon && searchPokemon.family && pokemon.family && searchPokemon.family.id == pokemon.family.id){
+								valid = true;
+							}
 						}
 
 						// Move search
