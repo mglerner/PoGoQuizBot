@@ -34,39 +34,59 @@
 	<!--Update section for updates-->
 	<h3>What's New</h3>
 
-	<h4>v1.29.0 (July 7th, 2022)</h4>
+	<h4>v1.29.11 (September 3, 2022)</h4>
 	<ul>
-		<li>Updated simulation mechanics to match behavior from the latest game version:</li>
+		<li>Pokemon with moves that lower their Defense (such as Wild Charge and Close Combat) will now prefer to take early Charged Moves and use their shields after they are debuffed.</li>
+	</ul>
+
+
+	<h4>v1.29.10 (September 2, 2022)</h4>
+	<ul>
+		<li>Move updates for Season 12 are now live!</li>
+		<li>Switching modes on the Battle page will default to the 1 shield scenario.</li>
+		<li>Moves with a chance to buff or debuff now apply in the default sims.</li>
 		<ul>
-			<li>Floating Fast Moves now apply immediately after a Charged Move instead of the turn after.</li>
+			<li>Previously, the default sims never activated random stat changes.</li>
+			<li>In the default sims, these stat changes activate in a deterministic order:</li>
 			<ul>
-				<li>This change effectively removes "overtapping" from the simulations.</li>
-				<li>Fast Moves in the simulations still apply before Charged Moves. This will remain until in-game behavior is tested and confirmed otherwise.</li>
-			</ul>
-			<li>In battles using the Train feature, Fast Move damage now applies before switches that occur on the same turn.</li>
-			<ul>
-				<li>If you attempt to switch after a Charged Move, any floating Fast Moves will also apply to the current Pokemon first.</li>
+				<li>Zap Cannon applies the debuff on the 1st, 3rd, 4th, and 6th activations.</li>
+				<li>Other moves with a 1 in N chance apply their stat changes every N activations.</li>
 			</ul>
 		</ul>
-		<li>"Consistency" score formula has been updated to weigh Fast Move duration less. Pokemon with long duration Fast Moves now have marginally higher Consistency scores.</li>
 	</ul>
 
 	<h3>Latest Article</h3>
 
 	<div class="article-item flex">
 		<div class="col-3">
-			<a href="<?php echo $WEB_ROOT; ?>articles/infographics/22-07-shadow-pokemon-pvp/">
-				<img src="<?php echo $WEB_ROOT; ?>articles/article-assets/infographics/22-07-shadow-pokemon-pvp/thumb.jpg">
+			<a href="<?php echo $WEB_ROOT; ?>articles/community-day/22-08-zigzagoon/">
+				<img src="<?php echo $WEB_ROOT; ?>articles/article-assets/community-day/22-08-zigzagoon/thumb.jpg">
 			</a>
 		</div>
 		<div class="col-9">
-			<h4><a href="<?php echo $WEB_ROOT; ?>articles/infographics/22-07-shadow-pokemon-pvp/">Best Shadow Pokemon to TM for PvP</a></h4>
-			<div class="date">July 9, 2022</div>
-			<p>When a Team Rocket event arrives, which Shadow Pokemon should you prepare for trouble? Check out the top Shadow Pokemon in each league!</p>
-			<div class="tags"><a href="<?php echo $WEB_ROOT; ?>articles?tag=Infographic"># Infographic</a></div>
+			<h4><a href="<?php echo $WEB_ROOT; ?>articles/community-day/22-08-zigzagoon/">Galarian Zigzagoon Community Day Guide for PvP</a></h4>
+			<div class="date">August 12, 2022</div>
+			<p>Obstagoon is already a top tier Pokemon for PvP! Will Obstruct elevate it even further?</p>
+			<div class="tags"><a href="<?php echo $WEB_ROOT; ?>articles?tag=Community Day"># Community Day</a><a href="<?php echo $WEB_ROOT; ?>articles?tag=Infographic"># Infographic</a></div>
 		</div>
 	</div>
-
 </div>
+
+<?php
+// Localhost developer panel
+if (strpos($WEB_ROOT, 'src') !== false) : ?>
+
+	<script src="<?php echo $WEB_ROOT; ?>js/GameMaster.js?v=<?php echo $SITE_VERSION; ?>"></script>
+	<script src="<?php echo $WEB_ROOT; ?>js/pokemon/Pokemon.js?v=<?php echo $SITE_VERSION; ?>"></script>
+	<script src="<?php echo $WEB_ROOT; ?>js/interface/RankingInterface.js?v=<?php echo $SITE_VERSION; ?>"></script>
+	<script src="<?php echo $WEB_ROOT; ?>js/interface/ModalWindow.js?v=<?php echo $SITE_VERSION; ?>"></script>
+	<script src="<?php echo $WEB_ROOT; ?>js/interface/PokeSearch.js?v=<?php echo $SITE_VERSION; ?>"></script>
+	<script src="<?php echo $WEB_ROOT; ?>js/battle/TimelineEvent.js?v=<?php echo $SITE_VERSION; ?>"></script>
+	<script src="<?php echo $WEB_ROOT; ?>js/battle/TimelineAction.js?v=<?php echo $SITE_VERSION; ?>"></script>
+	<script src="<?php echo $WEB_ROOT; ?>js/battle/Battle.js?v=<?php echo $SITE_VERSION; ?>"></script>
+	<script src="<?php echo $WEB_ROOT; ?>js/battle/TeamRanker.js?v=<?php echo $SITE_VERSION; ?>"></script>
+	<script src="<?php echo $WEB_ROOT; ?>js/RankingMain.js?v=<?php echo $SITE_VERSION; ?>"></script>
+
+<?php endif; ?>
 
 <?php require_once 'footer.php'; ?>

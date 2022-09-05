@@ -49,6 +49,10 @@
 		"chargedMoves": ["WEATHER_BALL_ICE", "THUNDERBOLT"]
 	},
 	{
+		"speciesId": "genesect",
+		"chargedMoves": ["X_SCISSOR", "TECHNO_BLAST_NORMAL"]
+	},
+	{
 		"speciesId": "xurkitree",
 		"chargedMoves": ["DISCHARGE", "DAZZLING_GLEAM"]
 	},
@@ -136,8 +140,13 @@
 		"chargedMoves": ["CLOSE_COMBAT", "ROCK_BLAST"]
 	},
 	{
+		"speciesId": "zamazenta",
+		"fastMove": "QUICK_ATTACK"
+	},
+	{
 		"speciesId": "zacian_hero",
-		"chargedMoves": ["CLOSE_COMBAT", "WILD_CHARGE"],
+		"fastMove": "QUICK_ATTACK",
+		"chargedMoves": ["CLOSE_COMBAT", "PLAY_ROUGH"],
 		"weight": 20
 	},
 	{
@@ -403,12 +412,12 @@
 	{
 		"speciesId": "dragonite",
 		"fastMove": "DRAGON_BREATH",
-		"chargedMoves": ["DRAGON_CLAW","HURRICANE"],
+		"chargedMoves": ["DRAGON_CLAW","SUPER_POWER"],
 		"weight": 14
 	},
 	{
 		"speciesId": "dragonite_shadow",
-		"chargedMoves": ["DRAGON_CLAW","HURRICANE"]
+		"chargedMoves": ["DRAGON_CLAW","SUPER_POWER"]
 	},
 	{
 		"speciesId": "dialga",
@@ -426,6 +435,7 @@
 	},
 	{
 		"speciesId": "sylveon",
+		"fastMove": "CHARM",
 		"weight": 5
 	},
 	{

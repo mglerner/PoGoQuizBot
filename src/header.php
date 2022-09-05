@@ -1,5 +1,5 @@
 <?php require_once 'modules/config.php';
-$SITE_VERSION = '1.29.4.5';
+$SITE_VERSION = '1.29.11.1';
 
 // This prevents caching on local testing
 if (strpos($WEB_ROOT, 'src') !== false) {
@@ -121,14 +121,14 @@ if(! isset($OG_IMAGE)){
 	<link id="favicon" rel="icon" href="<?php echo $WEB_ROOT; ?>img/favicon.png">
 <?php endif; ?>
 
-<link rel="stylesheet" type="text/css" href="<?php echo $WEB_ROOT; ?>css/style.css?v=143">
+<link rel="stylesheet" type="text/css" href="<?php echo $WEB_ROOT; ?>css/style.css?v=146">
 
 <?php if(strpos($META_TITLE, 'Train') !== false): ?>
 	<link rel="stylesheet" type="text/css" href="<?php echo $WEB_ROOT; ?>css/train.css?v=20">
 <?php endif; ?>
 
 <?php if(strpos($_SERVER['REQUEST_URI'], 'articles') !== false): ?>
-	<link rel="stylesheet" type="text/css" href="<?php echo $WEB_ROOT; ?>css/article-extras.css?v=6">
+	<link rel="stylesheet" type="text/css" href="<?php echo $WEB_ROOT; ?>css/article-extras.css?v=7">
 <?php endif; ?>
 
 <?php if((isset($_SETTINGS->theme))&&($_SETTINGS->theme != "default")): ?>
@@ -149,12 +149,12 @@ if(! isset($OG_IMAGE)){
 	<?php if(isset($_COOKIE['settings'])) : ?>
 		var settings = {
 			defaultIVs: "<?php echo htmlspecialchars($_SETTINGS->defaultIVs); ?>",
-			animateTimeline: <?php echo htmlspecialchars($_SETTINGS->animateTimeline); ?>,
+			animateTimeline: <?php echo $_SETTINGS->animateTimeline ? 'true' : 'false'; ?>,
 			matrixDirection: "row",
 			gamemaster: "<?php echo htmlspecialchars($_SETTINGS->gamemaster); ?>",
 			pokeboxId: "<?php echo intval($_SETTINGS->pokeboxId); ?>",
 			pokeboxLastDateTime: "<?php echo intval($_SETTINGS->pokeboxLastDateTime); ?>",
-			xls: <?php echo $_SETTINGS->xls; ?>,
+			xls: <?php echo $_SETTINGS->xls ? 'true' : 'false'; ?>,
 			rankingDetails: "<?php echo htmlspecialchars($_SETTINGS->rankingDetails); ?>",
 			hardMovesetLinks: <?php echo intval($_SETTINGS->hardMovesetLinks); ?>
 		};

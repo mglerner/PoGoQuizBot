@@ -6,7 +6,8 @@
 		"meta": "master",
 		"showCup": false,
 		"showFormat": true,
-		"showMeta": false
+		"showMeta": false,
+		"hideRankings": true
 	},
 	{
 		"title": "Master League (Megas)",
@@ -27,31 +28,41 @@
 		"showMeta": true
 	},
 	{
-		"title": "Summer Cup",
-		"cup": "summer",
-		"cp": 1500,
-		"meta": "summer",
+		"title": "Little Jungle Cup Remix",
+		"cup": "littlejungleremix",
+		"cp": 500,
+		"meta": "littlejungleremix",
 		"showCup": true,
 		"showFormat": true,
 		"showMeta": true
 	},
 	{
-		"title": "Fighting Cup",
-		"cup": "fighting",
+		"title": "Psychic Cup",
+		"cup": "psychic",
 		"cp": 1500,
-		"meta": "fighting",
+		"meta": "psychic",
 		"showCup": true,
 		"showFormat": true,
 		"showMeta": true
 	},
 	{
-		"title": "2022 Championship Series",
-		"cup": "championship",
-		"cp": 1500,
-		"meta": "great",
+		"title": "Weather Cup (Ultra League)",
+		"cup": "weather",
+		"cp": 2500,
+		"meta": "weather",
 		"showCup": true,
 		"showFormat": true,
 		"showMeta": true
+	},
+	{
+		"title": "Silph Continentals",
+		"cup": "continentals",
+		"cp": 1500,
+		"meta": "continentals",
+		"showCup": false,
+		"showFormat": true,
+		"showMeta": true,
+		"hideRankings": true
 	},
 	{
 		"title": "Gymbreakers Invitational 2022",
@@ -78,6 +89,33 @@
 		"meta": "masterpremierclassic",
 		"showCup": false,
 		"showFormat": false,
+		"showMeta": true
+	},
+	{
+		"title": "Silph Factions (Primeval)",
+		"cup": "primeval",
+		"cp": 1500,
+		"meta": "primeval",
+		"showCup": true,
+		"showFormat": true,
+		"showMeta": true
+	},
+	{
+		"title": "Silph Factions (Timeless)",
+		"cup": "timelessfactions",
+		"cp": 1500,
+		"meta": "timeless",
+		"showCup": true,
+		"showFormat": true,
+		"showMeta": true
+	},
+	{
+		"title": "Silph Factions (Sorcerous)",
+		"cup": "sorcerousfactions",
+		"cp": 1500,
+		"meta": "sorcerous",
+		"showCup": true,
+		"showFormat": true,
 		"showMeta": true
 	},
 	{

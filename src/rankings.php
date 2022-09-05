@@ -51,12 +51,12 @@ switch($cup){
 		$league = 'Master League Classic';
 		break;
 
-	case "fighting":
-		$league = 'Fighting Cup';
+	case "weather":
+		$league = 'Weather Cup';
 		break;
 
-	case "summer":
-		$league = 'Summer Cup';
+	case "littlejungleremix":
+		$league = 'Little Jungle Cup Remix';
 		break;
 
 	case "retro":
@@ -72,11 +72,18 @@ switch($cup){
 		break;
 
 	case "factions":
+	case "primeval":
+	case "sorcerousfactions":
+	case "timelessfactions":
 		$league = 'Silph Factions';
 		break;
 
 	case "element":
 		$league = 'Element Cup';
+		break;
+
+	case "psychic":
+		$league = 'Psychic Cup';
 		break;
 
 	case "remix":

@@ -2,6 +2,7 @@
 	{
 		"speciesId": "giratina_altered",
 		"fastMove": "SHADOW_CLAW",
+		"chargedMoves": ["DRAGON_CLAW", "SHADOW_SNEAK"],
 		"weight": 70
 	},
 	{
@@ -25,6 +26,10 @@
 		"fastMove": "DRAGON_BREATH"
 	},
 	{
+		"speciesId": "miltank",
+		"fastMove": "TACKLE"
+	},
+	{
 		"speciesId": "garchomp",
 		"fastMove": "DRAGON_TAIL",
 		"chargedMoves": ["SAND_TOMB", "OUTRAGE"]
@@ -40,6 +45,22 @@
 	{
 		"speciesId": "overqwil",
 		"chargedMoves": ["AQUA_TAIL", "SHADOW_BALL"]
+	},
+	{
+		"speciesId": "florges",
+		"chargedMoves": ["DISARMING_VOICE", "MOONBLAST"]
+	},
+	{
+		"speciesId": "weezing_galarian",
+		"chargedMoves": ["OVERHEAT", "PLAY_ROUGH"]
+	},
+	{
+		"speciesId": "dubwool",
+		"chargedMoves": ["BODY_SLAM", "PAYBACK"]
+	},
+	{
+		"speciesId": "runerigus",
+		"chargedMoves": ["SAND_TOMB", "SHADOW_BALL"]
 	},
 	{
 		"speciesId": "arcanine_hisuian",
@@ -130,7 +151,7 @@
 	},
 	{
 		"speciesId": "cofagrigus",
-		"chargedMoves": ["SHADOW_BALL", "PSYCHIC"]
+		"chargedMoves": ["SHADOW_BALL", "DARK_PULSE"]
 	},
 	{
 		"speciesId": "crobat_shadow",
@@ -191,7 +212,7 @@
 	},
 	{
 		"speciesId": "tentacruel",
-		"chargedMoves": ["ACID_SPRAY", "HYDRO_PUMP"]
+		"chargedMoves": ["SCALD", "BLIZZARD"]
 	},
 	{
 		"speciesId": "probopass",
@@ -204,6 +225,10 @@
 	{
 		"speciesId": "genesect_shock",
 		"chargedMoves": ["X_SCISSOR", "TECHNO_BLAST_SHOCK"]
+	},
+	{
+		"speciesId": "genesect",
+		"chargedMoves": ["X_SCISSOR", "TECHNO_BLAST_NORMAL"]
 	},
 	{
 		"speciesId": "dewgong",
@@ -448,12 +473,12 @@
 	},
 	{
 		"speciesId": "nidoking",
-		"fastMove": "POISON_JAB",
+		"fastMove": "DOUBLE_KICK",
 		"chargedMoves": ["SAND_TOMB", "EARTH_POWER"]
 	},
 	{
 		"speciesId": "nidoking_shadow",
-		"fastMove": "POISON_JAB",
+		"fastMove": "DOUBLE_KICK",
 		"chargedMoves": ["SAND_TOMB", "EARTH_POWER"]
 	},
 	{
@@ -487,7 +512,7 @@
 	},
 	{
 		"speciesId": "articuno",
-		"chargedMoves": ["ICY_WIND", "HURRICANE"],
+		"chargedMoves": ["ICY_WIND", "ANCIENT_POWER"],
 		"weight": 6
 	},
 	{
@@ -657,7 +682,7 @@
 	{
 		"speciesId": "ninetales_alolan",
 		"fastMove": "CHARM",
-		"chargedMoves": ["WEATHER_BALL_ICE","DAZZLING_GLEAM"],
+		"chargedMoves": ["WEATHER_BALL_ICE","PSYSHOCK"],
 		"weight": 10
 	},
 	{
@@ -747,6 +772,10 @@
 		"fastMove": "SNARL"
 	},
 	{
+		"speciesId": "shiftry_shadow",
+		"fastMove": "SNARL"
+	},
+	{
 		"speciesId": "granbull",
 		"fastMove": "CHARM"
 	},
@@ -816,6 +845,7 @@
 	},
 	{
 		"speciesId": "sylveon",
+		"fastMove": "CHARM",
 		"weight": 10
 	},
 	{
