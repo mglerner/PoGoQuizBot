@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
 # TODO
-# * Deal with shadows
 # * Make it so that for shadows, you also see the purified IVs
+# * Add rankings. 
 # * Some PVP IV Deep Dives, like Medicham, use the "top N" pokemon in addition to stats cutoffs. We should do that or a stat product cutoff.
 # * Figure out if we're actually calculating things correctly, since we disagree very slightly with pvpivs.com
 
@@ -43,6 +43,10 @@ EVOLUTIONS = ( ['Spheal', 'Sealeo','Walrein'],
         ['Zigzagoon (Galarian)','Linoone (Galarian)','Obstagoon'],
         ['Zigzagoon (Galarian)','Linoone (Galarian)'],
         ['Meditite','Medicham'],
+        ['Dunsparce'],
+        ['Stunfisk (Galarian)'],
+        ['Lickitung'],#,'Lickilicky'],
+        ['Mareanie','Toxapex'],
         )
 
 
@@ -287,14 +291,20 @@ RS_INFO = {
     'Deoxys (Defense)':{
         'article':'https://gamepress.gg/pokemongo/deoxys-defense-pvp-iv-deep-dive-analysis',
         'videos':('https://www.youtube.com/watch?v=p-UrAQDrvTQ',),
+        'extrainfo':'For GL, the SwagMan wants the rank 67>77>22 (15/14/10 > 15/10/12 > 14/12/13) and then bulk 1 > 3 > 9 (10/15/13 > 10/10/15 > 11/13/12) then the mirror slayer rank 17 (13/11/15). For that first range, the 15/13/10 is my best so far. \n The 12/13/15 I have is the UL rank 1. But also my best GL mirror slayer. For UL I decide between that rank 1 and my rank 150 15/13/12 and rank 146 15/11/12 which hit the table breakpoints.',
         'Great':
         {
-            'Best you can get are here, but watch the actual video':{'attack':100.78,'defense':221,'hp':98},
+            'Best you can get are here, but watch the actual video':{'attack':101.95,'defense':221,'hp':98},
+            'Lanturn 0-1 1-1 Spark 1-0 2-1 water gun, if lanturn is not super high def': {'attack':101.95,'defense':220.18,'hp':95,},
+            'Includes SwagMan table plus more read the article yo':{'attack':100.78,'defense':220.18,'hp':95},
+            'Mirror':{'attack':100.78,'defense':0,'hp':98},
             },
         'Ultra':
         {
             'BB umbreon':{'attack':132.81,'defense':284,'hp':122},
-            'Registeel and TF':{'attack':131.9,'defense':0,'hp':126},
+            'Registeel and TF (not BB)':{'attack':132.28,'defense':0,'hp':126},
+            'Sme rando Umb, TF, Regi': {'attack':131.8,'defense':0,'hp':126},
+            'Just atk breakpoint': {'attack':132.28,'defense':0,'hp':0},
             }
         },
     'Venusaur':{
@@ -481,7 +491,58 @@ RS_INFO = {
             'The few worthwhile best buddies':{'attack':105.38,'defense':140.3,'hp':142},
             'The Mirror Slayers (note: the drop in bulk may cause trouble in other matchups. Simply going for CMP may be better)':{'attack':108,'defense':137.64,'hp':0},
             }
-        }
+        },
+    'Dunsparce':{
+        'article':'https://gamepress.gg/pokemongo/dunsparce-pvp-iv-deep-dive',
+        'videos':('https://www.youtube.com/watch?v=ZiZEbDqMur0',),
+        'extrainfo':'Cares ONLY about bulk, not about Atk at all',
+        'Great':{
+            'Basic Bulk':{'attack':0,'defense':110.63,'hp':185},
+            'Premium Bulk':{'attack':0,'defense':111.14,'hp':186},
+            #'Premium Bulk, bulk sort':{'attack':102.78,'defense':97.85,'hp':186,'sort':'bulk'},
+            }
+        },
+    'Stunfisk (Galarian)':{
+        'article':'https://gamepress.gg/pokemongo/galarian-stunfisk-pvp-iv-deep-dive',
+        'videos':('https://www.youtube.com/watch?v=iUja0_EjGnc',),
+        'extrainfo':'For UL, realy do want 15/15/14',
+        'Great':{
+            'High Bulk (124.75 def, 174 hp)':{'attack':99,'defense':124.75,'hp':174},
+            'pure mirror slayer (101.79 atk, 127.34 def)':{'attack':101.79,'defense':127.34,'hp':0},
+            'bulk mirror slayer (101.79 atk, 124.75/172)':{'attack':101.79,'defense':124.75,'hp':172,},
+            'Minimum bulk (124.75 def 172 hp)':{'attack':99,'defense':124.75,'hp':172},
+            }
+        },
+    'Lickitung':{
+        'article':'https://gamepress.gg/pokemongo/lickitung-pvp-iv-deep-dive',
+        'videos':('',),
+        'extrainfo':'''General Good is minimum bulk for "good" lickitung.\nAtk focus: Potentiates Registeel and Shadow Walrein Breakpoints without giving up too much bulk, 126.2 Def, 126.58 Def, and 184 HP are notable stat checks, Priority Recommendation 126.2 Def=184 HP>185+ HP=126.58 Def\nBudget Boi: This budget list is for players who’ve already built a Lickitung and are wondering if they should build twice (or for players looking to save ~94 XL Candy), If you meet at least 125.1 Def and 181 HP, building a better Lickitung might not be worth it compared to other projects''',
+        'Great':{
+            'General Good (125.94 def, 183 hp)':{'attack':96.36,'defense':125.94,'hp':183},
+            'Atk Focus (97.7 Atk, 125.94 def, 183 hp)':{'attack':97.7,'defense':125.94,'hp':183},
+            'Budget Bois (97 Atk, 125.1 def, 181 hp)':{'attack':97,'defense':125.1,'hp':181},
+            }
+        },
+    'Toxapex':{
+        'article':'https://gamepress.gg/pokemongo/toxapex-pvp-iv-deep-dive',
+        'videos':('',),
+        'extrainfo':'''High Bulk:
+        * For tie-breakers, generally HP > Def
+        * If you fear Swampert, 227.82+ Def is important
+        * If you hate Venusaur & Jumpluff, 91+ Atk is important
+
+        Mirror Slayer
+        * If you hate Venusaur & Jumpluff, 91+ Atk is important
+
+        Lickitung Slayer
+        * Rank 1 and 2 Best Buddy Lickitung require 94.13 Atk
+''',
+        'Great':{
+            'High Bulk (226.73 Def, 118 HP)':{'attack':0,'defense':226.73,'hp':118},
+            'Mirror Slayer/Big HP (219 Def, 121 HP)':{'attack':0,'defense':219,'hp':121},
+            'Lickitung Slayer (93 Atk, 118 HP)':{'attack':93,'defense':0,'hp':118},
+            }
+        },
 }
 
 
