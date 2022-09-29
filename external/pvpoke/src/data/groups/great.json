@@ -25,6 +25,16 @@
 		"chargedMoves":["FLAME_CHARGE","BRAVE_BIRD"]
 	},
 	{
+		"speciesId":"toxapex",
+		"fastMove":"POISON_JAB",
+		"chargedMoves":["BRINE","SLUDGE_WAVE"]
+	},
+	{
+		"speciesId":"froslass",
+		"fastMove":"POWDER_SNOW",
+		"chargedMoves":["AVALANCHE","SHADOW_BALL"]
+	},
+	{
 		"speciesId":"ninetales_shadow",
 		"fastMove":"EMBER",
 		"chargedMoves":["WEATHER_BALL_FIRE","OVERHEAT"]
@@ -33,6 +43,11 @@
 		"speciesId":"drapion",
 		"fastMove":"POISON_STING",
 		"chargedMoves":["CRUNCH","SLUDGE_BOMB"]
+	},
+	{
+		"speciesId":"noctowl",
+		"fastMove":"WING_ATTACK",
+		"chargedMoves":["SKY_ATTACK","SHADOW_BALL"]
 	},
 	{
 		"speciesId":"ninetales_alolan",

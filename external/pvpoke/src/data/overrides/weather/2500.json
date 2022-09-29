@@ -15,7 +15,8 @@
 }, {
     "speciesId": "tentacruel",
     "fastMove": "POISON_JAB",
-    "chargedMoves": ["ACID_SPRAY", "SCALD"]
+    "chargedMoves": ["SCALD", "SLUDGE_WAVE"],
+	"weight": 3
 }, {
     "speciesId": "terrakion",
     "fastMove": "DOUBLE_KICK",
@@ -28,6 +29,14 @@
     "speciesId": "lapras",
     "fastMove": "WATER_GUN",
     "chargedMoves": ["SURF", "SKULL_BASH"]
+},  {
+    "speciesId": "primarina",
+    "fastMove": "CHARM",
+    "chargedMoves": ["PSYCHIC", "MOONBLAST"]
+}, {
+    "speciesId": "golem_alolan",
+    "fastMove": "VOLT_SWITCH",
+    "chargedMoves": ["WILD_CHARGE", "ROCK_BLAST"]
 }, {
     "speciesId": "lapras_shadow",
     "fastMove": "WATER_GUN",
@@ -138,5 +147,5 @@
     "weight": 4
 }, {
     "speciesId": "kingdra",
-    "weight": 3
+    "weight": 7
 }]

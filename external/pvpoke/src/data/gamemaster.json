@@ -111,6 +111,17 @@
         "include": [],
         "exclude": []
     }, {
+        "name": "evolution",
+        "title": "Evolution Cup",
+        "include": [{
+            "filterType": "evolution",
+            "values": [2]
+        }],
+        "exclude": [{
+            "filterType": "tag",
+            "values": ["mega"]
+        }]
+    }, {
         "name": "gobattleleague",
         "title": "GO Battle League",
         "include": [],
@@ -134,24 +145,6 @@
             "values": ["mega"]
         }]
     }, {
-        "name": "littlejungleremix",
-        "title": "Little Jungle Cup Remix",
-        "include": [{
-            "filterType": "type",
-            "values": ["bug", "dark", "electric", "flying", "grass", "ground", "normal", "poison"]
-        }, {
-            "filterType": "id",
-            "values": ["zapdos_galarian", "moltres_galarian", "articuno_galarian", "suicune", "entei", "raikou"],
-            "includeShadows": false
-        }],
-        "exclude": [{
-            "filterType": "id",
-            "values": ["skorupi", "cottonee", "ducklett", "salandit", "shuckle", "shuckle_shadow", "smeargle", "aerodactyl_shadow", "scizor_shadow"]
-        }, {
-            "filterType": "tag",
-            "values": ["legendary", "mythical", "mega"]
-        }]
-    }, {
         "name": "mega",
         "title": "All Pokemon",
         "include": [],
@@ -164,6 +157,16 @@
             "filterType": "id",
             "values": ["dialga", "palkia", "giratina_altered", "giratina_origin", "charizard_mega_x", "charizard_mega_y", "blastoise_mega", "gengar_mega", "melmetal", "kyogre", "groudon", "zekrom", "reshiram", "mewtwo", "lugia", "ho_oh", "dragonite", "gyarados_mega"]
         }]
+    }, {
+        "name": "premierclassic",
+        "title": "Premier Classic",
+        "include": [],
+        "exclude": [{
+            "filterType": "tag",
+            "values": ["legendary", "mythical", "mega"]
+        }],
+        "partySize": 3,
+        "levelCap": 40
     }, {
         "name": "primeval",
         "title": "Silph Factions (Primeval)",
@@ -187,21 +190,7 @@
         }, {
             "filterType": "id",
             "name": "Species",
-            "values": ["ninetales_alolan", "obstagoon", "raichu", "walrein", "umbreon", "dewgong", "regirock", "lycanroc_midnight", "crustle", "dragalge", "pachirisu", "abomasnow", "sableye", "drapion", "moltres_galarian"]
-        }]
-    }, {
-        "name": "psychic",
-        "title": "Psychic Cup",
-        "include": [{
-            "filterType": "type",
-            "values": ["psychic"]
-        }],
-        "exclude": [{
-            "filterType": "tag",
-            "values": ["mega"]
-        }, {
-            "filterType": "id",
-            "values": ["mew"]
+            "values": ["ninetales_alolan", "obstagoon", "raichu", "walrein", "umbreon", "dewgong", "regirock", "lycanroc_midnight", "crustle", "dragalge", "pachirisu", "abomasnow", "sableye", "drapion", "moltres_galarian", "lileep"]
         }]
     }, {
         "name": "retro",
@@ -233,7 +222,7 @@
             "values": [100000, 75000]
         }, {
             "filterType": "id",
-            "values": ["dewgong", "obstagoon", "walrein", "diggersby", "lickitung", "nidoqueen", "qwilfish_hisuian", "overqwil", "wobbuffet", "medicham", "sneasler", "litleo", "pyroar", "articuno_galarian"]
+            "values": ["dewgong", "obstagoon", "walrein", "diggersby", "lickitung", "nidoqueen", "qwilfish_hisuian", "overqwil", "wobbuffet", "medicham", "sneasler", "litleo", "pyroar", "articuno_galarian", "toxapex"]
         }]
     }, {
         "name": "timelessfactions",
@@ -256,18 +245,7 @@
             "values": ["dragon", "fairy", "fighting", "flying", "normal", "psychic", "steel"]
         }, {
             "filterType": "id",
-            "values": ["umbreon", "sableye", "drapion", "nidoqueen", "walrein", "pachirisu"]
-        }]
-    }, {
-        "name": "weather",
-        "title": "Weather Cup",
-        "include": [{
-            "filterType": "type",
-            "values": ["fire", "water", "ice", "rock"]
-        }],
-        "exclude": [{
-            "filterType": "tag",
-            "values": ["mega"]
+            "values": ["umbreon", "sableye", "drapion", "nidoqueen", "walrein", "pachirisu", "lileep"]
         }]
     }],
     "formats": [{
@@ -296,39 +274,6 @@
         "showFormat": false,
         "showMeta": true
     }, {
-        "title": "Little Jungle Cup Remix",
-        "cup": "littlejungleremix",
-        "cp": 500,
-        "meta": "littlejungleremix",
-        "showCup": true,
-        "showFormat": true,
-        "showMeta": true
-    }, {
-        "title": "Psychic Cup",
-        "cup": "psychic",
-        "cp": 1500,
-        "meta": "psychic",
-        "showCup": true,
-        "showFormat": true,
-        "showMeta": true
-    }, {
-        "title": "Weather Cup (Ultra League)",
-        "cup": "weather",
-        "cp": 2500,
-        "meta": "weather",
-        "showCup": true,
-        "showFormat": true,
-        "showMeta": true
-    }, {
-        "title": "Silph Continentals",
-        "cup": "continentals",
-        "cp": 1500,
-        "meta": "continentals",
-        "showCup": false,
-        "showFormat": true,
-        "showMeta": true,
-        "hideRankings": true
-    }, {
         "title": "Gymbreakers Invitational 2022",
         "cup": "gymbreakers",
         "cp": 1500,
@@ -337,20 +282,28 @@
         "showFormat": false,
         "showMeta": true
     }, {
-        "title": "Premier Classic",
+        "title": "Premier Classic (Ultra League)",
         "cup": "premierclassic",
         "cp": 2500,
         "meta": "ultrapremierclassic",
-        "showCup": false,
-        "showFormat": false,
+        "showCup": true,
+        "showFormat": true,
         "showMeta": true
     }, {
-        "title": "Master League (Premier Classic)",
+        "title": "Premier Classic (Master League)",
         "cup": "premierclassic",
         "cp": 10000,
         "meta": "masterpremierclassic",
-        "showCup": false,
-        "showFormat": false,
+        "showCup": true,
+        "showFormat": true,
+        "showMeta": true
+    }, {
+        "title": "Evolution Cup",
+        "cup": "evolution",
+        "cp": 1500,
+        "meta": "evolution",
+        "showCup": true,
+        "showFormat": true,
         "showMeta": true
     }, {
         "title": "Silph Factions (Primeval)",
@@ -489,7 +442,7 @@
         "chargedMoves": ["POWER_WHIP", "SEED_BOMB", "SLUDGE_BOMB"],
         "tags": ["starter", "shadow"],
         "defaultIVs": {
-            "cp500": [18, 2, 14, 7],
+            "cp500": [17.5, 4, 13, 10],
             "cp1500": [50, 15, 15, 15],
             "cp2500": [50, 15, 15, 15]
         },
@@ -541,8 +494,8 @@
         "chargedMoves": ["POWER_WHIP", "SLUDGE_BOMB", "SOLAR_BEAM"],
         "tags": ["starter", "shadow"],
         "defaultIVs": {
-            "cp500": [11.5, 2, 7, 13],
-            "cp1500": [36.5, 3, 15, 14],
+            "cp500": [11, 5, 14, 13],
+            "cp1500": [37.5, 4, 13, 10],
             "cp2500": [50, 15, 15, 15]
         },
         "buddyDistance": 3,
@@ -918,7 +871,7 @@
             "cp500": [13, 4, 13, 9],
             "cp1500": [48, 4, 11, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 15, 14, 14]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "level25CP": 865,
         "buddyDistance": 3,
@@ -946,7 +899,7 @@
             "cp500": [13, 4, 13, 9],
             "cp1500": [48, 4, 11, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 15, 14, 14]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 10000,
@@ -973,7 +926,7 @@
             "cp500": [7.5, 8, 14, 14],
             "cp1500": [22.5, 5, 15, 13],
             "cp2500": [46, 5, 15, 12],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "level25CP": 1504,
         "eliteMoves": ["HYDRO_CANNON"],
@@ -1028,7 +981,7 @@
             "cp500": [7.5, 8, 14, 14],
             "cp1500": [22.5, 5, 15, 13],
             "cp2500": [46, 5, 15, 12],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "eliteMoves": ["HYDRO_CANNON"],
         "buddyDistance": 3,
@@ -1078,7 +1031,7 @@
             "cp500": [50, 15, 13, 13],
             "cp1500": [50, 15, 15, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp500l40": [40, 14, 15, 14]
+            "cp500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 1,
         "thirdMoveCost": 10000,
@@ -1129,7 +1082,7 @@
             "cp500": [50, 13, 15, 13],
             "cp1500": [50, 15, 15, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp500l40": [40, 14, 15, 13]
+            "cp500l40": [40, 15, 15, 15]
         },
         "level25CP": 217,
         "tags": ["shadoweligible"],
@@ -1156,7 +1109,7 @@
             "cp500": [50, 13, 15, 13],
             "cp1500": [50, 15, 15, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp500l40": [40, 14, 15, 13]
+            "cp500l40": [40, 15, 15, 15]
         },
         "tags": ["shadow"],
         "buddyDistance": 1,
@@ -1456,31 +1409,6 @@
         }
     }, {
         "dex": 19,
-        "speciesName": "Rattata (Shadow)",
-        "speciesId": "rattata_shadow",
-        "baseStats": {
-            "atk": 103,
-            "def": 70,
-            "hp": 102
-        },
-        "types": ["normal", "none"],
-        "fastMoves": ["QUICK_ATTACK", "TACKLE"],
-        "chargedMoves": ["BODY_SLAM", "DIG", "HYPER_FANG"],
-        "defaultIVs": {
-            "cp500": [26.5, 5, 15, 10],
-            "cp1500": [50, 15, 15, 15],
-            "cp2500": [50, 15, 15, 15]
-        },
-        "tags": ["shadow"],
-        "buddyDistance": 1,
-        "thirdMoveCost": 10000,
-        "released": true,
-        "family": {
-            "id": "FAMILY_RATTATA",
-            "evolutions": ["raticate_shadow"]
-        }
-    }, {
-        "dex": 19,
         "speciesName": "Rattata (Alolan) (Shadow)",
         "speciesId": "rattata_alolan_shadow",
         "baseStats": {
@@ -1503,6 +1431,31 @@
         "family": {
             "id": "FAMILY_RATTATA",
             "evolutions": ["raticate_alolan_shadow"]
+        }
+    }, {
+        "dex": 19,
+        "speciesName": "Rattata (Shadow)",
+        "speciesId": "rattata_shadow",
+        "baseStats": {
+            "atk": 103,
+            "def": 70,
+            "hp": 102
+        },
+        "types": ["normal", "none"],
+        "fastMoves": ["QUICK_ATTACK", "TACKLE"],
+        "chargedMoves": ["BODY_SLAM", "DIG", "HYPER_FANG"],
+        "defaultIVs": {
+            "cp500": [26.5, 5, 15, 10],
+            "cp1500": [50, 15, 15, 15],
+            "cp2500": [50, 15, 15, 15]
+        },
+        "tags": ["shadow"],
+        "buddyDistance": 1,
+        "thirdMoveCost": 10000,
+        "released": true,
+        "family": {
+            "id": "FAMILY_RATTATA",
+            "evolutions": ["raticate_shadow"]
         }
     }, {
         "dex": 20,
@@ -1559,31 +1512,6 @@
         }
     }, {
         "dex": 20,
-        "speciesName": "Raticate (Shadow)",
-        "speciesId": "raticate_shadow",
-        "baseStats": {
-            "atk": 161,
-            "def": 139,
-            "hp": 146
-        },
-        "types": ["normal", "none"],
-        "fastMoves": ["BITE", "QUICK_ATTACK"],
-        "chargedMoves": ["DIG", "HYPER_BEAM", "HYPER_FANG"],
-        "defaultIVs": {
-            "cp500": [11, 4, 10, 13],
-            "cp1500": [34.5, 5, 13, 15],
-            "cp2500": [50, 15, 15, 15]
-        },
-        "tags": ["shadow"],
-        "buddyDistance": 1,
-        "thirdMoveCost": 10000,
-        "released": true,
-        "family": {
-            "id": "FAMILY_RATTATA",
-            "parent": "rattata_shadow"
-        }
-    }, {
-        "dex": 20,
         "speciesName": "Raticate (Alolan) (Shadow)",
         "speciesId": "raticate_alolan_shadow",
         "baseStats": {
@@ -1607,6 +1535,31 @@
         "family": {
             "id": "FAMILY_RATTATA",
             "parent": "rattata_alolan_shadow"
+        }
+    }, {
+        "dex": 20,
+        "speciesName": "Raticate (Shadow)",
+        "speciesId": "raticate_shadow",
+        "baseStats": {
+            "atk": 161,
+            "def": 139,
+            "hp": 146
+        },
+        "types": ["normal", "none"],
+        "fastMoves": ["BITE", "QUICK_ATTACK"],
+        "chargedMoves": ["DIG", "HYPER_BEAM", "HYPER_FANG"],
+        "defaultIVs": {
+            "cp500": [11, 4, 10, 13],
+            "cp1500": [34.5, 5, 13, 15],
+            "cp2500": [50, 15, 15, 15]
+        },
+        "tags": ["shadow"],
+        "buddyDistance": 1,
+        "thirdMoveCost": 10000,
+        "released": true,
+        "family": {
+            "id": "FAMILY_RATTATA",
+            "parent": "rattata_shadow"
         }
     }, {
         "dex": 21,
@@ -1989,7 +1942,7 @@
             "cp500": [8, 9, 14, 15],
             "cp1500": [24.5, 5, 15, 9],
             "cp2500": [48.5, 13, 13, 15],
-            "cp2500l40": [40, 14, 15, 14]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "searchPriority": 5,
         "buddyDistance": 1,
@@ -2054,32 +2007,6 @@
         }
     }, {
         "dex": 27,
-        "speciesName": "Sandshrew (Shadow)",
-        "speciesId": "sandshrew_shadow",
-        "baseStats": {
-            "atk": 126,
-            "def": 120,
-            "hp": 137
-        },
-        "types": ["ground", "none"],
-        "fastMoves": ["MUD_SHOT", "SCRATCH"],
-        "chargedMoves": ["DIG", "ROCK_SLIDE", "ROCK_TOMB", "SAND_TOMB"],
-        "defaultIVs": {
-            "cp500": [15.5, 2, 11, 15],
-            "cp1500": [50, 15, 15, 15],
-            "cp2500": [50, 15, 15, 15]
-        },
-        "tags": ["shadow"],
-        "eliteMoves": ["ROCK_TOMB"],
-        "buddyDistance": 3,
-        "thirdMoveCost": 50000,
-        "released": true,
-        "family": {
-            "id": "FAMILY_SANDSHREW",
-            "evolutions": ["sandslash_shadow"]
-        }
-    }, {
-        "dex": 27,
         "speciesName": "Sandshrew (Alolan) (Shadow)",
         "speciesId": "sandshrew_alolan_shadow",
         "baseStats": {
@@ -2104,6 +2031,32 @@
             "evolutions": ["sandshrew_alolan_shadow"]
         }
     }, {
+        "dex": 27,
+        "speciesName": "Sandshrew (Shadow)",
+        "speciesId": "sandshrew_shadow",
+        "baseStats": {
+            "atk": 126,
+            "def": 120,
+            "hp": 137
+        },
+        "types": ["ground", "none"],
+        "fastMoves": ["MUD_SHOT", "SCRATCH"],
+        "chargedMoves": ["DIG", "ROCK_SLIDE", "ROCK_TOMB", "SAND_TOMB"],
+        "defaultIVs": {
+            "cp500": [15, 5, 13, 15],
+            "cp1500": [50, 15, 15, 15],
+            "cp2500": [50, 15, 15, 15]
+        },
+        "tags": ["shadow"],
+        "eliteMoves": ["ROCK_TOMB"],
+        "buddyDistance": 3,
+        "thirdMoveCost": 50000,
+        "released": true,
+        "family": {
+            "id": "FAMILY_SANDSHREW",
+            "evolutions": ["sandslash_shadow"]
+        }
+    }, {
         "dex": 28,
         "speciesName": "Sandslash",
         "speciesId": "sandslash",
@@ -2120,7 +2073,7 @@
             "cp500": [8, 4, 10, 15],
             "cp1500": [23.5, 4, 12, 15],
             "cp2500": [49.5, 4, 11, 15],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "level25CP": 1445,
         "tags": ["shadoweligible"],
@@ -2149,7 +2102,7 @@
             "cp500": [8, 4, 4, 13],
             "cp1500": [23, 5, 12, 14],
             "cp2500": [48, 4, 15, 10],
-            "cp2500l40": [40, 15, 13, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "searchPriority": 2,
         "buddyDistance": 3,
@@ -2159,33 +2112,6 @@
         "family": {
             "id": "FAMILY_SANDSHREW",
             "parent": "sandshrew_alolan"
-        }
-    }, {
-        "dex": 28,
-        "speciesName": "Sandslash (Shadow)",
-        "speciesId": "sandslash_shadow",
-        "baseStats": {
-            "atk": 182,
-            "def": 175,
-            "hp": 181
-        },
-        "types": ["ground", "none"],
-        "fastMoves": ["METAL_CLAW", "MUD_SHOT"],
-        "chargedMoves": ["BULLDOZE", "EARTHQUAKE", "ROCK_TOMB", "NIGHT_SLASH"],
-        "eliteMoves": ["NIGHT_SLASH"],
-        "defaultIVs": {
-            "cp500": [8, 4, 10, 15],
-            "cp1500": [23.5, 4, 12, 15],
-            "cp2500": [49.5, 4, 11, 15],
-            "cp2500l40": [40, 13, 15, 15]
-        },
-        "tags": ["shadow"],
-        "buddyDistance": 3,
-        "thirdMoveCost": 50000,
-        "released": true,
-        "family": {
-            "id": "FAMILY_SANDSHREW",
-            "parent": "sandshrew_shadow"
         }
     }, {
         "dex": 28,
@@ -2205,7 +2131,7 @@
             "cp500": [8, 4, 4, 13],
             "cp1500": [23, 5, 12, 14],
             "cp2500": [48, 4, 15, 10],
-            "cp2500l40": [40, 15, 13, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "searchPriority": 2,
         "buddyDistance": 3,
@@ -2214,6 +2140,33 @@
         "family": {
             "id": "FAMILY_SANDSHREW",
             "parent": "sandshrew_alolan_shadow"
+        }
+    }, {
+        "dex": 28,
+        "speciesName": "Sandslash (Shadow)",
+        "speciesId": "sandslash_shadow",
+        "baseStats": {
+            "atk": 182,
+            "def": 175,
+            "hp": 181
+        },
+        "types": ["ground", "none"],
+        "fastMoves": ["METAL_CLAW", "MUD_SHOT"],
+        "chargedMoves": ["BULLDOZE", "EARTHQUAKE", "ROCK_TOMB", "NIGHT_SLASH"],
+        "eliteMoves": ["NIGHT_SLASH"],
+        "defaultIVs": {
+            "cp500": [8, 4, 10, 15],
+            "cp1500": [23.5, 4, 12, 15],
+            "cp2500": [49.5, 4, 11, 15],
+            "cp2500l40": [40, 15, 15, 15]
+        },
+        "tags": ["shadow"],
+        "buddyDistance": 3,
+        "thirdMoveCost": 50000,
+        "released": true,
+        "family": {
+            "id": "FAMILY_SANDSHREW",
+            "parent": "sandshrew_shadow"
         }
     }, {
         "dex": 29,
@@ -2336,7 +2289,7 @@
             "cp500": [7.5, 9, 11, 14],
             "cp1500": [22, 8, 13, 15],
             "cp2500": [46, 5, 13, 10],
-            "cp2500l40": [40, 14, 15, 14]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "tags": ["shadoweligible"],
         "level25CP": 1519,
@@ -2364,7 +2317,7 @@
             "cp500": [7.5, 9, 11, 14],
             "cp1500": [22, 8, 13, 15],
             "cp2500": [46, 5, 13, 10],
-            "cp2500l40": [40, 14, 15, 14]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "tags": ["shadow"],
         "searchPriority": 2,
@@ -2442,7 +2395,7 @@
             "cp500": [13.5, 4, 14, 14],
             "cp1500": [46.5, 14, 15, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 15, 15, 13]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "level25CP": 804,
         "tags": ["shadoweligible"],
@@ -2470,7 +2423,7 @@
             "cp500": [13.5, 4, 14, 14],
             "cp1500": [46.5, 14, 15, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 15, 15, 13]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "tags": ["shadow"],
         "buddyDistance": 3,
@@ -2577,7 +2530,7 @@
             "cp500": [8, 5, 4, 11],
             "cp1500": [23, 5, 12, 13],
             "cp2500": [48, 4, 11, 13],
-            "cp2500l40": [40, 15, 15, 13]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "eliteMoves": ["POUND"],
         "searchPriority": 8,
@@ -2680,7 +2633,7 @@
             "cp500": [8.5, 4, 5, 12],
             "cp1500": [24.5, 5, 12, 14],
             "cp2500": [49.5, 12, 13, 13],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "level25CP": 1382,
         "tags": ["shadoweligible"],
@@ -2710,7 +2663,7 @@
             "cp500": [8.5, 4, 9, 4],
             "cp1500": [24.5, 4, 9, 15],
             "cp2500": [47.5, 13, 14, 15],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "searchPriority": 5,
         "buddyDistance": 3,
@@ -2736,7 +2689,7 @@
             "cp500": [8.5, 4, 5, 12],
             "cp1500": [24.5, 5, 12, 14],
             "cp2500": [49.5, 12, 13, 13],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "tags": ["shadow"],
         "eliteMoves": ["EMBER", "FIRE_BLAST", "FLAMETHROWER"],
@@ -2948,7 +2901,7 @@
         "fastMoves": ["ACID", "RAZOR_LEAF"],
         "chargedMoves": ["MOONBLAST", "SEED_BOMB", "SLUDGE_BOMB"],
         "defaultIVs": {
-            "cp500": [16, 2, 12, 12],
+            "cp500": [16, 4, 11, 9],
             "cp1500": [50, 15, 15, 15],
             "cp2500": [50, 15, 15, 15]
         },
@@ -3302,7 +3255,7 @@
         "speciesId": "dugtrio",
         "baseStats": {
             "atk": 167,
-            "def": 134,
+            "def": 136,
             "hp": 111
         },
         "types": ["ground", "none"],
@@ -3310,10 +3263,10 @@
         "chargedMoves": ["EARTHQUAKE", "MUD_BOMB", "STONE_EDGE"],
         "legacyMoves": ["MUD_SHOT"],
         "defaultIVs": {
-            "cp500": [12, 7, 9, 15],
-            "cp1500": [42, 4, 14, 15],
+            "cp500": [12, 5, 9, 15],
+            "cp1500": [41.5, 4, 15, 14],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [39, 12, 13, 14]
+            "cp1500l40": [38.5, 13, 15, 12]
         },
         "level25CP": 908,
         "tags": ["shadoweligible"],
@@ -3623,7 +3576,7 @@
             "cp500": [7.5, 12, 15, 9],
             "cp1500": [22.5, 7, 15, 11],
             "cp2500": [47.5, 4, 10, 13],
-            "cp2500l40": [40, 15, 13, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "level25CP": 1494,
         "tags": ["shadoweligible"],
@@ -3650,7 +3603,7 @@
             "cp500": [7.5, 12, 15, 9],
             "cp1500": [22.5, 7, 15, 11],
             "cp2500": [47.5, 4, 10, 13],
-            "cp2500l40": [40, 15, 13, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "tags": ["shadow"],
         "buddyDistance": 3,
@@ -3701,7 +3654,7 @@
             "cp500": [8, 10, 13, 15],
             "cp1500": [24.5, 5, 12, 11],
             "cp2500": [48.5, 12, 13, 15],
-            "cp2500l40": [40, 14, 15, 14]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "eliteMoves": ["KARATE_CHOP", "CROSS_CHOP"],
         "buddyDistance": 3,
@@ -3932,7 +3885,7 @@
             "cp500": [13.5, 5, 14, 9],
             "cp1500": [50, 7, 13, 14],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 14, 15, 13]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "level25CP": 821,
         "tags": ["shadoweligible"],
@@ -3961,7 +3914,7 @@
             "cp500": [13.5, 5, 14, 9],
             "cp1500": [50, 7, 13, 14],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 14, 15, 13]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "tags": ["shadow"],
         "eliteMoves": ["SCALD"],
@@ -4046,7 +3999,7 @@
             "cp500": [14, 2, 13, 15],
             "cp1500": [50, 13, 14, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 14, 15, 14]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "level25CP": 759,
         "tags": ["shadoweligible"],
@@ -4070,10 +4023,10 @@
         "fastMoves": ["CHARGE_BEAM", "ZEN_HEADBUTT"],
         "chargedMoves": ["PSYSHOCK", "SHADOW_BALL", "SIGNAL_BEAM"],
         "defaultIVs": {
-            "cp500": [14, 2, 13, 15],
-            "cp1500": [50, 13, 14, 15],
+            "cp500": [14, 6, 11, 14],
+            "cp1500": [50, 13, 15, 14],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 14, 15, 14]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "tags": ["shadow"],
         "buddyDistance": 3,
@@ -4163,6 +4116,27 @@
             "id": "FAMILY_ABRA",
             "parent": "kadabra"
         }
+    }, {
+        "dex": 65,
+        "speciesName": "Alakazam (Mega)",
+        "speciesId": "alakazam_mega",
+        "baseStats": {
+            "atk": 367,
+            "def": 207,
+            "hp": 146
+        },
+        "types": ["psychic", "none"],
+        "fastMoves": ["CONFUSION", "PSYCHO_CUT", "COUNTER"],
+        "chargedMoves": ["DAZZLING_GLEAM", "FIRE_PUNCH", "FOCUS_BLAST", "FUTURE_SIGHT", "PSYCHIC", "SHADOW_BALL"],
+        "defaultIVs": {
+            "cp500": [4.5, 4, 7, 5],
+            "cp1500": [12, 4, 13, 15],
+            "cp2500": [20, 5, 11, 15]
+        },
+        "tags": ["shadoweligible", "mega"],
+        "level25CP": 2748,
+        "eliteMoves": ["COUNTER", "DAZZLING_GLEAM", "PSYCHIC"],
+        "released": true
     }, {
         "dex": 65,
         "speciesName": "Alakazam (Shadow)",
@@ -4391,7 +4365,7 @@
         "fastMoves": ["ACID", "VINE_WHIP"],
         "chargedMoves": ["POWER_WHIP", "SLUDGE_BOMB", "WRAP"],
         "defaultIVs": {
-            "cp500": [19, 2, 11, 15],
+            "cp500": [18, 6, 15, 14],
             "cp1500": [50, 15, 15, 15],
             "cp2500": [50, 15, 15, 15]
         },
@@ -4444,8 +4418,8 @@
         "fastMoves": ["ACID", "BULLET_SEED", "RAZOR_LEAF"],
         "chargedMoves": ["POWER_WHIP", "SEED_BOMB", "SLUDGE_BOMB"],
         "defaultIVs": {
-            "cp500": [12, 3, 12, 8],
-            "cp1500": [39.5, 3, 15, 14],
+            "cp500": [11.5, 7, 15, 10],
+            "cp1500": [38.5, 6, 15, 14],
             "cp2500": [50, 15, 15, 15]
         },
         "tags": ["shadow"],
@@ -4474,7 +4448,7 @@
             "cp500": [7.5, 11, 13, 15],
             "cp1500": [23, 5, 13, 11],
             "cp2500": [46, 6, 14, 14],
-            "cp2500l40": [40, 15, 15, 13]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "level25CP": 1479,
         "tags": ["shadoweligible"],
@@ -4502,7 +4476,7 @@
             "cp500": [7.5, 11, 13, 15],
             "cp1500": [23, 5, 13, 11],
             "cp2500": [46, 6, 14, 14],
-            "cp2500l40": [40, 15, 15, 13]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "tags": ["shadow"],
         "searchPriority": 3,
@@ -4553,7 +4527,7 @@
             "cp500": [8, 4, 5, 13],
             "cp1500": [23.5, 4, 7, 14],
             "cp2500": [48, 4, 14, 13],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "searchPriority": 2,
         "buddyDistance": 3,
@@ -4628,7 +4602,7 @@
         "fastMoves": ["ROCK_THROW", "TACKLE"],
         "chargedMoves": ["DIG", "ROCK_SLIDE", "ROCK_TOMB"],
         "defaultIVs": {
-            "cp500": [15, 3, 10, 15],
+            "cp500": [15, 5, 7, 14],
             "cp1500": [50, 15, 15, 15],
             "cp2500": [50, 15, 15, 15]
         },
@@ -4709,8 +4683,8 @@
         "fastMoves": ["MUD_SLAP", "ROCK_THROW"],
         "chargedMoves": ["DIG", "ROCK_BLAST", "ROCK_SLIDE", "STONE_EDGE"],
         "defaultIVs": {
-            "cp500": [10, 2, 13, 13],
-            "cp1500": [30, 4, 10, 14],
+            "cp500": [10, 5, 11, 11],
+            "cp1500": [30.5, 4, 6, 15],
             "cp2500": [50, 15, 15, 15]
         },
         "eliteMoves": ["ROCK_SLIDE"],
@@ -4868,7 +4842,7 @@
             "cp500": [7.5, 9, 15, 12],
             "cp1500": [22, 8, 15, 15],
             "cp2500": [46.5, 4, 10, 15],
-            "cp2500l40": [40, 15, 13, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "eliteMoves": ["EMBER"],
         "buddyDistance": 3,
@@ -4894,7 +4868,7 @@
             "cp500": [7.5, 9, 15, 12],
             "cp1500": [22, 8, 15, 15],
             "cp2500": [46.5, 4, 10, 15],
-            "cp2500l40": [40, 15, 13, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "tags": ["galarian"],
         "buddyDistance": 3,
@@ -5023,7 +4997,7 @@
             "cp500": [7.5, 9, 15, 13],
             "cp1500": [22.5, 6, 15, 13],
             "cp2500": [46, 5, 15, 14],
-            "cp2500l40": [40, 15, 15, 13]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "tags": ["galarian"],
         "buddyDistance": 3,
@@ -5100,7 +5074,7 @@
             "cp500": [14, 5, 9, 14],
             "cp1500": [50, 12, 14, 13],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 12, 15, 15]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "level25CP": 780,
         "tags": ["shadoweligible"],
@@ -5127,7 +5101,7 @@
             "cp500": [14, 5, 9, 14],
             "cp1500": [50, 12, 14, 13],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 12, 15, 15]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "tags": ["shadow"],
         "buddyDistance": 3,
@@ -5153,7 +5127,7 @@
             "cp500": [7.5, 8, 13, 12],
             "cp1500": [22, 8, 11, 15],
             "cp2500": [44.5, 5, 15, 12],
-            "cp2500l40": [40, 14, 15, 14]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "level25CP": 1513,
         "tags": ["shadoweligible"],
@@ -5181,7 +5155,7 @@
             "cp500": [7.5, 8, 13, 12],
             "cp1500": [22, 8, 11, 15],
             "cp2500": [44.5, 5, 15, 12],
-            "cp2500l40": [40, 14, 15, 14]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "tags": ["shadow"],
         "buddyDistance": 3,
@@ -5280,7 +5254,7 @@
             "cp500": [8, 4, 13, 11],
             "cp1500": [23.5, 5, 13, 12],
             "cp2500": [49.5, 4, 12, 14],
-            "cp2500l40": [40, 12, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "eliteMoves": ["AIR_CUTTER"],
         "buddyDistance": 3,
@@ -5357,7 +5331,7 @@
             "cp500": [14, 3, 15, 10],
             "cp1500": [49.5, 10, 15, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 15, 14, 14]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "level25CP": 787,
         "tags": ["shadoweligible"],
@@ -5386,7 +5360,7 @@
             "cp500": [14, 5, 13, 9],
             "cp1500": [49, 13, 13, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 15, 14, 14]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -5408,10 +5382,10 @@
         "fastMoves": ["MUD_SLAP", "POISON_JAB"],
         "chargedMoves": ["MUD_BOMB", "SLUDGE", "SLUDGE_BOMB"],
         "defaultIVs": {
-            "cp500": [14, 3, 15, 10],
-            "cp1500": [49.5, 10, 15, 15],
+            "cp500": [14, 5, 13, 9],
+            "cp1500": [49, 13, 13, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 15, 14, 14]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "tags": ["shadow"],
         "buddyDistance": 3,
@@ -6161,6 +6135,28 @@
         }
     }, {
         "dex": 103,
+        "speciesName": "Exeggutor (Alolan) (Shadow)",
+        "speciesId": "exeggutor_alolan_shadow",
+        "baseStats": {
+            "atk": 230,
+            "def": 153,
+            "hp": 216
+        },
+        "types": ["grass", "dragon"],
+        "fastMoves": ["BULLET_SEED", "DRAGON_TAIL"],
+        "chargedMoves": ["DRAGON_PULSE", "SEED_BOMB", "SOLAR_BEAM", "DRACO_METEOR"],
+        "eliteMoves": ["DRACO_METEOR"],
+        "tags": ["alolan", "shadow"],
+        "defaultIVs": {
+            "cp500": [6.5, 4, 9, 7],
+            "cp1500": [18.5, 4, 11, 12],
+            "cp2500": [30, 6, 15, 15]
+        },
+        "buddyDistance": 3,
+        "thirdMoveCost": 50000,
+        "released": true
+    }, {
+        "dex": 103,
         "speciesName": "Exeggutor (Shadow)",
         "speciesId": "exeggutor_shadow",
         "baseStats": {
@@ -6186,28 +6182,6 @@
             "id": "FAMILY_EXEGGCUTE",
             "parent": "exeggcute_shadow"
         }
-    }, {
-        "dex": 103,
-        "speciesName": "Exeggutor (Alolan) (Shadow)",
-        "speciesId": "exeggutor_alolan_shadow",
-        "baseStats": {
-            "atk": 230,
-            "def": 153,
-            "hp": 216
-        },
-        "types": ["grass", "dragon"],
-        "fastMoves": ["BULLET_SEED", "DRAGON_TAIL"],
-        "chargedMoves": ["DRAGON_PULSE", "SEED_BOMB", "SOLAR_BEAM", "DRACO_METEOR"],
-        "eliteMoves": ["DRACO_METEOR"],
-        "tags": ["alolan", "shadow"],
-        "defaultIVs": {
-            "cp500": [6.5, 4, 9, 7],
-            "cp1500": [18.5, 4, 11, 12],
-            "cp2500": [30, 6, 15, 15]
-        },
-        "buddyDistance": 3,
-        "thirdMoveCost": 50000,
-        "released": true
     }, {
         "dex": 104,
         "speciesName": "Cubone",
@@ -6315,31 +6289,6 @@
         }
     }, {
         "dex": 105,
-        "speciesName": "Marowak (Shadow)",
-        "speciesId": "marowak_shadow",
-        "baseStats": {
-            "atk": 144,
-            "def": 186,
-            "hp": 155
-        },
-        "types": ["ground", "none"],
-        "fastMoves": ["MUD_SLAP", "ROCK_SMASH"],
-        "chargedMoves": ["BONE_CLUB", "DIG", "EARTHQUAKE", "ROCK_SLIDE"],
-        "defaultIVs": {
-            "cp500": [10.5, 5, 9, 10],
-            "cp1500": [32, 5, 9, 15],
-            "cp2500": [50, 15, 15, 15]
-        },
-        "tags": ["shadow"],
-        "buddyDistance": 3,
-        "thirdMoveCost": 50000,
-        "released": true,
-        "family": {
-            "id": "FAMILY_CUBONE",
-            "parent": "cubone_shadow"
-        }
-    }, {
-        "dex": 105,
         "speciesName": "Marowak (Alolan) (Shadow)",
         "speciesId": "marowak_alolan_shadow",
         "baseStats": {
@@ -6358,6 +6307,31 @@
             "cp2500": [50, 15, 15, 15]
         },
         "searchPriority": 8,
+        "buddyDistance": 3,
+        "thirdMoveCost": 50000,
+        "released": true,
+        "family": {
+            "id": "FAMILY_CUBONE",
+            "parent": "cubone_shadow"
+        }
+    }, {
+        "dex": 105,
+        "speciesName": "Marowak (Shadow)",
+        "speciesId": "marowak_shadow",
+        "baseStats": {
+            "atk": 144,
+            "def": 186,
+            "hp": 155
+        },
+        "types": ["ground", "none"],
+        "fastMoves": ["MUD_SLAP", "ROCK_SMASH"],
+        "chargedMoves": ["BONE_CLUB", "DIG", "EARTHQUAKE", "ROCK_SLIDE"],
+        "defaultIVs": {
+            "cp500": [10.5, 5, 9, 10],
+            "cp1500": [32, 5, 9, 15],
+            "cp2500": [50, 15, 15, 15]
+        },
+        "tags": ["shadow"],
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
         "released": true,
@@ -6436,7 +6410,7 @@
             "cp500": [8, 7, 13, 13],
             "cp1500": [23.5, 5, 15, 15],
             "cp2500": [47, 12, 13, 15],
-            "cp2500l40": [40, 15, 14, 14]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "level25CP": 1414,
         "tags": ["shadoweligible"],
@@ -6464,7 +6438,7 @@
             "cp500": [8, 7, 13, 13],
             "cp1500": [23.5, 5, 15, 15],
             "cp2500": [47, 12, 13, 15],
-            "cp2500l40": [40, 15, 14, 14]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "tags": ["shadow"],
         "eliteMoves": ["ROCK_SMASH", "BRICK_BREAK"],
@@ -6491,7 +6465,7 @@
             "cp500": [14, 4, 14, 5],
             "cp1500": [50, 9, 14, 11],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 15, 13, 15]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "eliteMoves": ["BODY_SLAM"],
         "searchPriority": 2,
@@ -6542,7 +6516,7 @@
         "fastMoves": ["INFESTATION", "TACKLE"],
         "chargedMoves": ["DARK_PULSE", "SLUDGE", "SLUDGE_BOMB"],
         "defaultIVs": {
-            "cp500": [16, 3, 15, 11],
+            "cp500": [15.5, 4, 15, 15],
             "cp1500": [50, 15, 15, 15],
             "cp2500": [50, 15, 15, 15]
         },
@@ -6571,7 +6545,7 @@
             "cp500": [8.5, 2, 5, 13],
             "cp1500": [24.5, 3, 13, 14],
             "cp2500": [50, 9, 14, 14],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "level25CP": 1391,
         "tags": ["shadoweligible"],
@@ -6598,7 +6572,7 @@
             "cp500": [8.5, 4, 10, 6],
             "cp1500": [24.5, 5, 13, 11],
             "cp2500": [48.5, 12, 14, 14],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "tags": ["galarian"],
         "buddyDistance": 3,
@@ -6622,10 +6596,10 @@
         "fastMoves": ["INFESTATION", "TACKLE"],
         "chargedMoves": ["DARK_PULSE", "SHADOW_BALL", "SLUDGE_BOMB", "THUNDERBOLT"],
         "defaultIVs": {
-            "cp500": [8.5, 2, 5, 13],
-            "cp1500": [24.5, 3, 13, 14],
-            "cp2500": [50, 9, 14, 14],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp500": [8.5, 4, 10, 6],
+            "cp1500": [24.5, 5, 13, 11],
+            "cp2500": [48.5, 12, 14, 14],
+            "cp2500l40": [40, 15, 15, 15]
         },
         "tags": ["shadow"],
         "buddyDistance": 3,
@@ -6731,7 +6705,7 @@
             "cp500": [8.5, 4, 12, 10],
             "cp1500": [24.5, 6, 15, 14],
             "cp2500": [49, 15, 15, 15],
-            "cp2500l40": [40, 15, 13, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "eliteMoves": ["POWER_WHIP"],
         "buddyDistance": 3,
@@ -6759,7 +6733,7 @@
             "cp500": [8.5, 4, 12, 10],
             "cp1500": [24.5, 6, 15, 14],
             "cp2500": [49, 15, 15, 15],
-            "cp2500l40": [40, 15, 13, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "eliteMoves": ["POWER_WHIP"],
         "buddyDistance": 3,
@@ -7040,7 +7014,7 @@
             "cp500": [8.5, 5, 10, 12],
             "cp1500": [25.5, 4, 11, 11],
             "cp2500": [49.5, 15, 15, 14],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 5,
         "thirdMoveCost": 75000,
@@ -7170,7 +7144,7 @@
             "cp500": [8, 8, 11, 13],
             "cp1500": [24, 2, 14, 13],
             "cp2500": [49.5, 6, 13, 15],
-            "cp2500l40": [40, 15, 13, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "level25CP": 1417,
         "tags": ["shadoweligible"],
@@ -7196,9 +7170,9 @@
         "chargedMoves": ["THUNDER", "THUNDER_PUNCH", "THUNDERBOLT"],
         "defaultIVs": {
             "cp500": [8, 8, 11, 13],
-            "cp1500": [24, 2, 14, 13],
-            "cp2500": [49.5, 6, 13, 15],
-            "cp2500l40": [40, 15, 13, 15]
+            "cp1500": [23.5, 7, 14, 14],
+            "cp2500": [46.5, 13, 15, 14],
+            "cp2500l40": [40, 15, 15, 15]
         },
         "tags": ["shadow"],
         "buddyDistance": 5,
@@ -7225,7 +7199,7 @@
             "cp500": [8, 4, 7, 15],
             "cp1500": [23.5, 5, 12, 10],
             "cp2500": [48, 4, 14, 13],
-            "cp2500l40": [40, 14, 15, 14]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "level25CP": 1456,
         "tags": ["shadoweligible"],
@@ -7253,7 +7227,7 @@
             "cp500": [8, 4, 7, 15],
             "cp1500": [23.5, 5, 12, 10],
             "cp2500": [48, 4, 14, 13],
-            "cp2500l40": [40, 14, 15, 14]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "tags": ["shadow"],
         "buddyDistance": 5,
@@ -7813,7 +7787,7 @@
             "cp500": [14, 5, 14, 9],
             "cp1500": [49, 12, 14, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 14, 15, 14]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 5,
         "thirdMoveCost": 75000,
@@ -8205,7 +8179,7 @@
         "fastMoves": ["DRAGON_BREATH", "IRON_TAIL"],
         "chargedMoves": ["AQUA_TAIL", "TWISTER", "WRAP"],
         "defaultIVs": {
-            "cp500": [19, 5, 13, 15],
+            "cp500": [19, 4, 13, 15],
             "cp1500": [50, 15, 15, 15],
             "cp2500": [50, 15, 15, 15]
         },
@@ -8481,7 +8455,7 @@
             "cp500": [13, 4, 15, 15],
             "cp1500": [49.5, 4, 14, 14],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 13, 15, 15]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 10000,
@@ -8509,7 +8483,7 @@
             "cp500": [13, 4, 15, 15],
             "cp1500": [49.5, 4, 14, 14],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 13, 15, 15]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 10000,
@@ -8536,7 +8510,7 @@
             "cp500": [8, 5, 8, 10],
             "cp1500": [23, 6, 14, 14],
             "cp2500": [48.5, 5, 13, 12],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "eliteMoves": ["FRENZY_PLANT"],
         "searchPriority": 16,
@@ -8565,7 +8539,7 @@
             "cp500": [8, 5, 8, 10],
             "cp1500": [23, 6, 14, 14],
             "cp2500": [48.5, 5, 13, 12],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "eliteMoves": ["FRENZY_PLANT"],
         "searchPriority": 16,
@@ -9029,7 +9003,7 @@
             "cp500": [14.5, 5, 7, 14],
             "cp1500": [49, 15, 14, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 15, 12, 15]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 1,
         "thirdMoveCost": 10000,
@@ -9208,7 +9182,7 @@
             "cp500": [50, 8, 15, 14],
             "cp1500": [50, 15, 15, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp500l40": [40, 14, 14, 15]
+            "cp500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 1,
         "thirdMoveCost": 10000,
@@ -9571,7 +9545,7 @@
             "cp500": [8.5, 4, 9, 8],
             "cp1500": [24.5, 6, 15, 10],
             "cp2500": [50, 12, 12, 12],
-            "cp2500l40": [40, 15, 13, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "level25CP": 1383,
         "tags": ["shadoweligible"],
@@ -9598,7 +9572,7 @@
             "cp500": [8.5, 4, 9, 8],
             "cp1500": [24.5, 6, 15, 10],
             "cp2500": [50, 12, 12, 12],
-            "cp2500l40": [40, 15, 13, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "tags": ["shadow"],
         "buddyDistance": 3,
@@ -9624,7 +9598,7 @@
             "cp500": [48.5, 14, 15, 13],
             "cp1500": [50, 15, 15, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp500l40": [40, 15, 13, 15]
+            "cp500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -9700,8 +9674,8 @@
         "fastMoves": ["COUNTER", "ROCK_THROW"],
         "chargedMoves": ["EARTHQUAKE", "ROCK_SLIDE", "STONE_EDGE", "ROCK_TOMB"],
         "defaultIVs": {
-            "cp500": [9, 3, 9, 11],
-            "cp1500": [27, 2, 9, 11],
+            "cp500": [8.5, 9, 15, 14],
+            "cp1500": [26, 5, 15, 12],
             "cp2500": [50, 15, 15, 15]
         },
         "searchPriority": 8,
@@ -9729,7 +9703,7 @@
             "cp500": [8, 4, 4, 11],
             "cp1500": [23, 5, 11, 12],
             "cp2500": [45.5, 6, 15, 15],
-            "cp2500l40": [40, 15, 14, 14]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "searchPriority": 10,
         "level25CP": 1494,
@@ -9758,7 +9732,7 @@
             "cp500": [8, 4, 4, 11],
             "cp1500": [23, 5, 11, 12],
             "cp2500": [45.5, 6, 15, 15],
-            "cp2500l40": [40, 15, 14, 14]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "searchPriority": 10,
         "tags": ["shadow"],
@@ -9947,7 +9921,7 @@
             "cp500": [14, 5, 12, 15],
             "cp1500": [49, 15, 14, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 15, 14, 14]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "tags": ["shadoweligible"],
         "buddyDistance": 3,
@@ -9974,7 +9948,7 @@
             "cp500": [14, 5, 12, 15],
             "cp1500": [49, 15, 14, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 15, 14, 14]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "tags": ["shadow"],
         "buddyDistance": 3,
@@ -10048,7 +10022,7 @@
             "cp500": [12.5, 7, 15, 13],
             "cp1500": [48.5, 4, 11, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 14, 15, 13]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -10451,7 +10425,7 @@
         "fastMoves": ["COUNTER", "SPLASH", "CHARM"],
         "chargedMoves": ["MIRROR_COAT"],
         "defaultIVs": {
-            "cp500": [20.5, 3, 15, 8],
+            "cp500": [20, 4, 14, 12],
             "cp1500": [50, 15, 15, 15],
             "cp2500": [50, 15, 15, 15]
         },
@@ -10545,7 +10519,7 @@
         "fastMoves": ["BUG_BITE", "TACKLE"],
         "chargedMoves": ["GYRO_BALL", "ROCK_TOMB", "SAND_TOMB"],
         "defaultIVs": {
-            "cp500": [18, 3, 12, 10],
+            "cp500": [17, 6, 15, 14],
             "cp1500": [50, 15, 15, 15],
             "cp2500": [50, 15, 15, 15]
         },
@@ -10573,7 +10547,7 @@
             "cp500": [8.5, 5, 5, 11],
             "cp1500": [25, 4, 7, 14],
             "cp2500": [50, 12, 12, 12],
-            "cp2500l40": [40, 15, 13, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "level25CP": 1383,
         "tags": ["shadoweligible"],
@@ -10601,7 +10575,7 @@
             "cp500": [8.5, 5, 5, 11],
             "cp1500": [25, 4, 7, 14],
             "cp2500": [50, 12, 12, 12],
-            "cp2500l40": [40, 15, 13, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "tags": ["shadow"],
         "searchPriority": 2,
@@ -10700,7 +10674,7 @@
             "cp500": [8, 4, 10, 11],
             "cp1500": [23.5, 4, 14, 11],
             "cp2500": [48, 5, 14, 15],
-            "cp2500l40": [40, 15, 13, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 5,
         "thirdMoveCost": 75000,
@@ -10925,9 +10899,9 @@
         "fastMoves": ["BULLET_PUNCH", "FURY_CUTTER"],
         "chargedMoves": ["IRON_HEAD", "NIGHT_SLASH", "X_SCISSOR"],
         "defaultIVs": {
-            "cp500": [4.5, 13, 15, 13],
-            "cp1500": [13.5, 7, 9, 11],
-            "cp2500": [22.5, 6, 13, 8]
+            "cp500": [4.5, 10, 15, 15],
+            "cp1500": [13.5, 5, 13, 10],
+            "cp2500": [22.5, 4, 10, 13]
         },
         "tags": ["shadoweligible", "mega"],
         "level25CP": 2581,
@@ -11118,7 +11092,7 @@
             "cp500": [14, 8, 14, 12],
             "cp1500": [50, 13, 15, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 14, 14, 15]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "level25CP": 760,
         "tags": ["shadoweligible"],
@@ -11145,7 +11119,7 @@
             "cp500": [14, 8, 14, 12],
             "cp1500": [50, 13, 15, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 14, 14, 15]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "tags": ["shadow"],
         "buddyDistance": 3,
@@ -11322,7 +11296,7 @@
             "cp500": [8, 7, 14, 10],
             "cp1500": [24, 4, 12, 13],
             "cp2500": [47.5, 12, 12, 13],
-            "cp2500l40": [40, 14, 15, 13]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "level25CP": 1422,
         "tags": ["shadoweligible"],
@@ -11350,7 +11324,7 @@
             "cp500": [8, 7, 14, 10],
             "cp1500": [24, 4, 12, 13],
             "cp2500": [47.5, 12, 12, 13],
-            "cp2500l40": [40, 14, 15, 13]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "tags": ["shadow"],
         "buddyDistance": 3,
@@ -11378,7 +11352,7 @@
             "cp500": [14, 4, 14, 11],
             "cp1500": [47.5, 14, 15, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 13, 15, 15]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -11423,7 +11397,7 @@
             "cp500": [8, 7, 15, 13],
             "cp1500": [24.5, 4, 15, 6],
             "cp2500": [47, 12, 15, 15],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 1,
         "thirdMoveCost": 10000,
@@ -11865,8 +11839,8 @@
         "fastMoves": ["TACKLE", "ZEN_HEADBUTT"],
         "chargedMoves": ["MEGAHORN", "STOMP", "WILD_CHARGE"],
         "defaultIVs": {
-            "cp500": [9, 2, 7, 11],
-            "cp1500": [26, 3, 13, 13],
+            "cp500": [8.5, 9, 14, 12],
+            "cp1500": [26, 4, 15, 8],
             "cp2500": [50, 15, 15, 15]
         },
         "tags": ["shadow"],
@@ -11909,7 +11883,7 @@
             "cp500": [47, 10, 15, 14],
             "cp1500": [50, 15, 15, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp500l40": [40, 15, 14, 14]
+            "cp500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 5,
         "thirdMoveCost": 10000,
@@ -12034,7 +12008,7 @@
             "cp500": [8, 6, 12, 14],
             "cp1500": [24, 4, 14, 11],
             "cp2500": [50, 5, 13, 14],
-            "cp2500l40": [40, 15, 15, 13]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "searchPriority": 5,
         "buddyDistance": 5,
@@ -12663,7 +12637,7 @@
         "fastMoves": ["TACKLE", "WATER_GUN"],
         "chargedMoves": ["DIG", "SLUDGE", "STOMP"],
         "defaultIVs": {
-            "cp500": [17, 3, 15, 12],
+            "cp500": [16.5, 7, 14, 15],
             "cp1500": [50, 15, 15, 15],
             "cp2500": [50, 15, 15, 15]
         },
@@ -12716,8 +12690,8 @@
         "chargedMoves": ["MUD_BOMB", "SLUDGE", "SURF"],
         "tags": ["starter", "shadow"],
         "defaultIVs": {
-            "cp500": [10.5, 5, 14, 15],
-            "cp1500": [35, 2, 10, 15],
+            "cp500": [10.5, 7, 15, 9],
+            "cp1500": [33.5, 5, 13, 13],
             "cp2500": [50, 15, 15, 15]
         },
         "buddyDistance": 3,
@@ -13175,7 +13149,7 @@
             "cp500": [8, 9, 14, 10],
             "cp1500": [24, 6, 13, 12],
             "cp2500": [47.5, 12, 13, 15],
-            "cp2500l40": [40, 15, 14, 14]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -13304,7 +13278,7 @@
             "cp500": [8, 4, 15, 13],
             "cp1500": [24, 5, 13, 10],
             "cp2500": [46, 13, 15, 15],
-            "cp2500l40": [40, 15, 15, 12]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "level25CP": 1412,
         "tags": ["shadoweligible"],
@@ -13333,7 +13307,7 @@
             "cp500": [8, 4, 15, 13],
             "cp1500": [24, 5, 13, 10],
             "cp2500": [46, 13, 15, 15],
-            "cp2500l40": [40, 15, 15, 12]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "tags": ["shadow"],
         "eliteMoves": ["BULLET_SEED"],
@@ -13643,7 +13617,7 @@
             "cp500": [8.5, 4, 4, 14],
             "cp1500": [24.5, 5, 13, 14],
             "cp2500": [49, 13, 13, 15],
-            "cp2500l40": [40, 14, 15, 14]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 1,
         "thirdMoveCost": 10000,
@@ -13970,7 +13944,7 @@
             "cp500": [8, 5, 13, 15],
             "cp1500": [23.5, 6, 15, 12],
             "cp2500": [46.5, 13, 14, 13],
-            "cp2500l40": [40, 15, 14, 14]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 1,
         "thirdMoveCost": 10000,
@@ -13997,7 +13971,7 @@
             "cp500": [8, 5, 13, 15],
             "cp1500": [23.5, 6, 15, 12],
             "cp2500": [46.5, 13, 14, 13],
-            "cp2500l40": [40, 15, 14, 14]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 1,
         "thirdMoveCost": 10000,
@@ -14172,7 +14146,7 @@
         "fastMoves": ["ROCK_THROW", "SPARK"],
         "chargedMoves": ["ROCK_BLAST", "ROCK_SLIDE", "THUNDERBOLT"],
         "defaultIVs": {
-            "cp500": [21, 2, 8, 11],
+            "cp500": [20, 4, 11, 15],
             "cp1500": [50, 15, 15, 15],
             "cp2500": [50, 15, 15, 15]
         },
@@ -14224,7 +14198,7 @@
             "cp500": [12.5, 5, 14, 15],
             "cp1500": [46.5, 5, 13, 14],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 13, 15, 15]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -14249,7 +14223,7 @@
             "cp500": [13, 5, 13, 9],
             "cp1500": [45.5, 7, 15, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 14, 15, 14]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "level25CP": 858,
         "tags": ["shadoweligible"],
@@ -14273,7 +14247,7 @@
             "cp500": [13, 5, 13, 9],
             "cp1500": [45.5, 7, 15, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 14, 15, 14]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "tags": ["shadow"],
         "searchPriority": 10,
@@ -14479,6 +14453,25 @@
             "parent": "lairon_shadow"
         }
     }, {
+        "dex": 306,
+        "speciesName": "Aggron (Mega)",
+        "speciesId": "aggron_mega",
+        "baseStats": {
+            "atk": 247,
+            "def": 331,
+            "hp": 172
+        },
+        "types": ["steel", "none"],
+        "fastMoves": ["DRAGON_TAIL", "IRON_TAIL", "SMACK_DOWN"],
+        "chargedMoves": ["HEAVY_SLAM", "STONE_EDGE", "THUNDER"],
+        "tags": ["mega"],
+        "defaultIVs": {
+            "cp500": [4.5, 9, 15, 13],
+            "cp1500": [13, 10, 9, 13],
+            "cp2500": [22, 6, 7, 14]
+        },
+        "released": "true"
+    }, {
         "dex": 307,
         "speciesName": "Meditite",
         "speciesId": "meditite",
@@ -14518,7 +14511,7 @@
             "cp500": [13.5, 4, 15, 9],
             "cp1500": [50, 4, 15, 14],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 13, 15, 15]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "searchPriority": 5,
         "buddyDistance": 3,
@@ -14567,7 +14560,7 @@
         "fastMoves": ["QUICK_ATTACK", "SPARK"],
         "chargedMoves": ["DISCHARGE", "SWIFT", "THUNDERBOLT"],
         "defaultIVs": {
-            "cp500": [20, 2, 15, 13],
+            "cp500": [20, 4, 14, 11],
             "cp1500": [50, 15, 15, 15],
             "cp2500": [50, 15, 15, 15]
         },
@@ -14595,7 +14588,7 @@
             "cp500": [8, 4, 14, 12],
             "cp1500": [23.5, 5, 14, 14],
             "cp2500": [46.5, 12, 14, 14],
-            "cp2500l40": [40, 14, 15, 13]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -14647,7 +14640,7 @@
             "cp500": [8, 4, 14, 12],
             "cp1500": [23.5, 5, 14, 14],
             "cp2500": [46.5, 12, 14, 14],
-            "cp2500l40": [40, 14, 15, 13]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -14930,7 +14923,7 @@
             "cp500": [13, 5, 12, 15],
             "cp1500": [48.5, 5, 14, 10],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 15, 14, 15]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 1,
         "thirdMoveCost": 10000,
@@ -14955,7 +14948,7 @@
             "cp500": [8.5, 4, 10, 8],
             "cp1500": [25, 4, 13, 6],
             "cp2500": [50, 12, 12, 15],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 1,
         "thirdMoveCost": 10000,
@@ -15103,7 +15096,7 @@
             "cp500": [14.5, 5, 11, 11],
             "cp1500": [50, 15, 15, 12],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 15, 13, 15]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 1,
         "thirdMoveCost": 10000,
@@ -15128,7 +15121,7 @@
             "cp500": [8, 5, 14, 12],
             "cp1500": [24, 4, 8, 14],
             "cp2500": [49.5, 4, 14, 14],
-            "cp2500l40": [40, 15, 14, 14]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 1,
         "thirdMoveCost": 10000,
@@ -15383,7 +15376,7 @@
             "cp500": [8, 7, 15, 12],
             "cp1500": [23.5, 9, 14, 15],
             "cp2500": [47, 14, 15, 15],
-            "cp2500l40": [40, 14, 15, 13]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "level25CP": 1386,
         "buddyDistance": 3,
@@ -15410,7 +15403,7 @@
             "cp500": [8, 7, 15, 12],
             "cp1500": [23.5, 9, 14, 15],
             "cp2500": [47, 14, 15, 15],
-            "cp2500l40": [40, 14, 15, 13]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -15512,7 +15505,7 @@
             "cp500": [8, 6, 8, 7],
             "cp1500": [23, 4, 12, 14],
             "cp2500": [47, 5, 12, 15],
-            "cp2500l40": [40, 14, 15, 13]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "tags": ["regional"],
         "buddyDistance": 3,
@@ -15555,7 +15548,7 @@
             "cp500": [8, 7, 14, 13],
             "cp1500": [23.5, 7, 15, 14],
             "cp2500": [46.5, 13, 15, 15],
-            "cp2500l40": [40, 15, 15, 13]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "tags": ["regional"],
         "buddyDistance": 3,
@@ -15577,7 +15570,7 @@
             "cp500": [8, 7, 14, 13],
             "cp1500": [23.5, 7, 15, 14],
             "cp2500": [46.5, 13, 15, 15],
-            "cp2500l40": [40, 15, 15, 13]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "tags": ["regional"],
         "buddyDistance": 3,
@@ -15672,7 +15665,7 @@
             "cp500": [7.5, 5, 14, 15],
             "cp1500": [22.5, 4, 11, 15],
             "cp2500": [46, 4, 12, 12],
-            "cp2500l40": [40, 12, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -16155,7 +16148,7 @@
             "cp500": [8, 5, 15, 14],
             "cp1500": [24.5, 4, 9, 15],
             "cp2500": [50, 8, 15, 12],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "level25CP": 1389,
         "tags": ["shadoweligible"],
@@ -16179,10 +16172,10 @@
         "fastMoves": ["HEX", "SHADOW_CLAW"],
         "chargedMoves": ["DAZZLING_GLEAM", "SHADOW_BALL", "THUNDER"],
         "defaultIVs": {
-            "cp500": [8, 5, 15, 14],
-            "cp1500": [24.5, 4, 9, 15],
-            "cp2500": [50, 8, 15, 12],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp500": [8, 8, 15, 13],
+            "cp1500": [24.5, 4, 13, 10],
+            "cp2500": [47, 15, 14, 15],
+            "cp2500l40": [40, 15, 15, 15]
         },
         "tags": ["shadow"],
         "buddyDistance": 3,
@@ -16336,7 +16329,7 @@
             "cp500": [8.5, 4, 7, 13],
             "cp1500": [25, 5, 10, 13],
             "cp2500": [50, 12, 15, 12],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 5,
         "thirdMoveCost": 75000,
@@ -16686,7 +16679,7 @@
             "cp500": [8, 6, 11, 15],
             "cp1500": [24, 4, 14, 11],
             "cp2500": [46.5, 14, 15, 12],
-            "cp2500l40": [40, 14, 15, 14]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -16711,7 +16704,7 @@
             "cp500": [7.5, 5, 15, 12],
             "cp1500": [22.5, 5, 8, 14],
             "cp2500": [43.5, 6, 15, 14],
-            "cp2500l40": [40, 14, 15, 14]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -16958,7 +16951,7 @@
         "fastMoves": ["TAKE_DOWN"],
         "chargedMoves": ["STRUGGLE"],
         "defaultIVs": {
-            "cp500": [20, 3, 15, 14],
+            "cp500": [20.5, 4, 7, 14],
             "cp1500": [50, 15, 15, 15],
             "cp2500": [50, 15, 15, 15]
         },
@@ -17140,7 +17133,7 @@
             "cp500": [8, 4, 8, 9],
             "cp1500": [23, 6, 11, 13],
             "cp2500": [49, 4, 5, 15],
-            "cp2500l40": [40, 15, 12, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "searchPriority": 40,
         "buddyDistance": 20,
@@ -17427,7 +17420,7 @@
             "cp500": [8, 10, 10, 15],
             "cp1500": [23.5, 12, 12, 15],
             "cp2500": [50, 11, 13, 14],
-            "cp2500l40": [40, 14, 15, 13]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "searchPriority": 15,
         "buddyDistance": 20,
@@ -18118,7 +18111,7 @@
         "fastMoves": ["SPARK", "TACKLE"],
         "chargedMoves": ["DISCHARGE", "SWIFT", "THUNDERBOLT"],
         "defaultIVs": {
-            "cp500": [22.5, 2, 12, 15],
+            "cp500": [21.5, 6, 15, 13],
             "cp1500": [50, 15, 15, 15],
             "cp2500": [50, 15, 15, 15]
         },
@@ -18146,7 +18139,7 @@
             "cp500": [13, 4, 13, 7],
             "cp1500": [47.5, 3, 15, 11],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 15, 15, 13]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 5,
         "thirdMoveCost": 75000,
@@ -18171,10 +18164,10 @@
         "fastMoves": ["BITE", "SPARK"],
         "chargedMoves": ["CRUNCH", "THUNDERBOLT", "WILD_CHARGE"],
         "defaultIVs": {
-            "cp500": [13, 4, 13, 7],
-            "cp1500": [47.5, 3, 15, 11],
+            "cp500": [12.5, 6, 14, 13],
+            "cp1500": [45.5, 5, 14, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 15, 15, 13]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 5,
         "thirdMoveCost": 75000,
@@ -18405,7 +18398,7 @@
             "cp500": [49, 10, 13, 15],
             "cp1500": [50, 15, 15, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp500l40": [40, 15, 14, 13]
+            "cp500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 1,
         "thirdMoveCost": 10000,
@@ -18430,7 +18423,7 @@
             "cp500": [49, 10, 13, 15],
             "cp1500": [50, 15, 15, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp500l40": [40, 15, 14, 13]
+            "cp500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 1,
         "thirdMoveCost": 10000,
@@ -18455,7 +18448,7 @@
             "cp500": [49, 10, 13, 15],
             "cp1500": [50, 15, 15, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp500l40": [40, 15, 14, 13]
+            "cp500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 1,
         "thirdMoveCost": 10000,
@@ -18578,7 +18571,7 @@
             "cp500": [49, 8, 15, 14],
             "cp1500": [50, 15, 15, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp500l40": [40, 15, 15, 12]
+            "cp500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -18672,7 +18665,7 @@
             "cp500": [7.5, 12, 15, 9],
             "cp1500": [22.5, 6, 14, 12],
             "cp2500": [45.5, 4, 15, 14],
-            "cp2500l40": [40, 14, 14, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -18795,7 +18788,7 @@
             "cp500": [8, 8, 15, 10],
             "cp1500": [24.5, 4, 12, 9],
             "cp2500": [47, 13, 14, 15],
-            "cp2500l40": [40, 14, 15, 13]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "tags": ["regional"],
         "searchPriority": 2,
@@ -18818,7 +18811,7 @@
             "cp500": [8, 6, 5, 11],
             "cp1500": [23, 4, 13, 14],
             "cp2500": [47.5, 5, 11, 15],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "tags": ["shadoweligible"],
         "buddyDistance": 3,
@@ -18845,7 +18838,7 @@
             "cp500": [8, 6, 5, 11],
             "cp1500": [23, 4, 13, 14],
             "cp2500": [47.5, 5, 11, 15],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "tags": ["shadow"],
         "buddyDistance": 3,
@@ -18895,7 +18888,7 @@
             "cp500": [8, 5, 12, 11],
             "cp1500": [23, 7, 15, 14],
             "cp2500": [49, 5, 13, 14],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 5,
         "thirdMoveCost": 75000,
@@ -19221,7 +19214,7 @@
             "cp500": [8, 5, 14, 11],
             "cp1500": [23.5, 4, 15, 13],
             "cp2500": [49.5, 4, 14, 14],
-            "cp2500l40": [40, 14, 15, 13]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "searchPriority": 5,
         "level25CP": 1430,
@@ -19249,7 +19242,7 @@
             "cp500": [8, 5, 14, 11],
             "cp1500": [23.5, 4, 15, 13],
             "cp2500": [49.5, 4, 14, 14],
-            "cp2500l40": [40, 14, 15, 13]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "searchPriority": 5,
         "tags": ["shadow"],
@@ -19301,7 +19294,7 @@
             "cp500": [8.5, 5, 8, 14],
             "cp1500": [25.5, 4, 12, 10],
             "cp2500": [50, 12, 15, 15],
-            "cp2500l40": [40, 15, 13, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "searchPriority": 2,
         "buddyDistance": 3,
@@ -19588,7 +19581,7 @@
             "cp500": [14, 5, 14, 13],
             "cp1500": [49, 14, 15, 13],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 15, 14, 14]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -19615,7 +19608,7 @@
             "cp500": [14, 5, 14, 13],
             "cp1500": [49, 14, 15, 13],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 15, 14, 14]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -19745,7 +19738,7 @@
             "cp500": [7.5, 10, 13, 15],
             "cp1500": [23, 5, 11, 11],
             "cp2500": [47, 5, 13, 11],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "searchPriority": 4,
         "buddyDistance": 5,
@@ -19773,7 +19766,7 @@
             "cp500": [7.5, 10, 13, 15],
             "cp1500": [23, 5, 11, 11],
             "cp2500": [47, 5, 13, 11],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "searchPriority": 4,
         "buddyDistance": 5,
@@ -19824,7 +19817,7 @@
             "cp500": [7.5, 5, 13, 15],
             "cp1500": [22, 7, 13, 15],
             "cp2500": [44, 6, 15, 13],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "searchPriority": 9,
         "buddyDistance": 3,
@@ -19994,7 +19987,7 @@
             "cp500": [8, 6, 10, 15],
             "cp1500": [23.5, 4, 14, 15],
             "cp2500": [49, 5, 14, 15],
-            "cp2500l40": [40, 15, 15, 13]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "level25CP": 1436,
         "tags": ["shadoweligible"],
@@ -20048,7 +20041,7 @@
             "cp500": [8, 6, 10, 15],
             "cp1500": [23.5, 4, 14, 15],
             "cp2500": [49, 5, 14, 15],
-            "cp2500l40": [40, 15, 15, 13]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "tags": ["shadow"],
         "searchPriority": 5,
@@ -20179,7 +20172,7 @@
             "cp500": [8, 4, 5, 8],
             "cp1500": [23, 5, 8, 14],
             "cp2500": [47.5, 4, 12, 11],
-            "cp2500l40": [40, 14, 15, 14]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "eliteMoves": ["BODY_SLAM"],
         "buddyDistance": 3,
@@ -20727,8 +20720,8 @@
         "fastMoves": ["ROCK_THROW", "SPARK"],
         "chargedMoves": ["MAGNET_BOMB", "ROCK_SLIDE", "THUNDERBOLT"],
         "defaultIVs": {
-            "cp500": [9.5, 2, 13, 7],
-            "cp1500": [28, 2, 8, 14],
+            "cp500": [9, 6, 14, 14],
+            "cp1500": [27.5, 4, 7, 15],
             "cp2500": [50, 15, 15, 15]
         },
         "tags": ["shadow"],
@@ -20756,7 +20749,7 @@
             "cp500": [8, 6, 14, 8],
             "cp1500": [23.5, 5, 13, 12],
             "cp2500": [48.5, 4, 14, 14],
-            "cp2500l40": [40, 15, 12, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "level25CP": 1447,
         "tags": ["shadoweligible"],
@@ -20784,7 +20777,7 @@
             "cp500": [8, 6, 14, 8],
             "cp1500": [23.5, 5, 13, 12],
             "cp2500": [48.5, 4, 14, 14],
-            "cp2500l40": [40, 15, 12, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "tags": ["shadow"],
         "buddyDistance": 3,
@@ -21693,7 +21686,7 @@
             "cp500": [13.5, 4, 13, 9],
             "cp1500": [49.5, 6, 12, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 13, 15, 15]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 10000,
@@ -21721,7 +21714,7 @@
             "cp500": [8.5, 5, 9, 8],
             "cp1500": [25, 4, 11, 12],
             "cp2500": [49.5, 12, 14, 13],
-            "cp2500l40": [40, 15, 13, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "searchPriority": 4,
         "buddyDistance": 3,
@@ -22205,7 +22198,7 @@
             "cp500": [8, 4, 12, 15],
             "cp1500": [23.5, 5, 13, 15],
             "cp2500": [48.5, 6, 14, 15],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -22256,7 +22249,7 @@
             "cp500": [8, 4, 12, 15],
             "cp1500": [23.5, 5, 13, 15],
             "cp2500": [48.5, 6, 14, 15],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -22307,7 +22300,7 @@
             "cp500": [8, 4, 12, 15],
             "cp1500": [23.5, 5, 13, 15],
             "cp2500": [48.5, 6, 14, 15],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -22404,7 +22397,7 @@
             "cp500": [13, 5, 14, 13],
             "cp1500": [49.5, 4, 14, 13],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 14, 15, 13]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 1,
         "thirdMoveCost": 10000,
@@ -22478,7 +22471,7 @@
             "cp500": [7.5, 11, 15, 13],
             "cp1500": [23, 4, 13, 12],
             "cp2500": [47.5, 4, 15, 9],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -22547,7 +22540,8 @@
         },
         "types": ["rock", "none"],
         "fastMoves": ["MUD_SLAP", "SMACK_DOWN"],
-        "chargedMoves": ["ROCK_SLIDE", "SOLAR_BEAM", "SUPER_POWER", "HEAVY_SLAM"],
+        "chargedMoves": ["ROCK_SLIDE", "SOLAR_BEAM", "SUPER_POWER", "HEAVY_SLAM", "METEOR_BEAM"],
+        "eliteMoves": ["METEOR_BEAM"],
         "defaultIVs": {
             "cp500": [6, 5, 6, 15],
             "cp1500": [17, 5, 14, 13],
@@ -22624,7 +22618,7 @@
             "cp500": [14, 5, 15, 4],
             "cp1500": [49, 13, 13, 14],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 14, 14, 15]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -22791,7 +22785,7 @@
             "cp500": [13.5, 6, 15, 12],
             "cp1500": [48.5, 12, 13, 14],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 15, 15, 12]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -22907,7 +22901,7 @@
             "cp500": [13.5, 8, 14, 15],
             "cp1500": [50, 12, 14, 13],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 13, 15, 15]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 1,
         "thirdMoveCost": 10000,
@@ -23007,7 +23001,7 @@
             "cp500": [7.5, 12, 14, 11],
             "cp1500": [23, 4, 14, 9],
             "cp2500": [46, 5, 15, 13],
-            "cp2500l40": [40, 14, 15, 14]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 1,
         "thirdMoveCost": 10000,
@@ -23174,7 +23168,7 @@
             "cp500": [13.5, 5, 14, 6],
             "cp1500": [50, 4, 14, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 14, 14, 15]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 5,
         "thirdMoveCost": 75000,
@@ -23224,7 +23218,7 @@
             "cp500": [13, 4, 14, 14],
             "cp1500": [49, 5, 14, 13],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 14, 15, 13]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -23250,7 +23244,7 @@
             "cp500": [13, 4, 14, 14],
             "cp1500": [49, 5, 14, 13],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 14, 15, 13]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -23375,7 +23369,7 @@
             "cp500": [8.5, 4, 11, 5],
             "cp1500": [24, 8, 13, 15],
             "cp2500": [49.5, 12, 13, 14],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 1,
         "thirdMoveCost": 10000,
@@ -23445,7 +23439,7 @@
             "cp500": [14, 5, 9, 14],
             "cp1500": [48, 13, 15, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 14, 15, 14]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -23470,7 +23464,7 @@
             "cp500": [8.5, 5, 8, 8],
             "cp1500": [24.5, 4, 13, 14],
             "cp2500": [49, 12, 13, 15],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -23566,7 +23560,7 @@
             "cp500": [8.5, 4, 9, 9],
             "cp1500": [25, 5, 15, 8],
             "cp2500": [49, 12, 14, 15],
-            "cp2500l40": [40, 15, 14, 14]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -23591,7 +23585,7 @@
             "cp500": [13, 5, 8, 12],
             "cp1500": [47, 4, 14, 14],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 13, 15, 15]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 5,
         "thirdMoveCost": 75000,
@@ -23714,7 +23708,7 @@
             "cp500": [8, 6, 15, 10],
             "cp1500": [23.5, 7, 13, 14],
             "cp2500": [47, 12, 15, 12],
-            "cp2500l40": [40, 14, 15, 14]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -23812,7 +23806,7 @@
             "cp500": [8.5, 4, 9, 13],
             "cp1500": [24.5, 7, 15, 12],
             "cp2500": [49.5, 13, 15, 14],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -23887,7 +23881,7 @@
             "cp500": [8, 4, 5, 12],
             "cp1500": [23.5, 4, 7, 14],
             "cp2500": [47.5, 4, 15, 13],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -23912,7 +23906,7 @@
             "cp500": [14, 4, 12, 11],
             "cp1500": [50, 12, 12, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 12, 15, 15]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -24182,7 +24176,7 @@
             "cp500": [8, 6, 10, 5],
             "cp1500": [23, 5, 15, 10],
             "cp2500": [47, 5, 13, 15],
-            "cp2500l40": [40, 15, 14, 14]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -24402,7 +24396,7 @@
             "cp500": [8, 8, 10, 15],
             "cp1500": [24, 4, 12, 15],
             "cp2500": [46.5, 13, 14, 15],
-            "cp2500l40": [40, 15, 14, 13]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "searchPriority": 10,
         "buddyDistance": 3,
@@ -24521,7 +24515,7 @@
             "cp500": [8, 8, 13, 13],
             "cp1500": [24, 6, 14, 13],
             "cp2500": [48, 12, 12, 14],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "searchPriority": 13,
         "buddyDistance": 3,
@@ -24694,7 +24688,7 @@
             "cp500": [13.5, 7, 14, 11],
             "cp1500": [49.5, 12, 13, 12],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 15, 15, 13]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -24816,7 +24810,7 @@
             "cp500": [14, 5, 10, 13],
             "cp1500": [49, 13, 13, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 14, 15, 14]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 5,
         "thirdMoveCost": 75000,
@@ -24841,7 +24835,7 @@
             "cp500": [8.5, 4, 15, 6],
             "cp1500": [24.5, 8, 12, 15],
             "cp2500": [49.5, 15, 15, 13],
-            "cp2500l40": [40, 12, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 5,
         "thirdMoveCost": 75000,
@@ -24983,7 +24977,7 @@
             "cp500": [7.5, 6, 15, 15],
             "cp1500": [22.5, 6, 13, 15],
             "cp2500": [45, 5, 15, 15],
-            "cp2500l40": [40, 15, 15, 13]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -25051,7 +25045,7 @@
             "cp500": [13.5, 6, 14, 11],
             "cp1500": [48, 13, 15, 12],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 12, 15, 15]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -25169,7 +25163,7 @@
             "cp500": [13.5, 5, 9, 11],
             "cp1500": [49, 4, 15, 14],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 15, 13, 15]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 5,
         "thirdMoveCost": 75000,
@@ -25239,7 +25233,7 @@
             "cp500": [13, 4, 11, 9],
             "cp1500": [46, 4, 14, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 14, 15, 13]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 5,
         "thirdMoveCost": 75000,
@@ -25362,7 +25356,7 @@
             "cp500": [8, 5, 13, 5],
             "cp1500": [23, 4, 14, 15],
             "cp2500": [48, 4, 14, 13],
-            "cp2500l40": [40, 15, 15, 13]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "tags": ["regional"],
         "buddyDistance": 3,
@@ -25480,7 +25474,7 @@
             "cp500": [13, 4, 8, 12],
             "cp1500": [44.5, 6, 15, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 15, 15, 13]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 5,
         "thirdMoveCost": 75000,
@@ -26323,7 +26317,7 @@
             "cp500": [12.5, 9, 15, 12],
             "cp1500": [47, 4, 15, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 14, 15, 13]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 1,
         "thirdMoveCost": 10000,
@@ -26375,7 +26369,7 @@
             "cp500": [50, 8, 13, 14],
             "cp1500": [50, 15, 15, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp500l40": [40, 15, 14, 14]
+            "cp500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 1,
         "thirdMoveCost": 10000,
@@ -26400,7 +26394,7 @@
             "cp500": [50, 11, 14, 12],
             "cp1500": [50, 15, 15, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp500l40": [40, 14, 15, 14]
+            "cp500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 1,
         "thirdMoveCost": 10000,
@@ -26450,7 +26444,7 @@
             "cp500": [13, 5, 15, 15],
             "cp1500": [49, 6, 15, 14],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 14, 15, 13]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 10000,
@@ -26646,7 +26640,7 @@
             "cp500": [12.5, 6, 14, 13],
             "cp1500": [47.5, 4, 14, 11],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 13, 15, 15]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -26788,7 +26782,7 @@
             "cp500": [14, 4, 6, 15],
             "cp1500": [47.5, 13, 15, 14],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 15, 14, 14]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 5,
         "thirdMoveCost": 75000,
@@ -26813,7 +26807,7 @@
             "cp500": [8, 5, 5, 8],
             "cp1500": [23, 4, 15, 10],
             "cp2500": [47.5, 4, 8, 15],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 5,
         "thirdMoveCost": 75000,
@@ -26888,7 +26882,7 @@
             "cp500": [8, 5, 15, 13],
             "cp1500": [24, 5, 15, 8],
             "cp2500": [46, 14, 15, 13],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -26986,7 +26980,7 @@
             "cp500": [8, 5, 14, 13],
             "cp1500": [24, 4, 14, 9],
             "cp2500": [50, 5, 14, 11],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -27083,7 +27077,7 @@
             "cp500": [8, 5, 15, 8],
             "cp1500": [23.5, 5, 9, 15],
             "cp2500": [48.5, 4, 15, 14],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -27253,7 +27247,7 @@
             "cp500": [14, 5, 15, 10],
             "cp1500": [50, 12, 15, 12],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 13, 15, 15]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 5,
         "thirdMoveCost": 75000,
@@ -27327,7 +27321,7 @@
             "cp500": [8, 4, 5, 15],
             "cp1500": [23.5, 4, 15, 6],
             "cp2500": [47, 4, 15, 15],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 5,
         "thirdMoveCost": 75000,
@@ -27368,7 +27362,7 @@
             "cp500": [13.5, 4, 8, 12],
             "cp1500": [50, 6, 10, 13],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 14, 14, 15]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 5,
         "thirdMoveCost": 75000,
@@ -27634,7 +27628,7 @@
             "cp500": [8, 5, 14, 8],
             "cp1500": [23.5, 5, 14, 11],
             "cp2500": [49, 4, 13, 14],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "tags": ["teambuilderexclude"],
         "buddyDistance": 5,
@@ -27686,7 +27680,7 @@
             "cp500": [8.5, 6, 10, 9],
             "cp1500": [24.5, 6, 13, 15],
             "cp2500": [48.5, 15, 14, 15],
-            "cp2500l40": [40, 15, 14, 14]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "tags": ["teambuilderexclude"],
         "buddyDistance": 5,
@@ -28245,7 +28239,7 @@
             "cp500": [13, 5, 11, 10],
             "cp1500": [47.5, 4, 15, 11],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 15, 15, 13]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 1,
         "thirdMoveCost": 10000,
@@ -28416,7 +28410,7 @@
             "cp500": [13.5, 9, 12, 15],
             "cp1500": [48.5, 13, 15, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 15, 13, 15]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -28465,7 +28459,7 @@
             "cp500": [8, 4, 14, 15],
             "cp1500": [24, 4, 10, 15],
             "cp2500": [45.5, 15, 15, 15],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 75000,
@@ -28486,7 +28480,7 @@
             "cp500": [8, 4, 14, 15],
             "cp1500": [24, 4, 10, 15],
             "cp2500": [45.5, 15, 15, 15],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 75000,
@@ -28507,7 +28501,7 @@
             "cp500": [8, 4, 14, 15],
             "cp1500": [24, 4, 10, 15],
             "cp2500": [45.5, 15, 15, 15],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 75000,
@@ -28528,7 +28522,7 @@
             "cp500": [8, 4, 14, 15],
             "cp1500": [24, 4, 10, 15],
             "cp2500": [45.5, 15, 15, 15],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 75000,
@@ -28749,7 +28743,7 @@
         },
         "types": ["poison", "water"],
         "fastMoves": ["POISON_STING", "BITE"],
-        "chargedMoves": ["MUDDY_WATER", "GUNK_SHOT", "SLUDGE_WAVE"],
+        "chargedMoves": ["BRINE", "GUNK_SHOT", "SLUDGE_WAVE"],
         "defaultIVs": {
             "cp500": [20.5, 4, 10, 13],
             "cp1500": [50, 15, 15, 15],
@@ -28757,7 +28751,7 @@
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
-        "released": false,
+        "released": true,
         "family": {
             "id": "FAMILY_MAREANIE",
             "evolutions": ["toxapex"]
@@ -28773,7 +28767,7 @@
         },
         "types": ["poison", "water"],
         "fastMoves": ["POISON_JAB", "BITE"],
-        "chargedMoves": ["MUDDY_WATER", "GUNK_SHOT", "SLUDGE_WAVE"],
+        "chargedMoves": ["BRINE", "GUNK_SHOT", "SLUDGE_WAVE"],
         "defaultIVs": {
             "cp500": [11.5, 4, 12, 11],
             "cp1500": [38.5, 4, 11, 14],
@@ -28781,7 +28775,7 @@
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
-        "released": false,
+        "released": true,
         "family": {
             "id": "FAMILY_MAREANIE",
             "parent": "mareanie"
@@ -28923,7 +28917,7 @@
             "cp500": [8, 4, 8, 14],
             "cp1500": [23.5, 4, 8, 15],
             "cp2500": [48, 5, 14, 13],
-            "cp2500l40": [40, 15, 13, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -29020,7 +29014,7 @@
             "cp500": [7.5, 8, 14, 12],
             "cp1500": [22, 6, 15, 13],
             "cp2500": [46, 4, 15, 8],
-            "cp2500l40": [40, 12, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "searchPriority": 3,
         "buddyDistance": 3,
@@ -29046,7 +29040,7 @@
             "cp500": [14, 4, 15, 12],
             "cp1500": [50, 13, 13, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 14, 15, 13]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 1,
         "thirdMoveCost": 10000,
@@ -29096,7 +29090,7 @@
             "cp500": [50, 11, 15, 12],
             "cp1500": [50, 15, 15, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp500l40": [40, 15, 13, 15]
+            "cp500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 10000,
@@ -29191,7 +29185,7 @@
             "cp500": [8, 4, 9, 5],
             "cp1500": [22.5, 7, 15, 13],
             "cp2500": [47, 4, 14, 13],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 75000,
@@ -29305,7 +29299,7 @@
             "cp500": [7.5, 12, 11, 15],
             "cp1500": [23, 4, 10, 15],
             "cp2500": [48, 4, 9, 14],
-            "cp2500l40": [40, 14, 15, 14]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -29330,7 +29324,7 @@
             "cp500": [14.5, 4, 4, 15],
             "cp1500": [49.5, 12, 14, 15],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 14, 14, 15]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 75000,
@@ -29736,7 +29730,7 @@
             "cp500": [8, 11, 12, 13],
             "cp1500": [24, 7, 14, 12],
             "cp2500": [48.5, 12, 14, 14],
-            "cp2500l40": [40, 12, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -29799,7 +29793,7 @@
             "cp500": [8.5, 5, 15, 11],
             "cp1500": [25, 6, 14, 13],
             "cp2500": [50, 14, 14, 14],
-            "cp2500l40": [40, 15, 14, 14]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 5,
         "thirdMoveCost": 75000,
@@ -29823,7 +29817,7 @@
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
-        "released": false
+        "released": true
     }, {
         "dex": 778,
         "speciesName": "Mimikyu",
@@ -29840,7 +29834,7 @@
             "cp500": [8.5, 6, 11, 12],
             "cp1500": [25, 4, 15, 13],
             "cp2500": [50, 13, 14, 15],
-            "cp2500l40": [40, 15, 14, 14]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 5,
         "thirdMoveCost": 50000,
@@ -29861,7 +29855,7 @@
             "cp500": [8, 5, 10, 11],
             "cp1500": [23.5, 4, 10, 14],
             "cp2500": [46.5, 7, 15, 15],
-            "cp2500l40": [40, 15, 13, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -30245,6 +30239,7 @@
             "cp1500": [13.5, 8, 15, 15],
             "cp2500": [23, 7, 15, 10]
         },
+        "tags": ["legendary"],
         "buddyDistance": 20,
         "thirdMoveCost": 100000,
         "released": true
@@ -30258,16 +30253,17 @@
             "hp": 219
         },
         "types": ["steel", "flying"],
-        "fastMoves": ["STRUGGLE"],
-        "chargedMoves": ["STRUGGLE"],
+        "fastMoves": ["AIR_SLASH", "SMACK_DOWN"],
+        "chargedMoves": ["IRON_HEAD", "BODY_SLAM", "HEAVY_SLAM", "BULLDOZE"],
         "defaultIVs": {
             "cp500": [6, 11, 14, 14],
             "cp1500": [18, 4, 11, 13],
             "cp2500": [30.5, 4, 15, 6]
         },
+        "tags": ["legendary"],
         "buddyDistance": 20,
         "thirdMoveCost": 100000,
-        "released": false
+        "released": true
     }, {
         "dex": 798,
         "speciesName": "Kartana",
@@ -30278,16 +30274,17 @@
             "hp": 139
         },
         "types": ["grass", "steel"],
-        "fastMoves": ["STRUGGLE"],
-        "chargedMoves": ["STRUGGLE"],
+        "fastMoves": ["AIR_SLASH", "RAZOR_LEAF"],
+        "chargedMoves": ["LEAF_BLADE", "X_SCISSOR", "NIGHT_SLASH", "AERIAL_ACE"],
         "defaultIVs": {
             "cp500": [5, 14, 14, 14],
             "cp1500": [15, 4, 11, 13],
             "cp2500": [25, 4, 9, 14]
         },
+        "tags": ["legendary"],
         "buddyDistance": 20,
         "thirdMoveCost": 100000,
-        "released": false
+        "released": true
     }, {
         "dex": 799,
         "speciesName": "Guzzlord",
@@ -30826,7 +30823,7 @@
             "cp500": [8, 6, 12, 12],
             "cp1500": [23.5, 6, 15, 11],
             "cp2500": [50, 5, 14, 11],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 1,
         "thirdMoveCost": 10000,
@@ -30875,7 +30872,7 @@
             "cp500": [14.5, 4, 8, 10],
             "cp1500": [48.5, 14, 15, 14],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 13, 15, 15]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 1,
         "thirdMoveCost": 10000,
@@ -30901,7 +30898,7 @@
             "cp500": [8, 4, 6, 7],
             "cp1500": [23, 5, 8, 15],
             "cp2500": [47, 4, 12, 15],
-            "cp2500l40": [40, 15, 15, 13]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 1,
         "thirdMoveCost": 10000,
@@ -30975,7 +30972,7 @@
             "cp500": [8.5, 5, 12, 14],
             "cp1500": [25.5, 5, 7, 14],
             "cp2500": [49.5, 15, 14, 15],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 1,
         "thirdMoveCost": 10000,
@@ -31290,7 +31287,7 @@
             "cp500": [8, 8, 10, 14],
             "cp1500": [24, 5, 14, 11],
             "cp2500": [50, 5, 14, 14],
-            "cp2500l40": [40, 14, 14, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 10000,
@@ -31339,7 +31336,7 @@
             "cp500": [7.5, 7, 14, 14],
             "cp1500": [22.5, 5, 15, 11],
             "cp2500": [46.5, 4, 11, 13],
-            "cp2500l40": [40, 14, 15, 14]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 5,
         "thirdMoveCost": 75000,
@@ -31364,7 +31361,7 @@
             "cp500": [8, 5, 6, 6],
             "cp1500": [22.5, 7, 13, 14],
             "cp2500": [46, 5, 14, 15],
-            "cp2500l40": [40, 15, 14, 14]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 5,
         "thirdMoveCost": 75000,
@@ -31938,7 +31935,7 @@
             "cp500": [13.5, 4, 7, 15],
             "cp1500": [49, 5, 14, 14],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 14, 15, 13]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 5,
         "thirdMoveCost": 50000,
@@ -32014,7 +32011,7 @@
             "cp500": [8, 4, 12, 10],
             "cp1500": [23.5, 4, 15, 9],
             "cp2500": [50, 4, 13, 9],
-            "cp2500l40": [40, 15, 13, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "searchPriority": 3,
         "buddyDistance": 3,
@@ -32113,7 +32110,7 @@
             "cp500": [8.5, 4, 9, 9],
             "cp1500": [25, 5, 15, 8],
             "cp2500": [49, 12, 14, 15],
-            "cp2500l40": [40, 15, 14, 14]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "searchPriority": 5,
         "buddyDistance": 3,
@@ -32187,7 +32184,7 @@
             "cp500": [8, 7, 15, 8],
             "cp1500": [23.5, 5, 15, 12],
             "cp2500": [49, 6, 15, 12],
-            "cp2500l40": [40, 15, 13, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 5,
         "thirdMoveCost": 75000,
@@ -32357,7 +32354,7 @@
             "cp500": [8, 5, 5, 8],
             "cp1500": [23, 4, 9, 14],
             "cp2500": [45.5, 6, 14, 14],
-            "cp2500l40": [40, 14, 15, 14]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -32378,7 +32375,7 @@
             "cp500": [8, 5, 10, 10],
             "cp1500": [23.5, 4, 8, 15],
             "cp2500": [48.5, 4, 12, 15],
-            "cp2500l40": [40, 15, 13, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -32399,7 +32396,7 @@
             "cp500": [8, 5, 5, 8],
             "cp1500": [23, 4, 9, 14],
             "cp2500": [45.5, 6, 14, 14],
-            "cp2500l40": [40, 14, 15, 14]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 3,
         "thirdMoveCost": 50000,
@@ -32480,7 +32477,7 @@
             "cp500": [14, 5, 10, 13],
             "cp1500": [49, 13, 14, 12],
             "cp2500": [50, 15, 15, 15],
-            "cp1500l40": [40, 13, 15, 15]
+            "cp1500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 5,
         "thirdMoveCost": 75000,
@@ -32571,7 +32568,7 @@
             "cp500": [7.5, 5, 14, 14],
             "cp1500": [22.5, 5, 12, 11],
             "cp2500": [46.5, 4, 14, 7],
-            "cp2500l40": [40, 15, 14, 14]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 5,
         "thirdMoveCost": 75000,
@@ -32592,7 +32589,7 @@
             "cp500": [7.5, 12, 14, 11],
             "cp1500": [22.5, 7, 15, 13],
             "cp2500": [46.5, 5, 13, 15],
-            "cp2500l40": [40, 13, 15, 15]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 5,
         "thirdMoveCost": 75000,
@@ -33067,7 +33064,7 @@
             "cp500": [8, 11, 14, 15],
             "cp1500": [25, 4, 15, 7],
             "cp2500": [49, 13, 15, 12],
-            "cp2500l40": [40, 15, 14, 14]
+            "cp2500l40": [40, 15, 15, 15]
         },
         "buddyDistance": 20,
         "thirdMoveCost": 100000,
@@ -33110,8 +33107,8 @@
             "cp2500": [28.5, 6, 12, 12]
         },
         "searchPriority": 3,
-        "buddyDistance": 3,
-        "thirdMoveCost": 50000,
+        "buddyDistance": 5,
+        "thirdMoveCost": 75000,
         "released": true,
         "family": {
             "id": "FAMILY_SNEASEL",
@@ -34547,6 +34544,18 @@
         "cooldown": 1000,
         "archetype": "Low Quality"
     }, {
+        "moveId": "METEOR_BEAM",
+        "name": "Meteor Beam",
+        "type": "rock",
+        "power": 120,
+        "energy": 60,
+        "energyGain": 0,
+        "cooldown": 500,
+        "buffs": [1, 0],
+        "buffTarget": "self",
+        "buffApplyChance": "1",
+        "archetype": "Boost Nuke"
+    }, {
         "moveId": "METEOR_MASH",
         "name": "Meteor Mash",
         "type": "steel",
@@ -34815,6 +34824,15 @@
         "energyGain": 9,
         "cooldown": 1000,
         "archetype": "Fast Charge"
+    }, {
+        "moveId": "POLTERGEIST",
+        "name": "Poltergeist (Speculative)",
+        "type": "ghost",
+        "power": 140,
+        "energy": 70,
+        "energyGain": 0,
+        "cooldown": 500,
+        "archetype": "Nuke"
     }, {
         "moveId": "POUND",
         "name": "Pound",
