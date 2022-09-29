@@ -28,43 +28,6 @@
 		"showMeta": true
 	},
 	{
-		"title": "Little Jungle Cup Remix",
-		"cup": "littlejungleremix",
-		"cp": 500,
-		"meta": "littlejungleremix",
-		"showCup": true,
-		"showFormat": true,
-		"showMeta": true
-	},
-	{
-		"title": "Psychic Cup",
-		"cup": "psychic",
-		"cp": 1500,
-		"meta": "psychic",
-		"showCup": true,
-		"showFormat": true,
-		"showMeta": true
-	},
-	{
-		"title": "Weather Cup (Ultra League)",
-		"cup": "weather",
-		"cp": 2500,
-		"meta": "weather",
-		"showCup": true,
-		"showFormat": true,
-		"showMeta": true
-	},
-	{
-		"title": "Silph Continentals",
-		"cup": "continentals",
-		"cp": 1500,
-		"meta": "continentals",
-		"showCup": false,
-		"showFormat": true,
-		"showMeta": true,
-		"hideRankings": true
-	},
-	{
 		"title": "Gymbreakers Invitational 2022",
 		"cup": "gymbreakers",
 		"cp": 1500,
@@ -74,21 +37,30 @@
 		"showMeta": true
 	},
 	{
-		"title": "Premier Classic",
+		"title": "Premier Classic (Ultra League)",
 		"cup": "premierclassic",
 		"cp": 2500,
 		"meta": "ultrapremierclassic",
-		"showCup": false,
-		"showFormat": false,
+		"showCup": true,
+		"showFormat": true,
 		"showMeta": true
 	},
 	{
-		"title": "Master League (Premier Classic)",
+		"title": "Premier Classic (Master League)",
 		"cup": "premierclassic",
 		"cp": 10000,
 		"meta": "masterpremierclassic",
-		"showCup": false,
-		"showFormat": false,
+		"showCup": true,
+		"showFormat": true,
+		"showMeta": true
+	},
+	{
+		"title": "Evolution Cup",
+		"cup": "evolution",
+		"cp": 1500,
+		"meta": "evolution",
+		"showCup": true,
+		"showFormat": true,
 		"showMeta": true
 	},
 	{

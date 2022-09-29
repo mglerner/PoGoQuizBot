@@ -22,6 +22,14 @@
 		"weight": 2
 	},
 	{
+		"speciesId": "celesteela",
+		"chargedMoves": ["BODY_SLAM", "BULLDOZE"]
+	},
+	{
+		"speciesId": "gigalith",
+		"chargedMoves": ["SUPER_POWER", "METEOR_BEAM"]
+	},
+	{
 		"speciesId": "obstagoon",
 		"chargedMoves": ["NIGHT_SLASH", "OBSTRUCT"]
 	},
@@ -39,6 +47,10 @@
 	{
 		"speciesId": "tapu_bulu",
 		"chargedMoves": ["GRASS_KNOT", "DAZZLING_GLEAM"]
+	},
+	{
+		"speciesId": "kartana",
+		"fastMove": "RAZOR_LEAF"
 	},
 	{
 		"speciesId": "hydreigon",
