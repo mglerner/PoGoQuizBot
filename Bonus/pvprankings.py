@@ -47,6 +47,7 @@ EVOLUTIONS = ( ['Spheal', 'Sealeo','Walrein'],
         ['Stunfisk (Galarian)'],
         ['Lickitung'],#,'Lickilicky'],
         ['Mareanie','Toxapex'],
+        ['Croagunk','Toxicroak'],
         )
 
 
@@ -525,8 +526,10 @@ RS_INFO = {
         },
     'Toxapex':{
         'article':'https://gamepress.gg/pokemongo/toxapex-pvp-iv-deep-dive',
-        'videos':('',),
-        'extrainfo':'''High Bulk:
+        'videos':('https://www.youtube.com/watch?v=7ZiNZvY8uXs',),
+        'extrainfo':'''
+
+        High Bulk:
         * For tie-breakers, generally HP > Def
         * If you fear Swampert, 227.82+ Def is important
         * If you hate Venusaur & Jumpluff, 91+ Atk is important
@@ -536,11 +539,33 @@ RS_INFO = {
 
         Lickitung Slayer
         * Rank 1 and 2 Best Buddy Lickitung require 94.13 Atk
+
+        Which IV is best? See the article. But Rank 1 is great, Ranks 2 and 3 get CMP over things, ranks 4 and 9 do better against swampert, etc.
 ''',
         'Great':{
             'High Bulk (226.73 Def, 118 HP)':{'attack':0,'defense':226.73,'hp':118},
             'Mirror Slayer/Big HP (219 Def, 121 HP)':{'attack':0,'defense':219,'hp':121},
             'Lickitung Slayer (93 Atk, 118 HP)':{'attack':93,'defense':0,'hp':118},
+            }
+        },
+    'Toxicroak':{
+        'article':'https://www.reddit.com/r/TheSilphArena/comments/xs5swn/toxicroak_pvp_iv_highlights_gl_ul/',
+        'videos':('',),
+        'extrainfo':'''
+        Not a real deep dive.
+
+        So for now, if you have the Rank 35, 98, or 121 do a dance, yeehaw.
+
+        Not a deep dive, just a highlight. 136.6 Atk in general is really cool. Has a bunch of BPs, only 4-5 really matter (Lanturn 1-1, Noctowl 1-1, Registeel consistency, Skarmory 1-0 hope, S!Walrein 1-1 and possibly 1-2).
+        
+        134 HP scores the Azu 0-0 (Azu, who?), S!Walrein 1-1 & 1-2 (with Atk bp). Spark Lantrun 1-1 (w/ Atk BP) requires 133 HP. Given that both Azu and Walrein are kind of dead, I think the HP could be eased down to 133.
+        
+        The Def is for S!Venu 1-1 and A9 1-1 (w/130 HP). 88.63 is the min, but 89.78+ is safer. If these two matchups are w/e then you could ignore it. Not sure what the min Def is yet though.        
+''',
+        'Great':{
+            'General Good':{'attack':136,'defense':92.51,'hp':131},
+            'General Good (discord)':{'attack':136.6,'defense':88.57,'hp':134},
+            'Bork':{'attack':136.6,'defense':82,'hp':134},
             }
         },
 }
@@ -563,7 +588,8 @@ def display_rs_info(df,mon):
         'Ultra':get_max_stats(df,mon,max_level=51,max_cp=2500.99),
         'Ultra cheap':get_max_stats(df,mon,max_level=41,max_cp=2500.99),
         }
-    # Maybe rename this.
+    # Maybe rename this
+    # TODO: Add ability to sort by atk or blkprod.
     def get_mons(attack,defense,hp,mine,*,level_max=99):    
         these = mine[mine.attack >= attack]
         these = these[these.defense >= defense]
