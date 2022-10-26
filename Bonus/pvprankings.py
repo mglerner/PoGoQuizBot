@@ -48,6 +48,7 @@ EVOLUTIONS = ( ['Spheal', 'Sealeo','Walrein'],
         ['Lickitung'],#,'Lickilicky'],
         ['Mareanie','Toxapex'],
         ['Croagunk','Toxicroak'],
+        ['Phantump','Trevenant'],
         )
 
 
@@ -568,7 +569,27 @@ RS_INFO = {
             'Bork':{'attack':136.6,'defense':82,'hp':134},
             }
         },
-}
+
+    'Trevenant':{
+        'article':'https://gamepress.gg/pokemongo/trevenant-pvp-iv-deep-dive',
+        'videos':('https://www.youtube.com/watch?v=-02-DBdvGJk&t=738s','https://www.youtube.com/watch?v=Y2tMAs-oZKQ&t=573s'),
+        'extrainfo':'''
+For great, high def and min HP are most valuable
+
+Gotta check the actual article on all of these. Ryan Swag lists individual IVs, and I just took some baselines from those.
+''',
+        'Great':{
+            'Best':{'attack':124,'defense':105.8,'hp':128},
+            'Next':{'attack':124,'defense':105.8,'hp':125},
+            },
+        'Ultra':{
+            'Atk':{'attack':168.7,'defense':129,'hp':167},
+#            '':{'attack':,'defense':,'hp':},
+            }
+        },
+        
+
+    }
 
 
 def display_full_report(df):
